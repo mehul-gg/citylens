@@ -36,7 +36,6 @@ const Sidebar = () => {
   const layers = [
     { id: 'traffic', label: 'Traffic Flow', color: 'bg-green-500' },
     { id: 'infrastructure', label: 'Infrastructure', color: 'bg-purple-500' },
-    { id: 'govt', label: 'Govt Projects', color: 'bg-blue-500' },
     { id: 'all', label: 'All Layers', color: 'bg-white' },
   ];
 

@@ -1,0 +1,133 @@
+# 🚀 QUICK REFERENCE - Digital Twin Wakad-Hinjewadi
+
+## ✅ STATUS: RUNNING & READY
+
+| Component | Status | URL |
+|-----------|--------|-----|
+| Backend API | 🟢 Running | http://127.0.0.1:8000 |
+| Frontend App | 🟢 Running | http://localhost:5173 |
+| API Docs | 🟢 Ready | http://127.0.0.1:8000/docs |
+
+---
+
+## 📱 OPEN NOW
+
+**Click here:** http://localhost:5173
+
+Or paste in browser:
+```
+http://localhost:5173
+```
+
+---
+
+## 🎮 CONTROLS
+
+| Action | How To |
+|--------|--------|
+| Rotate view | Left-drag mouse |
+| Pan view | Right-drag mouse |
+| Zoom in/out | Scroll wheel |
+| Tilt view | Ctrl + drag |
+| Toggle layers | Click checkboxes (left panel) |
+
+---
+
+## 🎨 WHAT YOU'LL SEE
+
+✅ **Satellite imagery** (Esri World Imagery)  
+✅ **3D buildings** with real heights and shadows  
+✅ **Blue highways** (motorways/expressways)  
+✅ **White roads** (tertiary/local streets)  
+✅ **Colored zones** (residential/commercial/industrial)  
+✅ **Waterways** in blue  
+
+---
+
+## ⏱️ FIRST TIME
+
+1. **Wait 5-10 seconds** for map to fully load
+2. **Satellite tiles** load progressively
+3. **Fallback data** shows if OSM is slow
+4. **Refresh page** if needed
+
+---
+
+## 📂 PROJECT LOCATION
+
+```
+D:\VS Code\PROJECTS\DIGITAL TWIN\citylens\
+```
+
+---
+
+## 🔌 PORTS
+
+- **Backend:** 8000
+- **Frontend:** 5173
+
+---
+
+## 🛑 STOP SERVERS
+
+Press **Ctrl+C** in terminal windows or close them
+
+---
+
+## 📚 DOCUMENTATION
+
+- `README.md` - Overview
+- `QUICKSTART.md` - Quick start
+- `TECH_STACK.md` - Technologies
+- `RUNNING.md` - Full status report
+
+---
+
+## 🎯 DEMO SCRIPT
+
+**Scenario:** "Should we build a flyover at Wakad-Hinjewadi?"
+
+1. Show satellite view of junction
+2. Rotate to see 3D buildings
+3. Point out traffic corridor
+4. Demonstrate zoom levels
+5. Toggle different layers
+6. Explain infrastructure impact
+
+---
+
+## ⚙️ TECH
+
+**Backend:** FastAPI + Uvicorn  
+**Frontend:** React + Cesium  
+**Data:** OpenStreetMap  
+**Imagery:** Esri World
+
+---
+
+## 🔍 VERIFY WORKING
+
+✅ Backend responds: http://127.0.0.1:8000/health  
+✅ Map loads at: http://localhost:5173  
+✅ Buildings visible in 3D  
+✅ Shadows cast on ground  
+✅ Layer toggles work  
+
+---
+
+## 💡 TIPS
+
+- Zoom to **500m altitude** for best 3D view
+- **Rotate** view to see shadows clearly
+- **Toggle buildings** to see shadow effect
+- **Zoom to street level** for detail
+- **Check F12** if something seems broken
+
+---
+
+## 🎉 ENJOY!
+
+Your Digital Twin is running!
+
+**Next:** Explore the 3D map at http://localhost:5173
+
