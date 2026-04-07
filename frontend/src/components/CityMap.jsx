@@ -32,11 +32,11 @@ const MapBoundsController = () => {
 
 // Map click handler with road snapping
 const MapClickHandler = () => {
-  const { isDrawing, addDrawnPoint } = useStore();
+  const { isDrawing, addDrawnPoint, trafficSimulationActive } = useStore();
   
   useMapEvents({
     click: (e) => {
-      if (isDrawing) {
+      if (isDrawing && !trafficSimulationActive) {
         const clickPoint = [e.latlng.lng, e.latlng.lat];
         const snapResult = snapToRoad(clickPoint, 0.003);
         
@@ -290,7 +290,7 @@ const RoadNetwork = ({ roads, onRoadClick }) => {
       {/* Road shadow/outline for depth effect */}
       {roads.map(road => (
         <Polyline
-          key={`shadow-${road.id}`}
+          key={`shadow-${road.id}-${road.trafficDensity}`}
           positions={toLatLng(road.coordinates)}
           color="#000000"
           weight={(road.type === 'highway' ? 8 : road.type === 'flyover' ? 7 : road.lanes * 2) + 2}
@@ -303,7 +303,7 @@ const RoadNetwork = ({ roads, onRoadClick }) => {
       {/* Main road lines */}
       {roads.map(road => (
         <Polyline
-          key={road.id}
+          key={`${road.id}-${Math.round(road.trafficDensity * 100)}`}
           positions={toLatLng(road.coordinates)}
           color={getCongestionColor(road.trafficDensity)}
           weight={road.type === 'highway' ? 8 : road.type === 'flyover' ? 7 : road.lanes * 2}
@@ -336,7 +336,7 @@ const RoadNetwork = ({ roads, onRoadClick }) => {
       {/* Road center line for highways */}
       {roads.filter(r => r.type === 'highway' || r.lanes >= 3).map(road => (
         <Polyline
-          key={`center-${road.id}`}
+          key={`center-${road.id}-${road.trafficDensity}`}
           positions={toLatLng(road.coordinates)}
           color="#ffffff"
           weight={1}
@@ -640,8 +640,8 @@ const CityMap = () => {
           <RoadConnectionMarkers roads={sortedRoads} />
         )}
 
-        {/* Animated Vehicles - now uses user scenarios too */}
-        <AnimatedVehicles roads={ROAD_SEGMENTS} userScenarios={scenarios} />
+         {/* Animated Vehicles - now uses user scenarios too and updated roads with traffic impact */}
+         <AnimatedVehicles roads={sortedRoads} userScenarios={scenarios} />
         
         {/* SUMO Vehicles */}
         <SUMOVehicles />

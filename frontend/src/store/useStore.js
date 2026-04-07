@@ -1,4 +1,6 @@
 import { create } from 'zustand';
+import { calculateInfrastructureImpact } from '../utils/roadGraph';
+import { ROAD_SEGMENTS } from '../data/puneData';
 
 const useStore = create((set, get) => ({
   // Map state
@@ -45,6 +47,9 @@ const useStore = create((set, get) => ({
   // 3D View state
   showBefore: true, // true = show "before" state (no new infrastructure), false = "after"
   
+  // Roads with recalculated traffic after infrastructure changes
+  roadsWithImpact: null, // Stores roads with updated traffic densities after drawing
+  
   // Actions
   setViewMode: (mode) => set({ viewMode: mode }),
   setSelectedLayer: (layer) => set({ selectedLayer: layer }),
@@ -71,11 +76,17 @@ const useStore = create((set, get) => ({
         name: `New ${state.drawingType}`,
         createdAt: new Date().toISOString()
       };
+      const updatedScenarios = [...state.scenarios, { ...newScenario, id: Date.now().toString() }];
+      
+      // Calculate traffic impact of new infrastructure
+      const roadsWithImpact = calculateInfrastructureImpact(updatedScenarios, ROAD_SEGMENTS);
+      
       set((state) => ({
         isDrawing: false,
         drawingType: null,
         drawnPoints: [],
-        scenarios: [...state.scenarios, { ...newScenario, id: Date.now().toString() }]
+        scenarios: updatedScenarios,
+        roadsWithImpact: roadsWithImpact // Store updated roads for rendering
       }));
     } else {
       set({ isDrawing: false, drawingType: null, drawnPoints: [] });
@@ -113,6 +124,9 @@ const useStore = create((set, get) => ({
   // 3D View actions
   setShowBefore: (showBefore) => set({ showBefore }),
   toggleShowBefore: () => set((state) => ({ showBefore: !state.showBefore })),
+  
+  // Update roads with traffic impact calculations
+  setRoadsWithImpact: (roads) => set({ roadsWithImpact: roads }),
 }));
 
 export default useStore;

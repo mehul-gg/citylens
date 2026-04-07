@@ -1,4 +1,4 @@
-import { Check, X, Undo, MousePointer } from 'lucide-react';
+import { Check, X, Undo, MousePointer, AlertCircle } from 'lucide-react';
 import useStore from '../store/useStore';
 
 const DrawingToolbar = () => {
@@ -6,7 +6,8 @@ const DrawingToolbar = () => {
     drawingType, 
     drawnPoints, 
     finishDrawing, 
-    cancelDrawing 
+    cancelDrawing,
+    trafficSimulationActive
   } = useStore();
 
   const typeColors = {
@@ -26,7 +27,14 @@ const DrawingToolbar = () => {
             Drawing: <span className={`text-${typeColors[drawingType]}-400 capitalize`}>{drawingType}</span>
           </p>
           <p className="text-xs text-slate-400">
-            Click on map to add points ({drawnPoints.length} points added)
+            {trafficSimulationActive ? (
+              <span className="flex items-center gap-1 text-amber-500">
+                <AlertCircle size={12} />
+                Pause simulation to draw
+              </span>
+            ) : (
+              <span>Click on map to add points ({drawnPoints.length} points added)</span>
+            )}
           </p>
         </div>
       </div>
@@ -38,12 +46,13 @@ const DrawingToolbar = () => {
       <div className="flex items-center gap-2">
         <button
           onClick={finishDrawing}
-          disabled={drawnPoints.length < 2}
+          disabled={drawnPoints.length < 2 || trafficSimulationActive}
           className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-            drawnPoints.length >= 2
+            drawnPoints.length >= 2 && !trafficSimulationActive
               ? 'bg-green-600 hover:bg-green-700 text-white'
               : 'bg-slate-700 text-slate-500 cursor-not-allowed'
           }`}
+          title={trafficSimulationActive ? 'Pause the simulation to finish drawing' : ''}
         >
           <Check size={16} />
           <span>Finish</span>
@@ -60,7 +69,11 @@ const DrawingToolbar = () => {
 
       {/* Instructions */}
       <div className="text-xs text-slate-400 max-w-48">
-        Click at least 2 points on the map to define the {drawingType} path, then click Finish.
+        {trafficSimulationActive ? (
+          <span className="text-amber-500 font-semibold">⏸ Pause simulation to draw infrastructure</span>
+        ) : (
+          <span>Click at least 2 points on the map to define the {drawingType} path, then click Finish.</span>
+        )}
       </div>
     </div>
   );
