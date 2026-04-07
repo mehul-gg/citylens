@@ -11,7 +11,8 @@ import {
   Sparkles,
   Gauge,
   Leaf,
-  Activity
+  Activity,
+  BarChart3
 } from 'lucide-react';
 import { ROAD_SEGMENTS, HOURLY_TRAFFIC_PATTERNS, AQI_PATTERNS } from '../data/puneData';
 import { calculateInfrastructureImpact } from '../utils/roadGraph';
@@ -228,227 +229,192 @@ const AnalyticsPanel = () => {
   };
 
   return (
-    <div className="absolute bottom-4 right-4 w-80 glass rounded-xl overflow-hidden">
+    <div className="absolute bottom-6 right-6 w-85 glass rounded-[32px] overflow-hidden z-20 transition-all duration-500">
       {/* Header */}
       <div 
-        className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-700/30"
+        className="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-all duration-300"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex items-center gap-2">
-          <h3 className="text-white font-semibold">Live Analytics</h3>
-          {metrics.isPeakHour && (
-            <span className="text-xs px-2 py-0.5 bg-red-500/20 text-red-400 rounded-full">
-              Peak Hour
-            </span>
-          )}
-          {metrics.infrastructureActive && (
-            <span className="text-xs px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">
-              +{metrics.scenarioCount} Infra
-            </span>
-          )}
-          {metrics.dataSource === 'sumo' && (
-            <span className="text-xs px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded-full flex items-center gap-1">
-              <Activity size={10} className="animate-pulse" />
-              SUMO
-            </span>
-          )}
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 rounded-2xl bg-blue-600/20 flex items-center justify-center shadow-inner">
+            <BarChart3 size={20} className="text-blue-400" />
+          </div>
+          <div>
+            <h3 className="text-white text-base font-black tracking-tight leading-none mb-1.5">Network Analytics</h3>
+            <div className="flex items-center gap-2">
+              <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${metrics.dataSource === 'sumo' ? 'bg-blue-500' : 'bg-green-500'}`}></div>
+              <span className={`text-[10px] font-black uppercase tracking-[0.15em] ${metrics.dataSource === 'sumo' ? 'text-blue-500' : 'text-green-500'}`}>
+                {metrics.dataSource === 'sumo' ? 'SUMO Engine' : 'Live Calculations'}
+              </span>
+            </div>
+          </div>
         </div>
-        {isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
+        <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center border border-white/5">
+          {isExpanded ? <ChevronDown size={18} className="text-slate-400" /> : <ChevronUp size={18} className="text-slate-400" />}
+        </div>
       </div>
 
       {isExpanded && (
-        <div className="p-4 pt-0 space-y-4">
-          {/* Time indicator */}
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span>{metrics.isWeekend ? 'Weekend' : 'Weekday'} • {metrics.hour}:00</span>
-            <span className="flex items-center gap-1">
-              <Activity size={10} className="text-green-400 animate-pulse" />
-              Live
-            </span>
-          </div>
-
+        <div className="p-6 pt-0 space-y-6 max-h-[65vh] overflow-y-auto custom-scrollbar">
           {/* Improvement banner when infrastructure is active */}
           {improvement && (
-            <div className="bg-green-900/30 border border-green-500/30 rounded-lg p-3">
-              <div className="flex items-center gap-2 mb-2">
-                <CheckCircle2 size={16} className="text-green-400" />
-                <span className="text-green-400 font-medium text-sm">Infrastructure Impact</span>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div>
-                  <span className="text-slate-400">Travel Time</span>
-                  <p className="text-green-400 font-bold">-{improvement.travelTimeReduction}%</p>
+            <div className="bg-gradient-to-br from-green-600/30 via-emerald-600/20 to-teal-600/10 border border-green-500/30 rounded-[24px] p-5 animate-in fade-in zoom-in duration-700 shadow-2xl shadow-green-900/20">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-8 rounded-xl bg-green-500/20 flex items-center justify-center border border-green-500/20">
+                  <Sparkles size={16} className="text-green-400" />
                 </div>
-                <div>
-                  <span className="text-slate-400">Congestion</span>
-                  <p className="text-green-400 font-bold">-{improvement.congestionReduction}%</p>
+                <span className="text-green-400 font-black text-[11px] uppercase tracking-[0.2em]">Efficiency Gains</span>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-950/40 p-4 rounded-2xl border border-white/5 backdrop-blur-md">
+                  <span className="text-slate-500 text-[9px] font-black uppercase block mb-1.5 tracking-widest">Travel Time</span>
+                  <div className="flex items-baseline gap-1">
+                    <p className="text-green-400 text-2xl font-black leading-none tracking-tighter">-{improvement.travelTimeReduction}</p>
+                    <span className="text-green-400/60 text-[10px] font-bold">%</span>
+                  </div>
+                </div>
+                <div className="bg-slate-950/40 p-4 rounded-2xl border border-white/5 backdrop-blur-md">
+                  <span className="text-slate-500 text-[9px] font-black uppercase block mb-1.5 tracking-widest">Congestion</span>
+                  <div className="flex items-baseline gap-1">
+                    <p className="text-green-400 text-2xl font-black leading-none tracking-tighter">-{improvement.congestionReduction}</p>
+                    <span className="text-green-400/60 text-[10px] font-bold">%</span>
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* KPI Cards */}
-          <div className="grid grid-cols-2 gap-2">
-            <div className="bg-slate-700/50 rounded-lg p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <Clock size={14} className="text-slate-400" />
-                <span className="text-slate-400 text-xs">Travel Time</span>
+          {/* KPI Cards Grid */}
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            {[
+              { label: 'Travel Time', value: metrics.avgTravelTime, unit: 'min', icon: Clock, color: 'text-white', sub: metrics.avgTravelTime > 20 ? <TrendingUp size={12} className="text-red-500" /> : <TrendingDown size={12} className="text-green-500" /> },
+              { label: 'Congestion', value: `${metrics.congestionIndex}%`, unit: '', icon: Gauge, color: getCongestionColor(metrics.congestionIndex) },
+              { label: 'Air Quality', value: metrics.airQualityIndex, unit: 'aqi', icon: Wind, color: getAQIColor(metrics.airQualityIndex) },
+              { label: 'Network Load', value: (metrics.vehiclesPerHour / 1000).toFixed(1), unit: 'k', icon: Car, color: 'text-white' },
+            ].map((kpi, i) => (
+              <div key={i} className="glass-card p-5 group hover-glow border border-white/5 transition-all duration-500">
+                <div className="flex items-center justify-between mb-3">
+                  <kpi.icon size={14} className="text-slate-500 group-hover:text-blue-400 transition-colors" />
+                  {kpi.sub}
+                </div>
+                <p className="text-slate-500 text-[9px] font-black uppercase mb-1 tracking-widest leading-none">{kpi.label}</p>
+                <div className="flex items-baseline gap-1">
+                  <p className={`text-2xl font-black tracking-tighter ${kpi.color}`}>{kpi.value}</p>
+                  {kpi.unit && <span className="text-[10px] text-slate-500 font-bold uppercase">{kpi.unit}</span>}
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-white">{metrics.avgTravelTime}</span>
-                <span className="text-slate-400 text-sm">min</span>
-                {metrics.avgTravelTime > 20 ? (
-                  <TrendingUp size={14} className="text-red-400" />
-                ) : (
-                  <TrendingDown size={14} className="text-green-400" />
-                )}
-              </div>
-              <div className="text-xs text-slate-500 mt-1">Wakad → Hinjewadi</div>
-            </div>
+            ))}
+          </div>
 
-            <div className="bg-slate-700/50 rounded-lg p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <Gauge size={14} className="text-slate-400" />
-                <span className="text-slate-400 text-xs">Congestion</span>
+          {/* Eco Analysis - Sleek Progress Style */}
+          <div className="bg-white/5 border border-white/5 rounded-[24px] p-6 space-y-5">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-green-500/10 flex items-center justify-center">
+                  <Leaf size={16} className="text-green-500" />
+                </div>
+                <span className="text-white text-[11px] font-black uppercase tracking-[0.2em]">Eco Footprint</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className={`text-xl font-bold ${getCongestionColor(metrics.congestionIndex)}`}>
-                  {metrics.congestionIndex}%
-                </span>
-                {metrics.congestionIndex > 70 && <TrendingUp size={14} className="text-red-400" />}
-              </div>
-              <div className="text-xs text-slate-500 mt-1">Avg: {metrics.avgSpeed} km/h</div>
+              <Activity size={14} className="text-slate-600" />
             </div>
-
-            <div className="bg-slate-700/50 rounded-lg p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <Wind size={14} className="text-slate-400" />
-                <span className="text-slate-400 text-xs">Air Quality</span>
+            
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
+                  <span className="text-slate-500">Fuel Waste/hr</span>
+                  <span className="text-orange-400 font-mono">{metrics.fuelWasted.toLocaleString()} L</span>
+                </div>
+                <div className="w-full h-1 bg-slate-900 rounded-full overflow-hidden border border-white/5">
+                  <div className="h-full bg-orange-500/50 rounded-full" style={{ width: '65%' }}></div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className={`text-xl font-bold ${getAQIColor(metrics.airQualityIndex)}`}>
-                  {metrics.airQualityIndex}
-                </span>
-                <span className="text-xs text-slate-500">AQI</span>
-              </div>
-              <div className="text-xs text-slate-500 mt-1">{metrics.aqiCategory}</div>
-            </div>
-
-            <div className="bg-slate-700/50 rounded-lg p-3">
-              <div className="flex items-center gap-2 mb-1">
-                <Car size={14} className="text-slate-400" />
-                <span className="text-slate-400 text-xs">Vehicles/hr</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xl font-bold text-white">
-                  {(metrics.vehiclesPerHour / 1000).toFixed(1)}K
-                </span>
-              </div>
-              <div className="text-xs text-slate-500 mt-1">
-                Risk: <span className={metrics.accidentRisk === 'High' ? 'text-red-400' : metrics.accidentRisk === 'Medium' ? 'text-yellow-400' : 'text-green-400'}>
-                  {metrics.accidentRisk}
-                </span>
+              <div className="space-y-2">
+                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
+                  <span className="text-slate-500">CO₂ Output</span>
+                  <span className="text-red-500 font-mono">{metrics.co2Emissions.toLocaleString()} KG</span>
+                </div>
+                <div className="w-full h-1 bg-slate-900 rounded-full overflow-hidden border border-white/5">
+                  <div className="h-full bg-red-500/50 rounded-full" style={{ width: '80%' }}></div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Environmental Impact */}
-          <div className="bg-slate-700/30 rounded-lg p-3">
-            <div className="flex items-center gap-2 mb-2">
-              <Leaf size={14} className="text-green-400" />
-              <span className="text-slate-300 text-sm font-medium">Environmental Impact (per hour)</span>
+          {/* AI Strategy - Premium Glass Style */}
+          <div className="bg-gradient-to-br from-indigo-600/20 via-purple-600/10 to-transparent rounded-[28px] p-6 border border-white/10 relative overflow-hidden group shadow-2xl">
+            <div className="absolute -top-6 -right-6 p-8 opacity-5 group-hover:opacity-10 transition-all duration-1000 rotate-12 group-hover:rotate-45">
+              <Sparkles size={100} className="text-white" />
             </div>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div>
-                <span className="text-slate-400">Fuel Wasted</span>
-                <p className="text-orange-400 font-semibold">{metrics.fuelWasted.toLocaleString()} L</p>
-              </div>
-              <div>
-                <span className="text-slate-400">CO₂ Emissions</span>
-                <p className="text-red-400 font-semibold">{metrics.co2Emissions.toLocaleString()} kg</p>
-              </div>
-            </div>
-          </div>
-
-          {/* AI Recommendation Section */}
-          <div className="bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg p-4 border border-purple-500/30">
+            
             <div 
-              className="flex items-center justify-between cursor-pointer"
+              className="flex items-center justify-between cursor-pointer relative z-10"
               onClick={() => setShowAIRecommendation(!showAIRecommendation)}
             >
-              <div className="flex items-center gap-2">
-                <Sparkles size={18} className="text-purple-400" />
-                <span className="text-white font-medium">AI: Infrastructure Analysis</span>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-2xl bg-indigo-500/20 flex items-center justify-center border border-indigo-500/20 shadow-lg">
+                  <Sparkles size={18} className="text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-white text-xs font-black uppercase tracking-[0.2em]">CityAI™ Advisor</span>
+                  <p className="text-indigo-400/60 text-[9px] font-bold uppercase tracking-widest mt-0.5">Strategy Optimization</p>
+                </div>
               </div>
-              {showAIRecommendation ? <ChevronUp size={16} className="text-slate-400" /> : <ChevronDown size={16} className="text-slate-400" />}
+              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center">
+                {showAIRecommendation ? <ChevronUp size={16} className="text-slate-400" /> : <ChevronDown size={16} className="text-slate-400" />}
+              </div>
             </div>
 
-            {/* Score Badge */}
-            <div className="flex items-center gap-3 mt-3">
-              <div className={`w-14 h-14 rounded-full flex items-center justify-center ${
+            <div className="flex items-center gap-5 mt-6 relative z-10">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-xl border-t border-white/20 ${
                 aiAnalysis.bridgeNecessityScore > 85 ? 'bg-gradient-to-br from-red-500 to-red-600' :
                 aiAnalysis.bridgeNecessityScore > 70 ? 'bg-gradient-to-br from-orange-500 to-orange-600' :
-                aiAnalysis.bridgeNecessityScore > 50 ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' :
-                'bg-gradient-to-br from-green-500 to-green-600'
+                'bg-gradient-to-br from-indigo-500 to-indigo-600'
               }`}>
-                <span className="text-xl font-bold text-white">{aiAnalysis.bridgeNecessityScore}</span>
+                <span className="text-2xl font-black text-white leading-none tracking-tighter">{aiAnalysis.bridgeNecessityScore}</span>
               </div>
-              <div>
-                <p className={`font-semibold ${
+              <div className="flex-1">
+                <p className={`text-sm font-black uppercase leading-none mb-1.5 tracking-tight ${
                   aiAnalysis.bridgeNecessityScore > 85 ? 'text-red-400' : 
-                  aiAnalysis.bridgeNecessityScore > 70 ? 'text-orange-400' :
-                  aiAnalysis.bridgeNecessityScore > 50 ? 'text-yellow-400' : 'text-green-400'
+                  aiAnalysis.bridgeNecessityScore > 70 ? 'text-orange-400' : 'text-indigo-400'
                 }`}>
                   {aiAnalysis.recommendation}
                 </p>
-                <p className="text-slate-400 text-sm">Infrastructure Necessity</p>
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 h-1 bg-slate-900 rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full ${aiAnalysis.bridgeNecessityScore > 70 ? 'bg-red-500' : 'bg-indigo-500'}`} style={{ width: `${aiAnalysis.bridgeNecessityScore}%` }}></div>
+                  </div>
+                  <span className="text-[9px] text-slate-500 font-black uppercase tracking-widest">Priority</span>
+                </div>
               </div>
             </div>
 
             {showAIRecommendation && (
-              <div className="mt-4 space-y-3">
-                {/* Impact Metrics */}
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-slate-800/50 rounded p-2">
-                    <p className="text-xs text-slate-400">Est. Travel Time</p>
-                    <p className="text-green-400 font-semibold">-{aiAnalysis.expectedImpact.travelTimeReduction}%</p>
-                  </div>
-                  <div className="bg-slate-800/50 rounded p-2">
-                    <p className="text-xs text-slate-400">Est. Congestion</p>
-                    <p className="text-green-400 font-semibold">-{aiAnalysis.expectedImpact.congestionReduction}%</p>
-                  </div>
-                  <div className="bg-slate-800/50 rounded p-2">
-                    <p className="text-xs text-slate-400">Cost-Benefit</p>
-                    <p className="text-blue-400 font-semibold">{aiAnalysis.expectedImpact.costBenefit}x</p>
-                  </div>
-                  <div className="bg-slate-800/50 rounded p-2">
-                    <p className="text-xs text-slate-400">Payback Period</p>
-                    <p className="text-blue-400 font-semibold">{aiAnalysis.expectedImpact.paybackPeriod} yrs</p>
-                  </div>
+              <div className="mt-8 space-y-5 relative z-10 animate-in fade-in slide-in-from-top-4 duration-500">
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { label: 'Travel Impact', value: `-${aiAnalysis.expectedImpact.travelTimeReduction}%`, color: 'text-green-400' },
+                    { label: 'Flow Gain', value: `+${aiAnalysis.expectedImpact.congestionReduction}%`, color: 'text-green-400' },
+                    { label: 'ROI Scale', value: `${aiAnalysis.expectedImpact.costBenefit}x`, color: 'text-blue-400' },
+                    { label: 'Payback', value: `${aiAnalysis.expectedImpact.paybackPeriod}yr`, color: 'text-blue-400' },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                      <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">{item.label}</p>
+                      <p className={`${item.color} text-sm font-black tracking-tight`}>{item.value}</p>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Reasoning */}
-                <div className="space-y-1">
-                  <p className="text-xs text-slate-400 font-medium">Current Analysis:</p>
+                <div className="space-y-3 pt-2">
                   {aiAnalysis.reasoning.map((reason, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs">
-                      <CheckCircle2 size={12} className="text-green-400 mt-0.5 flex-shrink-0" />
-                      <span className="text-slate-300">{reason}</span>
+                    <div key={i} className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
+                      <CheckCircle2 size={12} className="text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300 text-[10px] leading-relaxed font-bold uppercase tracking-tight opacity-80">{reason}</span>
                     </div>
                   ))}
                 </div>
               </div>
             )}
           </div>
-
-          {/* Scenario Impact Summary */}
-          {!metrics.infrastructureActive && (
-            <div className="text-center pt-2 border-t border-slate-700">
-              <p className="text-xs text-slate-400">
-                Draw infrastructure to see projected impact
-              </p>
-            </div>
-          )}
         </div>
       )}
     </div>
