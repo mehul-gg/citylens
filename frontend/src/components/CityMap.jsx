@@ -2,6 +2,8 @@ import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, Polyline, CircleMarker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import useStore from '../store/useStore';
+import BuildingLayer from './BuildingLayer';
+import RouteVisualization from './RouteVisualization';
 import { 
   PUNE_CENTER, 
   CORRIDOR_BOUNDS,
@@ -13,6 +15,7 @@ import {
   findNearestPointOnRoad
 } from '../data/puneData';
 import { calculateInfrastructureImpact } from '../utils/roadGraph';
+import { findAffectedBuildings } from '../utils/geometryUtils';
 
 // Component to set map bounds
 const MapBoundsController = () => {
@@ -569,8 +572,54 @@ const CityMap = () => {
     selectedLayer,
     setSelectedJunction,
     setSelectedRoad,
-    scenarios
+    scenarios,
+    buildings,
+    buildingsLoaded,
+    setBuildings,
+    setBuildingsLoading,
+    setSelectedBuilding,
+    routeAlternatives,
+    selectedRouteId,
+    showRouteSuggestions,
+    showSuggestedRoutes
   } = useStore();
+
+  // Load buildings: mock immediately, OSM in background
+  useEffect(() => {
+    const loadBuildings = async () => {
+      if (buildingsLoaded) return; // Already loaded
+      
+      setBuildingsLoading(true);
+      
+      // STEP 1: Load mock buildings IMMEDIATELY (no waiting)
+      try {
+        const { generateMockBuildings } = await import('../data/mockBuildings');
+        const mockData = generateMockBuildings(100);
+        setBuildings(mockData);
+        console.log(`⚡ Loaded ${mockData.length} mock buildings instantly`);
+      } catch (mockError) {
+        console.error('Failed to generate mock buildings:', mockError);
+        setBuildings([]);
+      }
+      
+      // STEP 2: Try OSM in background (don't block UI)
+      setTimeout(async () => {
+        try {
+          const { fetchBuildings } = await import('../services/osmService');
+          const osmData = await fetchBuildings();
+          
+          if (osmData && osmData.length > 0) {
+            setBuildings(osmData);
+            console.log(`✅ Swapped to ${osmData.length} real OSM buildings`);
+          }
+        } catch (error) {
+          console.warn('⚠️ OSM fetch failed, keeping mock buildings:', error.message);
+        }
+      }, 100); // Start OSM fetch after 100ms
+    };
+    
+    loadBuildings();
+  }, [buildingsLoaded, setBuildings, setBuildingsLoading]);
 
   const toLatLng = (coords) => coords.map(c => [c[1], c[0]]);
 
@@ -597,6 +646,36 @@ const CityMap = () => {
       return (order[a.type] || 0) - (order[b.type] || 0);
     });
   }, [scenarios]);
+
+  // Calculate affected buildings when drawing or viewing route suggestions
+  const affectedBuildings = useMemo(() => {
+    if (!buildings || buildings.length === 0) {
+      return [];
+    }
+    
+    // If toggle is ON (showSuggestedRoutes), show buildings affected by ALL suggested routes
+    if (showSuggestedRoutes && routeAlternatives && routeAlternatives.length > 0) {
+      // Combine affected buildings from all routes (deduplicate by building id)
+      const allAffected = new Map();
+      routeAlternatives.forEach(route => {
+        if (route.affectedBuildings) {
+          route.affectedBuildings.forEach(ab => {
+            if (!allAffected.has(ab.building.id)) {
+              allAffected.set(ab.building.id, ab);
+            }
+          });
+        }
+      });
+      return Array.from(allAffected.values());
+    }
+    
+    // Default: Show buildings affected by the ORIGINAL DRAWN PATH
+    if (drawnPoints.length >= 2) {
+      return findAffectedBuildings(drawnPoints, buildings, 0.0001);
+    }
+    
+    return [];
+  }, [drawnPoints, buildings, showSuggestedRoutes, routeAlternatives]);
 
   return (
     <div className="w-full h-full relative">
@@ -638,6 +717,15 @@ const CityMap = () => {
         {/* Road connection markers - show where roads connect */}
         {(selectedLayer === 'traffic' || selectedLayer === 'all') && (
           <RoadConnectionMarkers roads={sortedRoads} />
+        )}
+
+        {/* Building Layer - OSM buildings */}
+        {buildings && buildings.length > 0 && (
+          <BuildingLayer 
+            buildings={buildings} 
+            affectedBuildings={affectedBuildings}
+            onBuildingClick={setSelectedBuilding}
+          />
         )}
 
          {/* Animated Vehicles - now uses user scenarios too and updated roads with traffic impact */}
@@ -697,6 +785,9 @@ const CityMap = () => {
 
         {/* User-drawn scenarios with vehicles */}
         <UserScenarios scenarios={scenarios} />
+
+        {/* Route suggestions visualization */}
+        <RouteVisualization />
 
         {/* Drawing points */}
         {isDrawing && drawnPoints.map((point, idx) => (

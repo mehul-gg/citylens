@@ -50,6 +50,20 @@ const useStore = create((set, get) => ({
   // Roads with recalculated traffic after infrastructure changes
   roadsWithImpact: null, // Stores roads with updated traffic densities after drawing
   
+  // Building data from OSM
+  buildings: [],
+  buildingsLoaded: false,
+  buildingsLoading: false,
+  selectedBuilding: null,
+  
+  // Route optimization
+  routeAlternatives: [], // Array of alternative routes with analysis
+  selectedRouteId: null, // ID of currently selected route alternative
+  showRouteSuggestions: false, // Toggle route suggestion panel
+  routeGenerationLoading: false, // Loading state for route generation
+  routeGenerationError: null, // Error message if route generation fails
+  showSuggestedRoutes: false, // Toggle to show all 3 suggested routes on map (vs original drawn path)
+  
   // Actions
   setViewMode: (mode) => set({ viewMode: mode }),
   setSelectedLayer: (layer) => set({ selectedLayer: layer }),
@@ -127,6 +141,20 @@ const useStore = create((set, get) => ({
   
   // Update roads with traffic impact calculations
   setRoadsWithImpact: (roads) => set({ roadsWithImpact: roads }),
+  
+  // Building actions
+  setBuildings: (buildings) => set({ buildings, buildingsLoaded: true, buildingsLoading: false }),
+  setBuildingsLoading: (loading) => set({ buildingsLoading: loading }),
+  setSelectedBuilding: (building) => set({ selectedBuilding: building }),
+  
+  // Route optimization actions
+  setRouteAlternatives: (alternatives) => set({ routeAlternatives: alternatives }),
+  setSelectedRoute: (routeId) => set({ selectedRouteId: routeId }),
+  toggleRouteSuggestions: () => set((state) => ({ showRouteSuggestions: !state.showRouteSuggestions })),
+  clearRouteAlternatives: () => set({ routeAlternatives: [], selectedRouteId: null, showSuggestedRoutes: false }),
+  setRouteGenerationLoading: (loading) => set({ routeGenerationLoading: loading }),
+  setRouteGenerationError: (error) => set({ routeGenerationError: error }),
+  toggleShowSuggestedRoutes: () => set((state) => ({ showSuggestedRoutes: !state.showSuggestedRoutes })),
 }));
 
 export default useStore;

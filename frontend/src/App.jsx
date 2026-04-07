@@ -6,6 +6,7 @@ import ScenarioPanel from './components/ScenarioPanel';
 import AnalyticsPanel from './components/AnalyticsPanel';
 import CompareView from './components/CompareView';
 import DrawingToolbar from './components/DrawingToolbar';
+import RouteComparisonPanel from './components/RouteComparisonPanel';
 import useStore from './store/useStore';
 import './index.css';
 
@@ -55,6 +56,7 @@ function App() {
               {/* Floating Panels */}
               <ScenarioPanel />
               <AnalyticsPanel />
+              <RouteComparisonPanel />
             </>
           )}
         </div>
