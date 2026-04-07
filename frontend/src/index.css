@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Cesium Widget Styles */
-.cesium-viewer {
-  width: 100%;
-  height: 100%;
-}
-
-.cesium-viewer-bottom {
-  display: none !important;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -40,7 +30,127 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* Pulsing animation for critical junctions - DISABLED to fix red circle glitch */
+/* Using static glow instead */
+/*
+@keyframes critical-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% { 
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+.critical-junction {
+  animation: critical-pulse 1.5s ease-in-out infinite;
+}
+*/
+
+/* Vehicle markers smooth transition */
+.vehicle-marker {
+  transition: all 0.1s linear;
+}
+
 /* Glass morphism effect for panels */
 .glass {
   @apply bg-slate-900/80 backdrop-blur-md border border-white/10;
+}
+
+/* Leaflet popup customization */
+.leaflet-popup-content-wrapper {
+  background: rgba(15, 23, 42, 0.95) !important;
+  color: #f8fafc !important;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  color: #f8fafc !important;
+}
+
+.leaflet-popup-content * {
+  color: #f8fafc !important;
+}
+
+.leaflet-popup-content strong {
+  color: #ffffff !important;
+}
+
+.leaflet-popup-content .text-gray-600,
+.leaflet-popup-content .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.leaflet-popup-content .text-gray-800,
+.leaflet-popup-content .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+.leaflet-popup-content .text-gray-500,
+.leaflet-popup-content .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.leaflet-popup-content .text-gray-400,
+.leaflet-popup-content .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+.leaflet-popup-content .text-xs,
+.leaflet-popup-content .text-sm {
+  color: #cbd5e1 !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #ffffff !important;
+}
+
+/* Map attribution styling */
+.leaflet-control-attribution {
+  background: rgba(15, 23, 42, 0.7) !important;
+  color: #64748b !important;
+  font-size: 10px;
+}
+
+.leaflet-control-attribution a {
+  color: #94a3b8 !important;
+}
+
+/* Zoom controls styling */
+.leaflet-control-zoom {
+  border: none !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(15, 23, 42, 0.9) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(30, 41, 59, 0.95) !important;
+}
+
+/* Road hover effect */
+.leaflet-interactive:hover {
+  cursor: pointer;
+}
+
+/* Drawing mode cursor */
+.leaflet-container.drawing-mode {
+  cursor: crosshair !important;
 }

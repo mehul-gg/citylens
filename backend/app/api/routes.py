@@ -1,7 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import random
+from app.services.network_updater import get_network_updater
 
 router = APIRouter()
 
@@ -19,6 +20,11 @@ class ScenarioInput(BaseModel):
 class TrafficSimulationInput(BaseModel):
     hour: int  # 0-23
     scenario_id: Optional[str] = None
+
+class ScenarioSimulationInput(BaseModel):
+    userScenarios: Optional[List[dict]] = []
+    activeInfrastructure: Optional[List[dict]] = []
+    timestamp: Optional[str] = None
 
 class BridgeAnalysisInput(BaseModel):
     start_coords: List[float]  # [lng, lat]
@@ -81,6 +87,57 @@ async def simulate_traffic(input: TrafficSimulationInput):
     }
 
 # ============ Scenario Analysis ============
+
+@router.post("/scenarios/simulate")
+async def simulate_scenarios(input: ScenarioSimulationInput):
+    """Run traffic simulation with user scenarios and proposed infrastructure"""
+    
+    # Calculate impact based on scenarios
+    total_time_reduction = 0
+    total_congestion_reduction = 0
+    
+    # Impact from proposed infrastructure
+    infra_impact = {
+        'flyover': {'time': 35, 'congestion': 25},
+        'bridge': {'time': 20, 'congestion': 15},
+        'tunnel': {'time': 45, 'congestion': 35},
+        'road': {'time': 10, 'congestion': 8}
+    }
+    
+    for infra in (input.activeInfrastructure or []):
+        impact = infra_impact.get(infra.get('type', 'road'), infra_impact['road'])
+        total_time_reduction += impact['time'] * random.uniform(0.8, 1.2)
+        total_congestion_reduction += impact['congestion'] * random.uniform(0.8, 1.2)
+    
+    # Impact from user-drawn scenarios
+    for scenario in (input.userScenarios or []):
+        impact = infra_impact.get(scenario.get('type', 'road'), infra_impact['road'])
+        total_time_reduction += impact['time'] * 0.5 * random.uniform(0.7, 1.1)
+        total_congestion_reduction += impact['congestion'] * 0.5 * random.uniform(0.7, 1.1)
+    
+    # Cap reductions
+    total_time_reduction = min(total_time_reduction, 65)
+    total_congestion_reduction = min(total_congestion_reduction, 55)
+    
+    return {
+        "success": True,
+        "metrics": {
+            "travelTimeReduction": round(total_time_reduction, 1),
+            "congestionReduction": round(total_congestion_reduction, 1),
+            "costBenefit": round(2.0 + random.random() * 2, 2)
+        },
+        "beforeMetrics": {
+            "avgTravelTime": 22,
+            "congestionIndex": 78,
+            "dailyVehicles": 285000
+        },
+        "afterMetrics": {
+            "avgTravelTime": round(22 * (1 - total_time_reduction/100), 1),
+            "congestionIndex": round(78 * (1 - total_congestion_reduction/100)),
+            "dailyVehicles": 285000
+        },
+        "message": "Simulation completed successfully"
+    }
 
 @router.post("/scenario/analyze")
 async def analyze_scenario(scenario: ScenarioInput):
@@ -256,6 +313,37 @@ async def get_govt_projects():
             ]
         }
     }
+
+@router.post("/infrastructure/add-to-sumo")
+async def add_infrastructure_to_sumo(scenario: ScenarioInput):
+    """
+    Add user-drawn infrastructure to SUMO network
+    This will regenerate the network and allow SUMO to route vehicles through it
+    """
+    try:
+        updater = get_network_updater()
+        
+        infrastructure = {
+            'type': scenario.type,
+            'coordinates': scenario.coordinates,
+            'name': scenario.name.replace(' ', '_'),
+            'lanes': 2 if scenario.type in ['road', 'tunnel'] else 3
+        }
+        
+        success = updater.add_infrastructure(infrastructure)
+        
+        if success:
+            return {
+                "success": True,
+                "message": f"{scenario.type.capitalize()} added to SUMO network successfully",
+                "infrastructure_id": infrastructure['name'],
+                "next_steps": "Restart SUMO simulation to see vehicles using the new infrastructure"
+            }
+        else:
+            raise HTTPException(status_code=500, detail="Failed to add infrastructure to SUMO network")
+            
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 # ============ Analytics ============
 

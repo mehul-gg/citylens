@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import CityMap from './components/CityMap';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
@@ -6,11 +6,15 @@ import ScenarioPanel from './components/ScenarioPanel';
 import AnalyticsPanel from './components/AnalyticsPanel';
 import CompareView from './components/CompareView';
 import DrawingToolbar from './components/DrawingToolbar';
+import ViewToggle from './components/ViewToggle';
 import useStore from './store/useStore';
 import './index.css';
 
+// Lazy load CityScene3D to avoid loading Three.js when not needed
+const CityScene3D = lazy(() => import('./components/CityScene3D'));
+
 function App() {
-  const { isCompareMode, isDrawing, sidebarOpen } = useStore();
+  const { isCompareMode, isDrawing, sidebarOpen, viewMode } = useStore();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -46,7 +50,25 @@ function App() {
             <CompareView />
           ) : (
             <>
-              <CityMap />
+              {/* View Toggle - Tab buttons for 2D/3D */}
+              <ViewToggle />
+              
+              {/* 2D Map View */}
+              {viewMode === '2d' && <CityMap />}
+              
+              {/* 3D View */}
+              {viewMode === '3d' && (
+                <Suspense fallback={
+                  <div className="w-full h-full bg-slate-900 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                      <p className="text-slate-400 text-sm">Loading 3D Scene...</p>
+                    </div>
+                  </div>
+                }>
+                  <CityScene3D />
+                </Suspense>
+              )}
               
               {/* Drawing Toolbar - shows when drawing mode is active */}
               {isDrawing && <DrawingToolbar />}

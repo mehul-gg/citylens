@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <input>
+        <node-files value="wakad.nod.xml"/>
+        <edge-files value="wakad.edg.xml"/>
+    </input>
+    <output>
+        <output-file value="wakad.net.xml"/>
+    </output>
+    <processing>
+        <no-turnarounds value="true"/>
+    </processing>
+    <projection>
+        <proj.utm value="true"/>
+    </projection>
+</configuration>

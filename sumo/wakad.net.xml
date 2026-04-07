@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-04-07T14:53:11.418081+05:30 by Eclipse SUMO netconvert 1.26.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="D:\citylens\sumo\wakad.nod.xml"/>
+        <edge-files value="D:\citylens\sumo\wakad.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="D:\citylens\sumo\wakad.net.xml"/>
+    </output>
+
+    <projection>
+        <proj.utm value="true"/>
+    </projection>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+</netconvertConfiguration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="-365785.68,-2053476.23" convBoundary="0.00,0.00,5491.18,3559.34" origBoundary="73.728000,18.568000,73.780000,18.600000" projParameter="+proj=utm +zone=43 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"/>
+
+    <edge id=":bypass_junction_0" function="internal">
+        <lane id=":bypass_junction_0_0" index="0" speed="12.53" length="28.30" shape="3128.73,2651.73 3125.81,2657.94 3121.18,2662.40 3114.83,2665.10 3106.77,2666.04"/>
+        <lane id=":bypass_junction_0_1" index="1" speed="11.61" length="24.16" shape="3125.66,2650.84 3123.18,2656.05 3119.21,2659.78 3113.74,2662.05 3106.77,2662.84"/>
+    </edge>
+    <edge id=":bypass_junction_2" function="internal">
+        <lane id=":bypass_junction_2_0" index="0" speed="10.87" length="23.68" shape="3122.58,2649.95 3119.84,2656.90 3116.29,2661.67 3111.94,2664.27 3106.77,2664.69"/>
+        <lane id=":bypass_junction_2_1" index="1" speed="10.40" length="15.42" shape="3122.58,2649.95 3120.18,2655.53 3116.75,2659.31 3112.87,2661.02"/>
+    </edge>
+    <edge id=":bypass_junction_10" function="internal">
+        <lane id=":bypass_junction_10_0" index="0" speed="10.40" length="6.17" shape="3112.87,2661.02 3112.27,2661.29 3106.76,2661.47"/>
+    </edge>
+    <edge id=":bypass_junction_4" function="internal">
+        <lane id=":bypass_junction_4_0" index="0" speed="6.85" length="8.86" shape="3106.74,2651.80 3109.08,2651.75 3110.96,2650.97 3112.39,2649.48 3113.36,2647.27"/>
+        <lane id=":bypass_junction_4_1" index="1" speed="8.21" length="13.10" shape="3106.75,2655.02 3110.14,2654.93 3112.89,2653.75 3114.99,2651.50 3116.44,2648.16"/>
+    </edge>
+    <edge id=":bypass_junction_6" function="internal">
+        <lane id=":bypass_junction_6_0" index="0" speed="4.16" length="6.45" shape="3106.76,2658.25 3108.18,2659.09 3108.67,2660.65 3108.20,2662.15 3106.77,2662.84"/>
+    </edge>
+    <edge id=":bypass_junction_7" function="internal">
+        <lane id=":bypass_junction_7_0" index="0" speed="8.87" length="13.76" shape="3106.75,2656.44 3110.09,2655.90 3112.82,2654.34 3114.94,2651.76 3116.44,2648.16"/>
+        <lane id=":bypass_junction_7_1" index="1" speed="10.05" length="17.91" shape="3106.76,2659.64 3111.19,2658.95 3114.80,2656.96 3117.57,2653.66 3119.51,2649.05"/>
+    </edge>
+    <edge id=":bypass_junction_9" function="internal">
+        <lane id=":bypass_junction_9_0" index="0" speed="11.70" length="66.40" shape="3106.76,2659.64 3082.16,2660.32 3073.96,2661.93 3082.17,2664.46 3106.78,2667.92"/>
+    </edge>
+    <edge id=":dange_chowk_0" function="internal">
+        <lane id=":dange_chowk_0_0" index="0" speed="11.11" length="1.74" shape="1269.07,3085.28 1269.07,3085.02 1269.04,3084.84 1268.97,3084.68 1268.84,3084.46"/>
+        <lane id=":dange_chowk_0_1" index="1" speed="7.51" length="1.74" shape="1272.27,3085.25 1272.25,3084.49 1272.17,3083.96 1271.96,3083.47 1271.58,3082.80"/>
+    </edge>
+    <edge id=":dange_chowk_2" function="internal">
+        <lane id=":dange_chowk_2_0" index="0" speed="11.11" length="5.21" shape="1277.05,3079.49 1277.95,3081.04 1278.43,3082.19 1278.63,3083.42 1278.67,3085.21"/>
+        <lane id=":dange_chowk_2_1" index="1" speed="9.54" length="5.21" shape="1274.32,3081.14 1274.96,3082.25 1275.30,3083.07 1275.44,3083.95 1275.47,3085.23"/>
+    </edge>
+    <edge id=":dc_1_0" function="internal">
+        <lane id=":dc_1_0_0" index="0" speed="9.09" length="14.33" shape="1160.67,2635.50 1160.92,2631.72 1162.20,2628.60 1164.51,2626.14 1167.84,2624.33"/>
+        <lane id=":dc_1_0_1" index="1" speed="7.77" length="10.23" shape="1163.86,2635.30 1164.04,2632.60 1164.96,2630.37 1166.60,2628.61 1168.99,2627.32"/>
+    </edge>
+    <edge id=":dc_1_2" function="internal">
+        <lane id=":dc_1_2_0" index="0" speed="3.95" length="2.05" shape="1171.27,2633.30 1170.80,2633.56 1170.47,2633.91 1170.28,2634.36 1170.25,2634.90"/>
+        <lane id=":dc_1_2_1" index="1" speed="6.16" length="6.14" shape="1170.13,2630.31 1168.70,2631.08 1167.71,2632.14 1167.16,2633.48 1167.05,2635.10"/>
+    </edge>
+    <edge id=":dc_2_0" function="internal">
+        <lane id=":dc_2_0_0" index="0" speed="11.11" length="1.71" shape="1172.51,2820.25 1172.37,2819.67 1172.29,2819.28 1172.24,2818.87 1172.20,2818.28"/>
+        <lane id=":dc_2_0_1" index="1" speed="11.11" length="1.71" shape="1175.61,2819.49 1175.51,2819.08 1175.46,2818.79 1175.43,2818.50 1175.40,2818.08"/>
+    </edge>
+    <edge id=":dc_2_2" function="internal">
+        <lane id=":dc_2_2_0" index="0" speed="11.11" length="0.57" shape="1181.78,2817.68 1181.79,2817.76 1181.80,2817.82 1181.81,2817.88 1181.83,2817.96"/>
+        <lane id=":dc_2_2_1" index="1" speed="11.11" length="0.57" shape="1178.59,2817.88 1178.61,2818.13 1178.63,2818.31 1178.66,2818.48 1178.72,2818.72"/>
+    </edge>
+    <edge id=":dc_3_0" function="internal">
+        <lane id=":dc_3_0_0" index="0" speed="11.11" length="2.92" shape="1216.88,2998.64 1216.37,2997.77 1216.06,2997.15 1215.83,2996.49 1215.59,2995.52"/>
+        <lane id=":dc_3_0_1" index="1" speed="11.11" length="2.92" shape="1219.62,2996.99 1219.25,2996.37 1219.03,2995.92 1218.87,2995.45 1218.69,2994.75"/>
+    </edge>
+    <edge id=":dc_3_2" function="internal">
+        <lane id=":dc_3_2_0" index="0" speed="11.11" length="0.97" shape="1224.91,2993.22 1224.94,2993.36 1224.97,2993.46 1225.02,2993.55 1225.09,2993.67"/>
+        <lane id=":dc_3_2_1" index="1" speed="11.11" length="0.97" shape="1221.80,2993.99 1221.91,2994.41 1222.00,2994.69 1222.13,2994.96 1222.36,2995.33"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_0" function="internal">
+        <lane id=":hinjewadi_phase1_0_0" index="0" speed="5.73" length="9.18" shape="629.74,2019.83 627.43,2018.39 625.56,2018.28 624.15,2019.50 623.18,2022.05"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_1" function="internal">
+        <lane id=":hinjewadi_phase1_1_0" index="0" speed="13.89" length="25.00" shape="631.78,2017.36 626.09,2012.85 621.51,2010.12 616.71,2008.82 610.41,2008.59"/>
+        <lane id=":hinjewadi_phase1_1_1" index="1" speed="13.89" length="25.00" shape="633.82,2014.90 627.44,2009.97 622.16,2007.02 616.84,2005.64 610.33,2005.39"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_3" function="internal">
+        <lane id=":hinjewadi_phase1_3_0" index="0" speed="13.89" length="29.95" shape="610.17,1999.00 617.41,1998.88 624.47,1999.57 631.82,2002.10 639.94,2007.50"/>
+        <lane id=":hinjewadi_phase1_3_1" index="1" speed="13.89" length="29.95" shape="610.25,2002.19 617.23,2002.02 623.67,2002.55 630.32,2004.85 637.90,2009.96"/>
+        <lane id=":hinjewadi_phase1_3_2" index="2" speed="13.89" length="29.95" shape="610.25,2002.19 616.97,2002.45 622.82,2003.92 628.78,2007.09 635.86,2012.43"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_6" function="internal">
+        <lane id=":hinjewadi_phase1_6_0" index="0" speed="9.87" length="5.12" shape="610.25,2002.19 615.29,2003.09"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_11" function="internal">
+        <lane id=":hinjewadi_phase1_11_0" index="0" speed="9.87" length="21.29" shape="615.29,2003.09 617.19,2003.42 620.64,2007.29 621.34,2013.39 620.06,2021.33"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_7" function="internal">
+        <lane id=":hinjewadi_phase1_7_0" index="0" speed="7.26" length="13.71" shape="613.83,2019.89 614.60,2014.89 614.29,2011.34 612.89,2009.24 610.41,2008.59"/>
+        <lane id=":hinjewadi_phase1_7_1" index="1" speed="8.61" length="19.76" shape="616.94,2020.61 617.87,2013.86 617.08,2009.07 614.56,2006.25 610.33,2005.39"/>
+    </edge>
+    <edge id=":hinjewadi_phase1_9" function="internal">
+        <lane id=":hinjewadi_phase1_9_0" index="0" speed="9.83" length="29.76" shape="616.94,2020.61 620.04,2012.41 624.75,2007.39 630.79,2006.33 637.90,2009.96"/>
+        <lane id=":hinjewadi_phase1_9_1" index="1" speed="9.24" length="26.10" shape="616.94,2020.61 619.75,2013.60 624.06,2009.60 629.54,2009.06 635.86,2012.43"/>
+    </edge>
+    <edge id=":hinjewadi_phase2_0" function="internal">
+        <lane id=":hinjewadi_phase2_0_0" index="0" speed="8.33" length="21.06" shape="468.20,2905.46 462.27,2904.91 458.35,2902.56 456.46,2898.40 456.59,2892.44"/>
+        <lane id=":hinjewadi_phase2_0_1" index="1" speed="7.66" length="15.04" shape="468.04,2902.26 463.80,2901.87 461.00,2900.19 459.65,2897.22 459.74,2892.96"/>
+    </edge>
+    <edge id=":hinjewadi_phase2_2" function="internal">
+        <lane id=":hinjewadi_phase2_2_0" index="0" speed="3.91" length="3.01" shape="466.06,2894.01 466.04,2894.86 466.31,2895.46 466.87,2895.79 467.72,2895.87"/>
+        <lane id=":hinjewadi_phase2_2_1" index="1" speed="6.08" length="9.03" shape="462.90,2893.49 462.85,2896.04 463.66,2897.82 465.34,2898.83 467.88,2899.07"/>
+    </edge>
+    <edge id=":hw_1_0" function="internal">
+        <lane id=":hw_1_0_0" index="0" speed="12.50" length="24.45" shape="1319.73,2582.25 1312.19,2582.20 1306.70,2582.55 1301.74,2583.61 1295.75,2585.68"/>
+    </edge>
+    <edge id=":hw_1_1" function="internal">
+        <lane id=":hw_1_1_0" index="0" speed="11.11" length="25.50" shape="1319.73,2582.25 1311.99,2582.02 1306.34,2581.91 1301.19,2582.30 1294.98,2583.59"/>
+        <lane id=":hw_1_1_1" index="1" speed="11.11" length="25.50" shape="1319.78,2579.05 1311.61,2578.85 1305.58,2578.80 1300.16,2579.26 1293.85,2580.58"/>
+    </edge>
+    <edge id=":hw_1_3" function="internal">
+        <lane id=":hw_1_3_0" index="0" speed="13.89" length="29.22" shape="1319.78,2579.05 1311.47,2578.15 1306.12,2575.71 1301.38,2571.63 1294.89,2565.80"/>
+        <lane id=":hw_1_3_1" index="1" speed="13.89" length="27.06" shape="1319.84,2575.85 1312.17,2574.97 1307.26,2572.63 1302.92,2568.77 1296.93,2563.33"/>
+    </edge>
+    <edge id=":hw_1_5" function="internal">
+        <lane id=":hw_1_5_0" index="0" speed="13.89" length="22.75" shape="1303.05,2555.93 1307.53,2560.19 1310.67,2563.40 1314.24,2565.46 1320.00,2566.25"/>
+        <lane id=":hw_1_5_1" index="1" speed="13.89" length="22.75" shape="1301.01,2558.40 1305.99,2563.05 1309.53,2566.48 1313.55,2568.63 1319.94,2569.45"/>
+        <lane id=":hw_1_5_2" index="2" speed="13.89" length="22.75" shape="1298.97,2560.86 1304.45,2565.91 1308.40,2569.55 1312.86,2571.80 1319.89,2572.65"/>
+    </edge>
+    <edge id=":hw_1_8" function="internal">
+        <lane id=":hw_1_8_0" index="0" speed="9.49" length="4.68" shape="1298.97,2560.86 1301.92,2564.50"/>
+    </edge>
+    <edge id=":hw_1_9" function="internal">
+        <lane id=":hw_1_9_0" index="0" speed="8.90" length="4.05" shape="1298.97,2560.86 1301.45,2564.07"/>
+    </edge>
+    <edge id=":hw_1_18" function="internal">
+        <lane id=":hw_1_18_0" index="0" speed="9.49" length="23.68" shape="1301.92,2564.50 1303.93,2566.97 1304.70,2573.07 1301.52,2578.51 1294.63,2582.68"/>
+    </edge>
+    <edge id=":hw_1_19" function="internal">
+        <lane id=":hw_1_19_0" index="0" speed="8.90" length="22.32" shape="1301.45,2564.07 1303.39,2566.59 1303.79,2572.37 1300.50,2577.32 1293.85,2580.58"/>
+    </edge>
+    <edge id=":hw_1_10" function="internal">
+        <lane id=":hw_1_10_0" index="0" speed="5.54" length="9.27" shape="1291.60,2574.55 1294.21,2573.50 1295.29,2572.11 1294.84,2570.36 1292.85,2568.26"/>
+    </edge>
+    <edge id=":hw_1_11" function="internal">
+        <lane id=":hw_1_11_0" index="0" speed="11.11" length="28.36" shape="1291.60,2574.55 1298.09,2572.67 1304.01,2570.98 1310.80,2569.80 1319.94,2569.45"/>
+        <lane id=":hw_1_11_1" index="1" speed="11.11" length="28.36" shape="1292.73,2577.56 1299.12,2575.71 1304.77,2574.09 1311.19,2572.97 1319.89,2572.65"/>
+    </edge>
+    <edge id=":hw_1_13" function="internal">
+        <lane id=":hw_1_13_0" index="0" speed="4.44" length="7.68" shape="1292.73,2577.56 1294.66,2577.89 1295.84,2579.43 1295.94,2581.32 1294.63,2582.68"/>
+    </edge>
+    <edge id=":hw_1_14" function="internal">
+        <lane id=":hw_1_14_0" index="0" speed="9.72" length="65.27" shape="1292.40,2576.68 1269.92,2585.77 1262.86,2589.96 1271.21,2589.23 1294.98,2583.59"/>
+    </edge>
+    <edge id=":hw_1_15" function="internal">
+        <lane id=":hw_1_15_0" index="0" speed="7.08" length="15.15" shape="1292.40,2576.68 1296.57,2574.47 1298.37,2571.91 1297.81,2569.02 1294.89,2565.80"/>
+    </edge>
+    <edge id=":hw_1_16" function="internal">
+        <lane id=":hw_1_16_0" index="0" speed="12.50" length="28.19" shape="1292.40,2576.68 1298.64,2574.01 1304.33,2571.64 1310.95,2569.98 1319.94,2569.45"/>
+        <lane id=":hw_1_16_1" index="1" speed="12.50" length="28.19" shape="1293.52,2579.68 1299.66,2577.04 1305.09,2574.74 1311.33,2573.15 1319.89,2572.65"/>
+    </edge>
+    <edge id=":hw_2_0" function="internal">
+        <lane id=":hw_2_0_0" index="0" speed="13.89" length="1.03" shape="1777.67,2589.91 1776.41,2589.93"/>
+        <lane id=":hw_2_0_1" index="1" speed="13.89" length="1.03" shape="1777.49,2586.71 1776.47,2586.73"/>
+        <lane id=":hw_2_0_2" index="2" speed="13.89" length="1.03" shape="1777.32,2583.52 1776.52,2583.53"/>
+    </edge>
+    <edge id=":hw_2_3" function="internal">
+        <lane id=":hw_2_3_0" index="0" speed="13.89" length="0.34" shape="1776.68,2573.94 1776.80,2573.93"/>
+        <lane id=":hw_2_3_1" index="1" speed="13.89" length="0.34" shape="1776.63,2577.13 1776.97,2577.13"/>
+        <lane id=":hw_2_3_2" index="2" speed="13.89" length="0.34" shape="1776.57,2580.33 1777.15,2580.32"/>
+    </edge>
+    <edge id=":hw_3_0" function="internal">
+        <lane id=":hw_3_0_0" index="0" speed="13.89" length="0.83" shape="2240.92,2564.61 2240.84,2564.60 2240.78,2564.60 2240.73,2564.60 2240.64,2564.60"/>
+        <lane id=":hw_3_0_1" index="1" speed="13.89" length="0.83" shape="2241.30,2561.44 2241.05,2561.41 2240.89,2561.39 2240.72,2561.40 2240.47,2561.41"/>
+        <lane id=":hw_3_0_2" index="2" speed="13.89" length="0.83" shape="2241.68,2558.26 2241.27,2558.21 2240.99,2558.19 2240.71,2558.19 2240.29,2558.21"/>
+    </edge>
+    <edge id=":hw_3_3" function="internal">
+        <lane id=":hw_3_3_0" index="0" speed="13.89" length="2.50" shape="2239.77,2548.63 2240.68,2548.58 2241.30,2548.58 2241.92,2548.62 2242.82,2548.73"/>
+        <lane id=":hw_3_3_1" index="1" speed="13.89" length="2.50" shape="2239.95,2551.82 2240.69,2551.79 2241.19,2551.78 2241.70,2551.82 2242.44,2551.90"/>
+        <lane id=":hw_3_3_2" index="2" speed="13.89" length="2.50" shape="2240.12,2555.02 2240.70,2554.99 2241.09,2554.99 2241.49,2555.01 2242.06,2555.08"/>
+    </edge>
+    <edge id=":kaspate_vasti_0" function="internal">
+        <lane id=":kaspate_vasti_0_0" index="0" speed="13.89" length="0.37" shape="4795.13,2543.77 4795.08,2543.77 4795.04,2543.77 4795.00,2543.77 4794.95,2543.78"/>
+        <lane id=":kaspate_vasti_0_1" index="1" speed="13.89" length="0.37" shape="4795.11,2540.57 4794.95,2540.57 4794.83,2540.57 4794.72,2540.58 4794.56,2540.60"/>
+    </edge>
+    <edge id=":kaspate_vasti_2" function="internal">
+        <lane id=":kaspate_vasti_2_0" index="0" speed="13.89" length="1.11" shape="4793.78,2534.25 4794.16,2534.21 4794.42,2534.18 4794.68,2534.17 4795.07,2534.17"/>
+        <lane id=":kaspate_vasti_2_1" index="1" speed="13.89" length="1.11" shape="4794.17,2537.43 4794.44,2537.39 4794.63,2537.38 4794.81,2537.37 4795.09,2537.37"/>
+    </edge>
+    <edge id=":midc_1_0" function="internal">
+        <lane id=":midc_1_0_0" index="0" speed="8.33" length="1.00" shape="617.05,2048.59 616.97,2048.92 616.91,2049.15 616.84,2049.38 616.73,2049.70"/>
+        <lane id=":midc_1_0_1" index="1" speed="8.33" length="1.00" shape="613.93,2047.87 613.88,2048.11 613.84,2048.27 613.78,2048.43 613.71,2048.66"/>
+    </edge>
+    <edge id=":midc_1_2" function="internal">
+        <lane id=":midc_1_2_0" index="0" speed="8.33" length="0.33" shape="607.65,2046.59 607.67,2046.54 607.68,2046.51 607.69,2046.47 607.70,2046.43"/>
+        <lane id=":midc_1_2_1" index="1" speed="8.33" length="0.33" shape="610.68,2047.62 610.73,2047.48 610.76,2047.39 610.78,2047.29 610.82,2047.15"/>
+    </edge>
+    <edge id=":midc_2_0" function="internal">
+        <lane id=":midc_2_0_0" index="0" speed="8.33" length="0.74" shape="544.69,2259.47 544.66,2259.58 544.64,2259.65 544.62,2259.73 544.61,2259.84"/>
+        <lane id=":midc_2_0_1" index="1" speed="8.33" length="0.74" shape="541.67,2258.43 541.56,2258.75 541.50,2258.97 541.46,2259.19 541.43,2259.52"/>
+    </edge>
+    <edge id=":midc_2_2" function="internal">
+        <lane id=":midc_2_2_0" index="0" speed="8.33" length="2.23" shape="535.06,2258.89 535.14,2258.12 535.23,2257.60 535.37,2257.09 535.61,2256.35"/>
+        <lane id=":midc_2_2_1" index="1" speed="8.33" length="2.23" shape="538.24,2259.21 538.30,2258.66 538.36,2258.28 538.46,2257.92 538.64,2257.39"/>
+    </edge>
+    <edge id=":midc_3_0" function="internal">
+        <lane id=":midc_3_0_0" index="0" speed="8.33" length="0.63" shape="505.31,2657.57 505.21,2658.31"/>
+        <lane id=":midc_3_0_1" index="1" speed="8.33" length="0.63" shape="502.12,2657.26 502.05,2657.78"/>
+    </edge>
+    <edge id=":midc_3_2" function="internal">
+        <lane id=":midc_3_2_0" index="0" speed="8.33" length="0.21" shape="495.74,2656.73 495.75,2656.63"/>
+        <lane id=":midc_3_2_1" index="1" speed="8.33" length="0.21" shape="498.90,2657.26 498.94,2656.94"/>
+    </edge>
+    <edge id=":nh48_1_0" function="internal">
+        <lane id=":nh48_1_0_0" index="0" speed="22.22" length="0.24" shape="3776.47,689.38 3776.40,689.57"/>
+        <lane id=":nh48_1_0_1" index="1" speed="22.22" length="0.24" shape="3773.47,688.28 3773.39,688.51"/>
+        <lane id=":nh48_1_0_2" index="2" speed="22.22" length="0.24" shape="3770.46,687.18 3770.37,687.44"/>
+    </edge>
+    <edge id=":nh48_1_3" function="internal">
+        <lane id=":nh48_1_3_0" index="0" speed="22.22" length="0.35" shape="3761.32,684.25 3761.45,683.89"/>
+        <lane id=":nh48_1_3_1" index="1" speed="22.22" length="0.35" shape="3764.33,685.31 3764.45,684.98"/>
+        <lane id=":nh48_1_3_2" index="2" speed="22.22" length="0.35" shape="3767.35,686.38 3767.46,686.08"/>
+    </edge>
+    <edge id=":nh48_2_0" function="internal">
+        <lane id=":nh48_2_0_0" index="0" speed="22.22" length="0.29" shape="3486.65,1510.23 3486.56,1510.49"/>
+        <lane id=":nh48_2_0_1" index="1" speed="22.22" length="0.29" shape="3483.64,1509.17 3483.54,1509.44"/>
+        <lane id=":nh48_2_0_2" index="2" speed="22.22" length="0.29" shape="3480.62,1508.10 3480.52,1508.38"/>
+    </edge>
+    <edge id=":nh48_2_3" function="internal">
+        <lane id=":nh48_2_3_0" index="0" speed="22.22" length="0.31" shape="3471.46,1505.21 3471.57,1504.91"/>
+        <lane id=":nh48_2_3_1" index="1" speed="22.22" length="0.31" shape="3474.48,1506.27 3474.58,1505.97"/>
+        <lane id=":nh48_2_3_2" index="2" speed="22.22" length="0.31" shape="3477.50,1507.32 3477.60,1507.04"/>
+    </edge>
+    <edge id=":nh48_north_0" function="internal">
+        <lane id=":nh48_north_0_0" index="0" speed="19.45" length="0.26" shape="3331.46,1953.86 3331.43,1953.94"/>
+        <lane id=":nh48_north_0_1" index="1" speed="19.45" length="0.26" shape="3328.44,1952.80 3328.36,1953.05"/>
+        <lane id=":nh48_north_0_2" index="2" speed="19.45" length="0.26" shape="3325.42,1951.74 3325.28,1952.15"/>
+    </edge>
+    <edge id=":nh48_north_3" function="internal">
+        <lane id=":nh48_north_3_0" index="0" speed="19.45" length="0.77" shape="3316.07,1949.48 3316.35,1948.57"/>
+        <lane id=":nh48_north_3_1" index="1" speed="19.45" length="0.77" shape="3319.14,1950.37 3319.37,1949.63"/>
+        <lane id=":nh48_north_3_2" index="2" speed="19.45" length="0.77" shape="3322.21,1951.26 3322.40,1950.69"/>
+    </edge>
+    <edge id=":nh48_south_0" function="internal">
+        <lane id=":nh48_south_0_0" index="0" speed="19.19" length="5.17" shape="3870.14,429.80 3870.13,431.67 3870.01,432.95 3869.69,434.20 3869.07,435.96"/>
+        <lane id=":nh48_south_0_1" index="1" speed="17.39" length="5.17" shape="3866.94,429.82 3866.93,431.35 3866.84,432.40 3866.57,433.42 3866.06,434.87"/>
+        <lane id=":nh48_south_0_2" index="2" speed="15.36" length="5.17" shape="3863.74,429.85 3863.73,431.04 3863.66,431.85 3863.45,432.65 3863.06,433.77"/>
+    </edge>
+    <edge id=":nh48_south_3" function="internal">
+        <lane id=":nh48_south_3_0" index="0" speed="22.22" length="1.72" shape="3854.04,430.47 3854.10,430.31 3854.13,430.20 3854.14,430.08 3854.14,429.91"/>
+        <lane id=":nh48_south_3_1" index="1" speed="10.18" length="1.72" shape="3857.05,431.57 3857.22,431.09 3857.30,430.75 3857.34,430.40 3857.34,429.89"/>
+        <lane id=":nh48_south_3_2" index="2" speed="13.03" length="1.72" shape="3860.05,432.67 3860.34,431.87 3860.48,431.30 3860.53,430.72 3860.54,429.87"/>
+    </edge>
+    <edge id=":p2_1_0" function="internal">
+        <lane id=":p2_1_0_0" index="0" speed="8.33" length="4.68" shape="716.99,2891.54 715.59,2892.34 714.56,2892.77 713.46,2892.98 711.86,2893.08"/>
+        <lane id=":p2_1_0_1" index="1" speed="8.33" length="4.68" shape="715.36,2888.78 714.36,2889.35 713.63,2889.66 712.84,2889.81 711.69,2889.89"/>
+    </edge>
+    <edge id=":p2_1_2" function="internal">
+        <lane id=":p2_1_2_0" index="0" speed="8.33" length="1.56" shape="711.37,2883.50 711.60,2883.48 711.76,2883.45 711.90,2883.39 712.10,2883.28"/>
+        <lane id=":p2_1_2_1" index="1" speed="7.90" length="1.56" shape="711.53,2886.69 712.22,2886.65 712.69,2886.56 713.13,2886.37 713.73,2886.03"/>
+    </edge>
+    <edge id=":p2_2_0" function="internal">
+        <lane id=":p2_2_0_0" index="0" speed="8.33" length="1.16" shape="905.59,2779.78 905.27,2780.02 905.05,2780.18 904.82,2780.33 904.47,2780.54"/>
+        <lane id=":p2_2_0_1" index="1" speed="8.33" length="1.16" shape="903.64,2777.24 903.41,2777.42 903.25,2777.53 903.09,2777.64 902.84,2777.78"/>
+    </edge>
+    <edge id=":p2_2_2" function="internal">
+        <lane id=":p2_2_2_0" index="0" speed="8.33" length="0.39" shape="899.58,2772.28 899.63,2772.25 899.66,2772.23 899.70,2772.20 899.74,2772.17"/>
+        <lane id=":p2_2_2_1" index="1" speed="8.33" length="0.39" shape="901.21,2775.03 901.36,2774.94 901.46,2774.88 901.55,2774.81 901.69,2774.71"/>
+    </edge>
+    <edge id=":p2_3_0" function="internal">
+        <lane id=":p2_3_0_0" index="0" speed="8.33" length="1.30" shape="1093.75,2635.33 1093.57,2635.38 1093.44,2635.43 1093.33,2635.50 1093.18,2635.61"/>
+        <lane id=":p2_3_0_1" index="1" speed="8.33" length="1.30" shape="1092.96,2632.23 1092.40,2632.38 1092.03,2632.53 1091.69,2632.73 1091.23,2633.08"/>
+    </edge>
+    <edge id=":p2_3_2" function="internal">
+        <lane id=":p2_3_2_0" index="0" speed="8.33" length="3.90" shape="1087.33,2628.00 1088.40,2627.20 1089.20,2626.72 1090.07,2626.39 1091.36,2626.04"/>
+        <lane id=":p2_3_2_1" index="1" speed="8.33" length="3.90" shape="1089.28,2630.54 1090.05,2629.96 1090.61,2629.62 1091.23,2629.38 1092.16,2629.13"/>
+    </edge>
+    <edge id=":wakad_chowk_0" function="internal">
+        <lane id=":wakad_chowk_0_0" index="0" speed="15.28" length="1.11" shape="3456.59,2707.82 3456.21,2707.86 3455.95,2707.89 3455.69,2707.90 3455.30,2707.90"/>
+        <lane id=":wakad_chowk_0_1" index="1" speed="15.28" length="1.11" shape="3456.20,2704.64 3455.93,2704.68 3455.74,2704.69 3455.56,2704.70 3455.28,2704.70"/>
+    </edge>
+    <edge id=":wakad_chowk_2" function="internal">
+        <lane id=":wakad_chowk_2_0" index="0" speed="15.28" length="0.37" shape="3455.24,2698.30 3455.29,2698.30 3455.33,2698.30 3455.37,2698.30 3455.42,2698.29"/>
+        <lane id=":wakad_chowk_2_1" index="1" speed="15.28" length="0.37" shape="3455.26,2701.50 3455.42,2701.50 3455.54,2701.50 3455.65,2701.49 3455.81,2701.47"/>
+    </edge>
+    <edge id=":wf_1_0" function="internal">
+        <lane id=":wf_1_0_0" index="0" speed="4.79" length="9.61" shape="2875.02,2667.64 2875.12,2658.04"/>
+        <lane id=":wf_1_0_1" index="1" speed="3.63" length="4.53" shape="2875.05,2664.44 2874.06,2663.92 2873.73,2662.83 2874.08,2661.74 2875.08,2661.24"/>
+    </edge>
+    <edge id=":wf_1_2" function="internal">
+        <lane id=":wf_1_2_0" index="0" speed="4.79" length="9.60" shape="2874.99,2667.64 2875.09,2658.04"/>
+        <lane id=":wf_1_2_1" index="1" speed="13.69" length="94.69" shape="2874.97,2664.44 2910.46,2663.99 2922.30,2663.31 2910.48,2662.39 2875.00,2661.24"/>
+    </edge>
+    <edge id=":wf_2_0" function="internal">
+        <lane id=":wf_2_0_0" index="0" speed="16.67" length="0.45" shape="3201.81,2676.45 3201.74,2676.44 3201.70,2676.43 3201.65,2676.43 3201.58,2676.43"/>
+        <lane id=":wf_2_0_1" index="1" speed="16.67" length="0.45" shape="3202.34,2673.29 3202.14,2673.26 3202.00,2673.24 3201.87,2673.23 3201.67,2673.23"/>
+    </edge>
+    <edge id=":wf_2_2" function="internal">
+        <lane id=":wf_2_2_0" index="0" speed="16.67" length="1.34" shape="3201.84,2666.83 3202.31,2666.84 3202.62,2666.86 3202.94,2666.91 3203.39,2666.98"/>
+        <lane id=":wf_2_2_1" index="1" speed="16.67" length="1.34" shape="3201.76,2670.03 3202.09,2670.04 3202.31,2670.05 3202.54,2670.08 3202.86,2670.14"/>
+    </edge>
+    <edge id=":wf_3_0" function="internal">
+        <lane id=":wf_3_0_0" index="0" speed="16.67" length="1.66" shape="3392.92,2708.33 3392.34,2708.33 3391.95,2708.31 3391.56,2708.26 3390.99,2708.17"/>
+        <lane id=":wf_3_0_1" index="1" speed="16.67" length="1.66" shape="3392.90,2705.13 3392.48,2705.13 3392.20,2705.12 3391.92,2705.08 3391.52,2705.02"/>
+    </edge>
+    <edge id=":wf_3_2" function="internal">
+        <lane id=":wf_3_2_0" index="0" speed="16.67" length="0.55" shape="3392.58,2698.70 3392.66,2698.72 3392.71,2698.72 3392.77,2698.73 3392.85,2698.73"/>
+        <lane id=":wf_3_2_1" index="1" speed="16.67" length="0.55" shape="3392.05,2701.86 3392.29,2701.90 3392.46,2701.92 3392.63,2701.93 3392.87,2701.93"/>
+    </edge>
+
+    <edge id="dc_road_1" from="hw_1" to="dc_1" priority="2">
+        <lane id="dc_road_1_0" index="0" speed="11.11" length="133.29" shape="1295.75,2585.68 1171.27,2633.30"/>
+        <lane id="dc_road_1_1" index="1" speed="11.11" length="133.29" shape="1294.63,2582.68 1170.13,2630.31"/>
+    </edge>
+    <edge id="dc_road_1_rev" from="dc_1" to="hw_1" priority="2">
+        <lane id="dc_road_1_rev_0" index="0" speed="11.11" length="133.35" shape="1167.84,2624.33 1292.40,2576.68"/>
+        <lane id="dc_road_1_rev_1" index="1" speed="11.11" length="133.35" shape="1168.99,2627.32 1293.52,2579.68"/>
+    </edge>
+    <edge id="dc_road_2" from="dc_1" to="dc_2" priority="2">
+        <lane id="dc_road_2_0" index="0" speed="11.11" length="183.15" shape="1170.25,2634.90 1181.78,2817.68"/>
+        <lane id="dc_road_2_1" index="1" speed="11.11" length="183.15" shape="1167.05,2635.10 1178.59,2817.88"/>
+    </edge>
+    <edge id="dc_road_2_rev" from="dc_2" to="dc_1" priority="2">
+        <lane id="dc_road_2_rev_0" index="0" speed="11.11" length="183.15" shape="1172.20,2818.28 1160.67,2635.50"/>
+        <lane id="dc_road_2_rev_1" index="1" speed="11.11" length="183.15" shape="1175.40,2818.08 1163.86,2635.30"/>
+    </edge>
+    <edge id="dc_road_3" from="dc_2" to="dc_3" priority="2">
+        <lane id="dc_road_3_0" index="0" speed="11.11" length="180.48" shape="1181.83,2817.96 1224.91,2993.22"/>
+        <lane id="dc_road_3_1" index="1" speed="11.11" length="180.48" shape="1178.72,2818.72 1221.80,2993.99"/>
+    </edge>
+    <edge id="dc_road_3_rev" from="dc_3" to="dc_2" priority="2">
+        <lane id="dc_road_3_rev_0" index="0" speed="11.11" length="180.48" shape="1215.59,2995.52 1172.51,2820.25"/>
+        <lane id="dc_road_3_rev_1" index="1" speed="11.11" length="180.48" shape="1218.69,2994.75 1175.61,2819.49"/>
+    </edge>
+    <edge id="dc_road_4" from="dc_3" to="dange_chowk" priority="2">
+        <lane id="dc_road_4_0" index="0" speed="11.11" length="100.32" shape="1225.09,2993.67 1277.05,3079.49"/>
+        <lane id="dc_road_4_1" index="1" speed="11.11" length="100.32" shape="1222.36,2995.33 1274.32,3081.14"/>
+    </edge>
+    <edge id="dc_road_4_rev" from="dange_chowk" to="dc_3" priority="2">
+        <lane id="dc_road_4_rev_0" index="0" speed="11.11" length="100.32" shape="1268.84,3084.46 1216.88,2998.64"/>
+        <lane id="dc_road_4_rev_1" index="1" speed="11.11" length="100.32" shape="1271.58,3082.80 1219.62,2996.99"/>
+    </edge>
+    <edge id="entry_east_in" from="entry_east" to="kaspate_vasti" priority="2">
+        <lane id="entry_east_in_0" index="0" speed="13.89" length="696.10" shape="5491.21,2539.03 4795.13,2543.77"/>
+        <lane id="entry_east_in_1" index="1" speed="13.89" length="696.10" shape="5491.19,2535.83 4795.11,2540.57"/>
+    </edge>
+    <edge id="entry_east_out" from="kaspate_vasti" to="entry_east" priority="2">
+        <lane id="entry_east_out_0" index="0" speed="13.89" length="696.10" shape="4795.07,2534.17 5491.15,2529.43"/>
+        <lane id="entry_east_out_1" index="1" speed="13.89" length="696.10" shape="4795.09,2537.37 5491.17,2532.63"/>
+    </edge>
+    <edge id="entry_north_in" from="entry_north" to="dange_chowk" priority="2">
+        <lane id="entry_north_in_0" index="0" speed="11.11" length="474.11" shape="1272.40,3559.37 1269.07,3085.28"/>
+        <lane id="entry_north_in_1" index="1" speed="11.11" length="474.11" shape="1275.60,3559.35 1272.27,3085.25"/>
+    </edge>
+    <edge id="entry_north_out" from="dange_chowk" to="entry_north" priority="2">
+        <lane id="entry_north_out_0" index="0" speed="11.11" length="474.11" shape="1278.67,3085.21 1282.00,3559.31"/>
+        <lane id="entry_north_out_1" index="1" speed="11.11" length="474.11" shape="1275.47,3085.23 1278.80,3559.33"/>
+    </edge>
+    <edge id="entry_south_in" from="entry_south" to="nh48_south" priority="3">
+        <lane id="entry_south_in_0" index="0" speed="22.22" length="429.87" shape="3867.18,-0.06 3870.14,429.80"/>
+        <lane id="entry_south_in_1" index="1" speed="22.22" length="429.87" shape="3863.98,-0.03 3866.94,429.82"/>
+        <lane id="entry_south_in_2" index="2" speed="22.22" length="429.87" shape="3860.78,-0.01 3863.74,429.85"/>
+    </edge>
+    <edge id="entry_south_out" from="nh48_south" to="entry_south" priority="3">
+        <lane id="entry_south_out_0" index="0" speed="22.22" length="429.87" shape="3854.14,429.91 3851.18,0.06"/>
+        <lane id="entry_south_out_1" index="1" speed="22.22" length="429.87" shape="3857.34,429.89 3854.38,0.03"/>
+        <lane id="entry_south_out_2" index="2" speed="22.22" length="429.87" shape="3860.54,429.87 3857.58,0.01"/>
+    </edge>
+    <edge id="entry_west_in" from="entry_west" to="hinjewadi_phase1" priority="2">
+        <lane id="entry_west_in_0" index="0" speed="13.89" length="610.48" shape="-0.12,2014.15 610.17,1999.00"/>
+        <lane id="entry_west_in_1" index="1" speed="13.89" length="610.48" shape="-0.04,2017.35 610.25,2002.19"/>
+    </edge>
+    <edge id="entry_west_out" from="hinjewadi_phase1" to="entry_west" priority="2">
+        <lane id="entry_west_out_0" index="0" speed="13.89" length="610.48" shape="610.41,2008.59 0.12,2023.75"/>
+        <lane id="entry_west_out_1" index="1" speed="13.89" length="610.48" shape="610.33,2005.39 0.04,2020.55"/>
+    </edge>
+    <edge id="hw_road_1" from="hinjewadi_phase1" to="hw_1" priority="3">
+        <lane id="hw_road_1_0" index="0" speed="13.89" length="860.52" shape="639.94,2007.50 1303.05,2555.93"/>
+        <lane id="hw_road_1_1" index="1" speed="13.89" length="860.52" shape="637.90,2009.96 1301.01,2558.40"/>
+        <lane id="hw_road_1_2" index="2" speed="13.89" length="860.52" shape="635.86,2012.43 1298.97,2560.86"/>
+    </edge>
+    <edge id="hw_road_1_rev" from="hw_1" to="hinjewadi_phase1" priority="3">
+        <lane id="hw_road_1_rev_0" index="0" speed="13.89" length="860.52" shape="1292.85,2568.26 629.74,2019.83"/>
+        <lane id="hw_road_1_rev_1" index="1" speed="13.89" length="860.52" shape="1294.89,2565.80 631.78,2017.36"/>
+        <lane id="hw_road_1_rev_2" index="2" speed="13.89" length="860.52" shape="1296.93,2563.33 633.82,2014.90"/>
+    </edge>
+    <edge id="hw_road_2" from="hw_1" to="hw_2" priority="3">
+        <lane id="hw_road_2_0" index="0" speed="13.89" length="456.75" shape="1320.00,2566.25 1776.68,2573.94"/>
+        <lane id="hw_road_2_1" index="1" speed="13.89" length="456.75" shape="1319.94,2569.45 1776.63,2577.13"/>
+        <lane id="hw_road_2_2" index="2" speed="13.89" length="456.75" shape="1319.89,2572.65 1776.57,2580.33"/>
+    </edge>
+    <edge id="hw_road_2_rev" from="hw_2" to="hw_1" priority="3">
+        <lane id="hw_road_2_rev_0" index="0" speed="13.89" length="456.75" shape="1776.41,2589.93 1319.73,2582.25"/>
+        <lane id="hw_road_2_rev_1" index="1" speed="13.89" length="456.75" shape="1776.47,2586.73 1319.78,2579.05"/>
+        <lane id="hw_road_2_rev_2" index="2" speed="13.89" length="456.75" shape="1776.52,2583.53 1319.84,2575.85"/>
+    </edge>
+    <edge id="hw_road_3" from="hw_2" to="hw_3" priority="3">
+        <lane id="hw_road_3_0" index="0" speed="13.89" length="463.67" shape="1776.80,2573.93 2239.77,2548.63"/>
+        <lane id="hw_road_3_1" index="1" speed="13.89" length="463.67" shape="1776.97,2577.13 2239.95,2551.82"/>
+        <lane id="hw_road_3_2" index="2" speed="13.89" length="463.67" shape="1777.15,2580.32 2240.12,2555.02"/>
+    </edge>
+    <edge id="hw_road_3_rev" from="hw_3" to="hw_2" priority="3">
+        <lane id="hw_road_3_rev_0" index="0" speed="13.89" length="463.67" shape="2240.64,2564.60 1777.67,2589.91"/>
+        <lane id="hw_road_3_rev_1" index="1" speed="13.89" length="463.67" shape="2240.47,2561.41 1777.49,2586.71"/>
+        <lane id="hw_road_3_rev_2" index="2" speed="13.89" length="463.67" shape="2240.29,2558.21 1777.32,2583.52"/>
+    </edge>
+    <edge id="hw_road_4" from="hw_3" to="bypass_junction" priority="3">
+        <lane id="hw_road_4_0" index="0" speed="13.89" length="870.44" shape="2242.82,2548.73 3106.74,2651.80"/>
+        <lane id="hw_road_4_1" index="1" speed="13.89" length="870.44" shape="2242.44,2551.90 3106.75,2655.02"/>
+        <lane id="hw_road_4_2" index="2" speed="13.89" length="870.44" shape="2242.06,2555.08 3106.76,2658.25"/>
+    </edge>
+    <edge id="hw_road_4_rev" from="bypass_junction" to="hw_3" priority="3">
+        <lane id="hw_road_4_rev_0" index="0" speed="13.89" length="871.61" shape="3106.78,2667.92 2240.92,2564.61"/>
+        <lane id="hw_road_4_rev_1" index="1" speed="13.89" length="871.61" shape="3106.77,2664.69 2241.30,2561.44"/>
+        <lane id="hw_road_4_rev_2" index="2" speed="13.89" length="871.61" shape="3106.76,2661.47 2241.68,2558.26"/>
+    </edge>
+    <edge id="midc_road_1" from="midc_1" to="midc_2" priority="2">
+        <lane id="midc_road_1_0" index="0" speed="8.33" length="221.79" shape="616.73,2049.70 544.69,2259.47"/>
+        <lane id="midc_road_1_1" index="1" speed="8.33" length="221.79" shape="613.71,2048.66 541.67,2258.43"/>
+    </edge>
+    <edge id="midc_road_1_rev" from="midc_2" to="midc_1" priority="2">
+        <lane id="midc_road_1_rev_0" index="0" speed="8.33" length="221.79" shape="535.61,2256.35 607.65,2046.59"/>
+        <lane id="midc_road_1_rev_1" index="1" speed="8.33" length="221.79" shape="538.64,2257.39 610.68,2047.62"/>
+    </edge>
+    <edge id="midc_road_2" from="midc_2" to="midc_3" priority="2">
+        <lane id="midc_road_2_0" index="0" speed="8.33" length="399.67" shape="544.61,2259.84 505.31,2657.57"/>
+        <lane id="midc_road_2_1" index="1" speed="8.33" length="399.67" shape="541.43,2259.52 502.12,2657.26"/>
+    </edge>
+    <edge id="midc_road_2_rev" from="midc_3" to="midc_2" priority="2">
+        <lane id="midc_road_2_rev_0" index="0" speed="8.33" length="399.67" shape="495.75,2656.63 535.06,2258.89"/>
+        <lane id="midc_road_2_rev_1" index="1" speed="8.33" length="399.67" shape="498.94,2656.94 538.24,2259.21"/>
+    </edge>
+    <edge id="midc_road_3" from="midc_3" to="hinjewadi_phase2" priority="2">
+        <lane id="midc_road_3_0" index="0" speed="8.33" length="238.94" shape="505.21,2658.31 466.06,2894.01"/>
+        <lane id="midc_road_3_1" index="1" speed="8.33" length="238.94" shape="502.05,2657.78 462.90,2893.49"/>
+    </edge>
+    <edge id="midc_road_3_rev" from="hinjewadi_phase2" to="midc_3" priority="2">
+        <lane id="midc_road_3_rev_0" index="0" speed="8.33" length="238.94" shape="456.59,2892.44 495.74,2656.73"/>
+        <lane id="midc_road_3_rev_1" index="1" speed="8.33" length="238.94" shape="459.74,2892.96 498.90,2657.26"/>
+    </edge>
+    <edge id="midc_to_phase1" from="hinjewadi_phase1" to="midc_1" priority="2">
+        <lane id="midc_to_phase1_0" index="0" speed="8.33" length="27.24" shape="623.18,2022.05 617.05,2048.59"/>
+        <lane id="midc_to_phase1_1" index="1" speed="8.33" length="27.24" shape="620.06,2021.33 613.93,2047.87"/>
+    </edge>
+    <edge id="midc_to_phase1_rev" from="midc_1" to="hinjewadi_phase1" priority="2">
+        <lane id="midc_to_phase1_rev_0" index="0" speed="8.33" length="27.24" shape="607.70,2046.43 613.83,2019.89"/>
+        <lane id="midc_to_phase1_rev_1" index="1" speed="8.33" length="27.24" shape="610.82,2047.15 616.94,2020.61"/>
+    </edge>
+    <edge id="nh48_1_edge" from="nh48_south" to="nh48_1" priority="5">
+        <lane id="nh48_1_edge_0" index="0" speed="22.22" length="269.80" shape="3869.07,435.96 3776.47,689.38"/>
+        <lane id="nh48_1_edge_1" index="1" speed="22.22" length="269.80" shape="3866.06,434.87 3773.47,688.28"/>
+        <lane id="nh48_1_edge_2" index="2" speed="22.22" length="269.80" shape="3863.06,433.77 3770.46,687.18"/>
+    </edge>
+    <edge id="nh48_1_edge_rev" from="nh48_1" to="nh48_south" priority="5">
+        <lane id="nh48_1_edge_rev_0" index="0" speed="22.22" length="269.80" shape="3761.45,683.89 3854.04,430.47"/>
+        <lane id="nh48_1_edge_rev_1" index="1" speed="22.22" length="269.80" shape="3764.45,684.98 3857.05,431.57"/>
+        <lane id="nh48_1_edge_rev_2" index="2" speed="22.22" length="269.80" shape="3767.46,686.08 3860.05,432.67"/>
+    </edge>
+    <edge id="nh48_2_edge" from="nh48_1" to="nh48_2" priority="5">
+        <lane id="nh48_2_edge_0" index="0" speed="22.22" length="870.31" shape="3776.40,689.57 3486.65,1510.23"/>
+        <lane id="nh48_2_edge_1" index="1" speed="22.22" length="870.31" shape="3773.39,688.51 3483.64,1509.17"/>
+        <lane id="nh48_2_edge_2" index="2" speed="22.22" length="870.31" shape="3770.37,687.44 3480.62,1508.10"/>
+    </edge>
+    <edge id="nh48_2_edge_rev" from="nh48_2" to="nh48_1" priority="5">
+        <lane id="nh48_2_edge_rev_0" index="0" speed="22.22" length="870.31" shape="3471.57,1504.91 3761.32,684.25"/>
+        <lane id="nh48_2_edge_rev_1" index="1" speed="22.22" length="870.31" shape="3474.58,1505.97 3764.33,685.31"/>
+        <lane id="nh48_2_edge_rev_2" index="2" speed="22.22" length="870.31" shape="3477.60,1507.04 3767.35,686.38"/>
+    </edge>
+    <edge id="nh48_3_edge" from="nh48_2" to="nh48_north" priority="5">
+        <lane id="nh48_3_edge_0" index="0" speed="22.22" length="469.71" shape="3486.56,1510.49 3331.46,1953.86"/>
+        <lane id="nh48_3_edge_1" index="1" speed="22.22" length="469.71" shape="3483.54,1509.44 3328.44,1952.80"/>
+        <lane id="nh48_3_edge_2" index="2" speed="22.22" length="469.71" shape="3480.52,1508.38 3325.42,1951.74"/>
+    </edge>
+    <edge id="nh48_3_edge_rev" from="nh48_north" to="nh48_2" priority="5">
+        <lane id="nh48_3_edge_rev_0" index="0" speed="22.22" length="469.71" shape="3316.35,1948.57 3471.46,1505.21"/>
+        <lane id="nh48_3_edge_rev_1" index="1" speed="22.22" length="469.71" shape="3319.37,1949.63 3474.48,1506.27"/>
+        <lane id="nh48_3_edge_rev_2" index="2" speed="22.22" length="469.71" shape="3322.40,1950.69 3477.50,1507.32"/>
+    </edge>
+    <edge id="nh48_to_bypass" from="nh48_north" to="bypass_junction" priority="4">
+        <lane id="nh48_to_bypass_0" index="0" speed="16.67" length="726.64" shape="3331.43,1953.94 3128.73,2651.73"/>
+        <lane id="nh48_to_bypass_1" index="1" speed="16.67" length="726.64" shape="3328.36,1953.05 3125.66,2650.84"/>
+        <lane id="nh48_to_bypass_2" index="2" speed="16.67" length="726.64" shape="3325.28,1952.15 3122.58,2649.95"/>
+    </edge>
+    <edge id="nh48_to_bypass_rev" from="bypass_junction" to="nh48_north" priority="4">
+        <lane id="nh48_to_bypass_rev_0" index="0" speed="16.67" length="726.64" shape="3113.36,2647.27 3316.07,1949.48"/>
+        <lane id="nh48_to_bypass_rev_1" index="1" speed="16.67" length="726.64" shape="3116.44,2648.16 3319.14,1950.37"/>
+        <lane id="nh48_to_bypass_rev_2" index="2" speed="16.67" length="726.64" shape="3119.51,2649.05 3322.21,1951.26"/>
+    </edge>
+    <edge id="p2_road_1" from="hinjewadi_phase2" to="p2_1" priority="2">
+        <lane id="p2_road_1_0" index="0" speed="8.33" length="243.97" shape="467.72,2895.87 711.37,2883.50"/>
+        <lane id="p2_road_1_1" index="1" speed="8.33" length="243.97" shape="467.88,2899.07 711.53,2886.69"/>
+    </edge>
+    <edge id="p2_road_1_rev" from="p2_1" to="hinjewadi_phase2" priority="2">
+        <lane id="p2_road_1_rev_0" index="0" speed="8.33" length="243.97" shape="711.86,2893.08 468.20,2905.46"/>
+        <lane id="p2_road_1_rev_1" index="1" speed="8.33" length="243.97" shape="711.69,2889.89 468.04,2902.26"/>
+    </edge>
+    <edge id="p2_road_2" from="p2_1" to="p2_2" priority="2">
+        <lane id="p2_road_2_0" index="0" speed="8.33" length="217.87" shape="712.10,2883.28 899.58,2772.28"/>
+        <lane id="p2_road_2_1" index="1" speed="8.33" length="217.87" shape="713.73,2886.03 901.21,2775.03"/>
+    </edge>
+    <edge id="p2_road_2_rev" from="p2_2" to="p2_1" priority="2">
+        <lane id="p2_road_2_rev_0" index="0" speed="8.33" length="217.87" shape="904.47,2780.54 716.99,2891.54"/>
+        <lane id="p2_road_2_rev_1" index="1" speed="8.33" length="217.87" shape="902.84,2777.78 715.36,2888.78"/>
+    </edge>
+    <edge id="p2_road_3" from="p2_2" to="p2_3" priority="2">
+        <lane id="p2_road_3_0" index="0" speed="8.33" length="236.58" shape="899.74,2772.17 1087.33,2628.00"/>
+        <lane id="p2_road_3_1" index="1" speed="8.33" length="236.58" shape="901.69,2774.71 1089.28,2630.54"/>
+    </edge>
+    <edge id="p2_road_3_rev" from="p2_3" to="p2_2" priority="2">
+        <lane id="p2_road_3_rev_0" index="0" speed="8.33" length="236.58" shape="1093.18,2635.61 905.59,2779.78"/>
+        <lane id="p2_road_3_rev_1" index="1" speed="8.33" length="236.58" shape="1091.23,2633.08 903.64,2777.24"/>
+    </edge>
+    <edge id="p2_road_4" from="p2_3" to="hw_1" priority="2">
+        <lane id="p2_road_4_0" index="0" speed="8.33" length="206.92" shape="1091.36,2626.04 1291.60,2574.55"/>
+        <lane id="p2_road_4_1" index="1" speed="8.33" length="206.92" shape="1092.16,2629.13 1292.73,2577.56"/>
+    </edge>
+    <edge id="p2_road_4_rev" from="hw_1" to="p2_3" priority="2">
+        <lane id="p2_road_4_rev_0" index="0" speed="8.33" length="207.60" shape="1294.98,2583.59 1093.75,2635.33"/>
+        <lane id="p2_road_4_rev_1" index="1" speed="8.33" length="207.60" shape="1293.85,2580.58 1092.96,2632.23"/>
+    </edge>
+    <edge id="wakad_east" from="wakad_chowk" to="kaspate_vasti" priority="3">
+        <lane id="wakad_east_0" index="0" speed="13.89" length="1348.37" shape="3455.42,2698.29 4793.78,2534.25"/>
+        <lane id="wakad_east_1" index="1" speed="13.89" length="1348.37" shape="3455.81,2701.47 4794.17,2537.43"/>
+    </edge>
+    <edge id="wakad_east_rev" from="kaspate_vasti" to="wakad_chowk" priority="3">
+        <lane id="wakad_east_rev_0" index="0" speed="13.89" length="1348.37" shape="4794.95,2543.78 3456.59,2707.82"/>
+        <lane id="wakad_east_rev_1" index="1" speed="13.89" length="1348.37" shape="4794.56,2540.60 3456.20,2704.64"/>
+    </edge>
+    <edge id="wf_1_edge" from="bypass_junction" to="wf_1" priority="4">
+        <lane id="wf_1_edge_0" index="0" speed="16.67" length="231.79" shape="3106.77,2666.04 2874.99,2667.64"/>
+        <lane id="wf_1_edge_1" index="1" speed="16.67" length="231.79" shape="3106.77,2662.84 2874.97,2664.44"/>
+    </edge>
+    <edge id="wf_1_edge_rev" from="wf_1" to="bypass_junction" priority="4">
+        <lane id="wf_1_edge_rev_0" index="0" speed="16.67" length="231.66" shape="2875.12,2658.04 3106.75,2656.44"/>
+        <lane id="wf_1_edge_rev_1" index="1" speed="16.67" length="231.66" shape="2875.08,2661.24 3106.76,2659.64"/>
+    </edge>
+    <edge id="wf_2_edge" from="wf_1" to="wf_2" priority="4">
+        <lane id="wf_2_edge_0" index="0" speed="16.67" length="326.87" shape="2875.09,2658.04 3201.84,2666.83"/>
+        <lane id="wf_2_edge_1" index="1" speed="16.67" length="326.87" shape="2875.00,2661.24 3201.76,2670.03"/>
+    </edge>
+    <edge id="wf_2_edge_rev" from="wf_2" to="wf_1" priority="4">
+        <lane id="wf_2_edge_rev_0" index="0" speed="16.67" length="326.71" shape="3201.58,2676.43 2875.02,2667.64"/>
+        <lane id="wf_2_edge_rev_1" index="1" speed="16.67" length="326.71" shape="3201.67,2673.23 2875.05,2664.44"/>
+    </edge>
+    <edge id="wf_3_edge" from="wf_2" to="wf_3" priority="4">
+        <lane id="wf_3_edge_0" index="0" speed="16.67" length="191.82" shape="3203.39,2666.98 3392.58,2698.70"/>
+        <lane id="wf_3_edge_1" index="1" speed="16.67" length="191.82" shape="3202.86,2670.14 3392.05,2701.86"/>
+    </edge>
+    <edge id="wf_3_edge_rev" from="wf_3" to="wf_2" priority="4">
+        <lane id="wf_3_edge_rev_0" index="0" speed="16.67" length="191.82" shape="3390.99,2708.17 3201.81,2676.45"/>
+        <lane id="wf_3_edge_rev_1" index="1" speed="16.67" length="191.82" shape="3391.52,2705.02 3202.34,2673.29"/>
+    </edge>
+    <edge id="wf_4_edge" from="wf_3" to="wakad_chowk" priority="4">
+        <lane id="wf_4_edge_0" index="0" speed="16.67" length="62.39" shape="3392.85,2698.73 3455.24,2698.30"/>
+        <lane id="wf_4_edge_1" index="1" speed="16.67" length="62.39" shape="3392.87,2701.93 3455.26,2701.50"/>
+    </edge>
+    <edge id="wf_4_edge_rev" from="wakad_chowk" to="wf_3" priority="4">
+        <lane id="wf_4_edge_rev_0" index="0" speed="16.67" length="62.39" shape="3455.30,2707.90 3392.92,2708.33"/>
+        <lane id="wf_4_edge_rev_1" index="1" speed="16.67" length="62.39" shape="3455.28,2704.70 3392.90,2705.13"/>
+    </edge>
+
+    <tlLogic id="bypass_junction" type="static" programID="0" offset="0">
+        <phase duration="35" state="GGggrrrGGG"/>
+        <phase duration="4"  state="GGggrrryyy"/>
+        <phase duration="6"  state="GGGGrrrrrr"/>
+        <phase duration="4"  state="yyyyrrrrrr"/>
+        <phase duration="35" state="rrrrGGGrrG"/>
+        <phase duration="4"  state="rrrryyyrry"/>
+        <phase duration="2"  state="rrrrrrrrrr"/>
+    </tlLogic>
+    <tlLogic id="dange_chowk" type="static" programID="0" offset="0">
+        <phase duration="82" state="GGGG"/>
+        <phase duration="3"  state="yyyy"/>
+        <phase duration="5"  state="rrrr"/>
+    </tlLogic>
+    <tlLogic id="hinjewadi_phase1" type="static" programID="0" offset="0">
+        <phase duration="42" state="GGGGGGgrrrr"/>
+        <phase duration="3"  state="Gyyyyyyrrrr"/>
+        <phase duration="41" state="GrrrrrrGGGG"/>
+        <phase duration="3"  state="yrrrrrryyyy"/>
+        <phase duration="1"  state="rrrrrrrrrrr"/>
+    </tlLogic>
+    <tlLogic id="hinjewadi_phase2" type="static" programID="0" offset="0">
+        <phase duration="90" state="GGGG"/>
+    </tlLogic>
+    <tlLogic id="kaspate_vasti" type="static" programID="0" offset="0">
+        <phase duration="82" state="GGGG"/>
+        <phase duration="3"  state="yyyy"/>
+        <phase duration="5"  state="rrrr"/>
+    </tlLogic>
+    <tlLogic id="wakad_chowk" type="static" programID="0" offset="0">
+        <phase duration="81" state="GGGG"/>
+        <phase duration="4"  state="yyyy"/>
+        <phase duration="5"  state="rrrr"/>
+    </tlLogic>
+
+    <junction id="bypass_junction" type="traffic_light" x="3117.66" y="2661.16" incLanes="nh48_to_bypass_0 nh48_to_bypass_1 nh48_to_bypass_2 hw_road_4_0 hw_road_4_1 hw_road_4_2 wf_1_edge_rev_0 wf_1_edge_rev_1" intLanes=":bypass_junction_0_0 :bypass_junction_0_1 :bypass_junction_2_0 :bypass_junction_10_0 :bypass_junction_4_0 :bypass_junction_4_1 :bypass_junction_6_0 :bypass_junction_7_0 :bypass_junction_7_1 :bypass_junction_9_0" shape="3130.27,2652.18 3111.83,2646.82 3110.77,2648.90 3110.00,2649.58 3109.07,2650.03 3107.99,2650.23 3106.74,2650.19 3106.78,2667.64 3112.72,2667.17 3117.85,2665.86 3122.17,2663.71 3125.68,2660.71 3128.38,2656.86">
+        <request index="0" response="0000000000" foes="0001000000" cont="0"/>
+        <request index="1" response="0000000000" foes="0001000000" cont="0"/>
+        <request index="2" response="0110000000" foes="0111000000" cont="0"/>
+        <request index="3" response="0110000000" foes="0111000000" cont="1"/>
+        <request index="4" response="0110000000" foes="0110000000" cont="0"/>
+        <request index="5" response="0110000000" foes="0110000000" cont="0"/>
+        <request index="6" response="0110001111" foes="0110001111" cont="0"/>
+        <request index="7" response="0000000000" foes="1001111100" cont="0"/>
+        <request index="8" response="0000000000" foes="0001111100" cont="0"/>
+        <request index="9" response="0000000000" foes="0010000000" cont="0"/>
+    </junction>
+    <junction id="dange_chowk" type="traffic_light" x="1273.86" y="3083.48" incLanes="entry_north_in_0 entry_north_in_1 dc_road_4_0 dc_road_4_1" intLanes=":dange_chowk_0_0 :dange_chowk_0_1 :dange_chowk_2_0 :dange_chowk_2_1" shape="1267.47,3085.29 1280.27,3085.20 1280.17,3082.64 1280.00,3081.74 1279.68,3080.89 1279.17,3079.92 1278.42,3078.66">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="dc_1" type="priority" x="1165.16" y="2630.50" incLanes="dc_road_2_rev_0 dc_road_2_rev_1 dc_road_1_0 dc_road_1_1" intLanes=":dc_1_0_0 :dc_1_0_1 :dc_1_2_0 :dc_1_2_1" shape="1159.07,2635.60 1171.84,2634.80 1167.27,2622.84 1164.60,2624.13 1162.45,2625.75 1160.82,2627.71 1159.72,2630.01 1159.13,2632.64">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="dc_2" type="priority" x="1177.03" y="2818.55" incLanes="dc_road_3_rev_0 dc_road_3_rev_1 dc_road_2_0 dc_road_2_1" intLanes=":dc_2_0_0 :dc_2_0_1 :dc_2_2_0 :dc_2_2_1" shape="1170.95,2820.63 1183.38,2817.58 1170.61,2818.38 1170.67,2819.23 1170.70,2819.52 1170.76,2819.81 1170.84,2820.16">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="dc_3" type="priority" x="1220.48" y="2995.32" incLanes="dc_road_4_rev_0 dc_road_4_rev_1 dc_road_3_0 dc_road_3_1" intLanes=":dc_3_0_0 :dc_3_0_1 :dc_3_2_0 :dc_3_2_1" shape="1215.51,2999.47 1226.46,2992.84 1214.03,2995.90 1214.40,2997.29 1214.57,2997.77 1214.79,2998.23 1215.09,2998.76">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="entry_east" type="dead_end" x="5491.18" y="2534.23" incLanes="entry_east_out_0 entry_east_out_1" intLanes="" shape="5491.18,2534.23 5491.14,2527.83 5491.18,2534.23"/>
+    <junction id="entry_north" type="dead_end" x="1277.20" y="3559.34" incLanes="entry_north_out_0 entry_north_out_1" intLanes="" shape="1277.20,3559.34 1283.60,3559.30 1277.20,3559.34"/>
+    <junction id="entry_south" type="dead_end" x="3859.18" y="0.00" incLanes="entry_south_out_0 entry_south_out_1 entry_south_out_2" intLanes="" shape="3859.18,-0.00 3849.58,0.07 3859.18,-0.00"/>
+    <junction id="entry_west" type="dead_end" x="0.00" y="2018.95" incLanes="entry_west_out_0 entry_west_out_1" intLanes="" shape="0.00,2018.95 0.16,2025.35 -0.00,2018.95"/>
+    <junction id="hinjewadi_phase1" type="traffic_light" x="622.54" y="2003.49" incLanes="hw_road_1_rev_0 hw_road_1_rev_1 hw_road_1_rev_2 entry_west_in_0 entry_west_in_1 midc_to_phase1_rev_0 midc_to_phase1_rev_1" intLanes=":hinjewadi_phase1_0_0 :hinjewadi_phase1_1_0 :hinjewadi_phase1_1_1 :hinjewadi_phase1_3_0 :hinjewadi_phase1_3_1 :hinjewadi_phase1_3_2 :hinjewadi_phase1_11_0 :hinjewadi_phase1_7_0 :hinjewadi_phase1_7_1 :hinjewadi_phase1_9_0 :hinjewadi_phase1_9_1" shape="628.72,2021.06 640.96,2006.27 635.50,2002.03 631.04,1999.33 626.92,1997.85 622.50,1997.25 617.12,1997.21 610.13,1997.40 610.45,2010.19 612.43,2011.19 612.90,2012.48 613.03,2014.30 612.82,2016.65 612.27,2019.53 624.74,2022.41 625.58,2020.53 626.18,2020.12 626.91,2020.08 627.75,2020.39">
+        <request index="0"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="1"  response="00000000000" foes="11111000000" cont="0"/>
+        <request index="2"  response="00000000000" foes="11111000000" cont="0"/>
+        <request index="3"  response="00000000000" foes="11000000000" cont="0"/>
+        <request index="4"  response="00000000000" foes="11000000000" cont="0"/>
+        <request index="5"  response="00000000000" foes="11000000000" cont="0"/>
+        <request index="6"  response="00000000110" foes="11000000110" cont="1"/>
+        <request index="7"  response="00000000110" foes="00000000110" cont="0"/>
+        <request index="8"  response="00000000110" foes="00000000110" cont="0"/>
+        <request index="9"  response="00001111110" foes="00001111110" cont="0"/>
+        <request index="10" response="00001111110" foes="00001111110" cont="0"/>
+    </junction>
+    <junction id="hinjewadi_phase2" type="traffic_light" x="460.02" y="2901.07" incLanes="p2_road_1_rev_0 p2_road_1_rev_1 midc_road_3_0 midc_road_3_1" intLanes=":hinjewadi_phase2_0_0 :hinjewadi_phase2_0_1 :hinjewadi_phase2_2_0 :hinjewadi_phase2_2_1" shape="468.29,2907.06 467.64,2894.27 455.01,2892.18 454.65,2896.95 455.33,2900.80 457.03,2903.74 459.75,2905.76 463.51,2906.87">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="hw_1" type="priority" x="1312.50" y="2574.13" incLanes="hw_road_2_rev_0 hw_road_2_rev_1 hw_road_2_rev_2 hw_road_1_0 hw_road_1_1 hw_road_1_2 p2_road_4_0 p2_road_4_1 dc_road_1_rev_0 dc_road_1_rev_1" intLanes=":hw_1_0_0 :hw_1_1_0 :hw_1_1_1 :hw_1_3_0 :hw_1_3_1 :hw_1_5_0 :hw_1_5_1 :hw_1_5_2 :hw_1_18_0 :hw_1_19_0 :hw_1_10_0 :hw_1_11_0 :hw_1_11_1 :hw_1_13_0 :hw_1_14_0 :hw_1_15_0 :hw_1_16_0 :hw_1_16_1" shape="1319.70,2583.85 1320.03,2564.66 1316.08,2564.28 1313.32,2563.34 1311.24,2561.87 1309.34,2559.91 1307.11,2557.51 1304.07,2554.70 1291.83,2569.49 1293.11,2571.02 1293.18,2571.66 1292.85,2572.20 1292.14,2572.66 1291.04,2573.04 1296.31,2587.18 1301.06,2585.45 1304.65,2584.39 1307.72,2583.86 1310.84,2583.69 1314.63,2583.74">
+        <request index="0"  response="000000000000000000" foes="000000000000000000" cont="0"/>
+        <request index="1"  response="000000000000000000" foes="111110001100000000" cont="0"/>
+        <request index="2"  response="000000000000000000" foes="111110001100000000" cont="0"/>
+        <request index="3"  response="000000000000000000" foes="111001101100000000" cont="0"/>
+        <request index="4"  response="000000000000000000" foes="111001101100000000" cont="0"/>
+        <request index="5"  response="000000000000000000" foes="110001100000000000" cont="0"/>
+        <request index="6"  response="000000000000000000" foes="110001100000000000" cont="0"/>
+        <request index="7"  response="000000000000000000" foes="110001100000000000" cont="0"/>
+        <request index="8"  response="000000000000011110" foes="110011100000011110" cont="1"/>
+        <request index="9"  response="000000000000011110" foes="001011100000011110" cont="1"/>
+        <request index="10" response="000000000000000000" foes="000000000000000000" cont="0"/>
+        <request index="11" response="000000001111111000" foes="111000001111111000" cont="0"/>
+        <request index="12" response="000000001111111000" foes="111000001111111000" cont="0"/>
+        <request index="13" response="110000001100000110" foes="111000001100000110" cont="0"/>
+        <request index="14" response="000000000000000110" foes="000000000000000110" cont="0"/>
+        <request index="15" response="000011101000011110" foes="000011101000011110" cont="0"/>
+        <request index="16" response="000001100111111110" foes="000011100111111110" cont="0"/>
+        <request index="17" response="000001100111111110" foes="000011100111111110" cont="0"/>
+    </junction>
+    <junction id="hw_2" type="priority" x="1776.89" y="2581.94" incLanes="hw_road_3_rev_0 hw_road_3_rev_1 hw_road_3_rev_2 hw_road_2_0 hw_road_2_1 hw_road_2_2" intLanes=":hw_2_0_0 :hw_2_0_1 :hw_2_0_2 :hw_2_3_0 :hw_2_3_1 :hw_2_3_2" shape="1777.76,2591.51 1776.71,2572.34 1776.39,2591.53">
+        <request index="0" response="000000" foes="000000" cont="0"/>
+        <request index="1" response="000000" foes="000000" cont="0"/>
+        <request index="2" response="000000" foes="000000" cont="0"/>
+        <request index="3" response="000000" foes="000000" cont="0"/>
+        <request index="4" response="000000" foes="000000" cont="0"/>
+        <request index="5" response="000000" foes="000000" cont="0"/>
+    </junction>
+    <junction id="hw_3" type="priority" x="2241.04" y="2556.57" incLanes="hw_road_4_rev_0 hw_road_4_rev_1 hw_road_4_rev_2 hw_road_3_0 hw_road_3_1 hw_road_3_2" intLanes=":hw_3_0_0 :hw_3_0_1 :hw_3_0_2 :hw_3_3_0 :hw_3_3_1 :hw_3_3_2" shape="2240.73,2566.20 2243.01,2547.14 2241.78,2547.00 2241.35,2546.98 2240.92,2546.97 2240.39,2546.99 2239.68,2547.03">
+        <request index="0" response="000000" foes="000000" cont="0"/>
+        <request index="1" response="000000" foes="000000" cont="0"/>
+        <request index="2" response="000000" foes="000000" cont="0"/>
+        <request index="3" response="000000" foes="000000" cont="0"/>
+        <request index="4" response="000000" foes="000000" cont="0"/>
+        <request index="5" response="000000" foes="000000" cont="0"/>
+    </junction>
+    <junction id="kaspate_vasti" type="traffic_light" x="4794.73" y="2538.97" incLanes="entry_east_in_0 entry_east_in_1 wakad_east_0 wakad_east_1" intLanes=":kaspate_vasti_0_0 :kaspate_vasti_0_1 :kaspate_vasti_2_0 :kaspate_vasti_2_1" shape="4795.14,2545.37 4795.06,2532.57 4794.51,2532.57 4794.32,2532.58 4794.13,2532.60 4793.90,2532.62 4793.59,2532.66">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="midc_1" type="priority" x="612.30" y="2047.83" incLanes="midc_to_phase1_0 midc_to_phase1_1 midc_road_1_rev_0 midc_road_1_rev_1" intLanes=":midc_1_0_0 :midc_1_0_1 :midc_1_2_0 :midc_1_2_1" shape="618.61,2048.95 606.14,2046.07 618.24,2050.22 618.40,2049.76 618.45,2049.59 618.50,2049.43 618.55,2049.22">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="midc_2" type="priority" x="539.91" y="2258.62" incLanes="midc_road_1_0 midc_road_1_1 midc_road_2_rev_0 midc_road_2_rev_1" intLanes=":midc_2_0_0 :midc_2_0_1 :midc_2_2_0 :midc_2_2_1" shape="546.21,2259.99 534.10,2255.84 533.75,2256.88 533.66,2257.26 533.59,2257.64 533.53,2258.10 533.47,2258.73">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="midc_3" type="priority" x="500.51" y="2657.31" incLanes="midc_road_2_0 midc_road_2_1 midc_road_3_rev_0 midc_road_3_rev_1" intLanes=":midc_3_0_0 :midc_3_0_1 :midc_3_2_0 :midc_3_2_1" shape="506.90,2657.73 494.16,2656.47 506.79,2658.57">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="nh48_1" type="priority" x="3768.91" y="686.77" incLanes="nh48_1_edge_0 nh48_1_edge_1 nh48_1_edge_2 nh48_2_edge_rev_0 nh48_2_edge_rev_1 nh48_2_edge_rev_2" intLanes=":nh48_1_0_0 :nh48_1_0_1 :nh48_1_0_2 :nh48_1_3_0 :nh48_1_3_1 :nh48_1_3_2" shape="3777.98,689.93 3759.94,683.34 3759.81,683.71 3777.91,690.10">
+        <request index="0" response="000000" foes="000000" cont="0"/>
+        <request index="1" response="000000" foes="000000" cont="0"/>
+        <request index="2" response="000000" foes="000000" cont="0"/>
+        <request index="3" response="000000" foes="000000" cont="0"/>
+        <request index="4" response="000000" foes="000000" cont="0"/>
+        <request index="5" response="000000" foes="000000" cont="0"/>
+    </junction>
+    <junction id="nh48_2" type="priority" x="3479.06" y="1507.71" incLanes="nh48_2_edge_0 nh48_2_edge_1 nh48_2_edge_2 nh48_3_edge_rev_0 nh48_3_edge_rev_1 nh48_3_edge_rev_2" intLanes=":nh48_2_0_0 :nh48_2_0_1 :nh48_2_0_2 :nh48_2_3_0 :nh48_2_3_1 :nh48_2_3_2" shape="3488.16,1510.76 3470.06,1504.37 3469.95,1504.68 3488.07,1511.02">
+        <request index="0" response="000000" foes="000000" cont="0"/>
+        <request index="1" response="000000" foes="000000" cont="0"/>
+        <request index="2" response="000000" foes="000000" cont="0"/>
+        <request index="3" response="000000" foes="000000" cont="0"/>
+        <request index="4" response="000000" foes="000000" cont="0"/>
+        <request index="5" response="000000" foes="000000" cont="0"/>
+    </junction>
+    <junction id="nh48_north" type="priority" x="3323.82" y="1951.46" incLanes="nh48_3_edge_0 nh48_3_edge_1 nh48_3_edge_2 nh48_to_bypass_rev_0 nh48_to_bypass_rev_1 nh48_to_bypass_rev_2" intLanes=":nh48_north_0_0 :nh48_north_0_1 :nh48_north_0_2 :nh48_north_3_0 :nh48_north_3_1 :nh48_north_3_2" shape="3332.97,1954.39 3314.84,1948.05 3314.53,1949.03">
+        <request index="0" response="000000" foes="000000" cont="0"/>
+        <request index="1" response="000000" foes="000000" cont="0"/>
+        <request index="2" response="000000" foes="000000" cont="0"/>
+        <request index="3" response="000000" foes="000000" cont="0"/>
+        <request index="4" response="000000" foes="000000" cont="0"/>
+        <request index="5" response="000000" foes="000000" cont="0"/>
+    </junction>
+    <junction id="nh48_south" type="priority" x="3862.15" y="431.59" incLanes="entry_south_in_0 entry_south_in_1 entry_south_in_2 nh48_1_edge_rev_0 nh48_1_edge_rev_1 nh48_1_edge_rev_2" intLanes=":nh48_south_0_0 :nh48_south_0_1 :nh48_south_0_2 :nh48_south_3_0 :nh48_south_3_1 :nh48_south_3_2" shape="3871.74,429.79 3852.54,429.92 3870.57,436.51 3871.40,434.10 3871.60,433.23 3871.71,432.34 3871.74,431.25">
+        <request index="0" response="000000" foes="000000" cont="0"/>
+        <request index="1" response="000000" foes="000000" cont="0"/>
+        <request index="2" response="000000" foes="000000" cont="0"/>
+        <request index="3" response="000000" foes="000000" cont="0"/>
+        <request index="4" response="000000" foes="000000" cont="0"/>
+        <request index="5" response="000000" foes="000000" cont="0"/>
+    </junction>
+    <junction id="p2_1" type="priority" x="713.19" y="2888.21" incLanes="p2_road_2_rev_0 p2_road_2_rev_1 p2_road_1_0 p2_road_1_1" intLanes=":p2_1_0_0 :p2_1_0_1 :p2_1_2_0 :p2_1_2_1" shape="717.81,2892.91 711.29,2881.90 711.94,2894.68 714.23,2894.50 715.03,2894.32 715.79,2894.03 716.67,2893.58">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="p2_2" type="priority" x="902.36" y="2776.21" incLanes="p2_road_3_rev_0 p2_road_3_rev_1 p2_road_2_0 p2_road_2_1" intLanes=":p2_2_0_0 :p2_2_0_1 :p2_2_2_0 :p2_2_2_1" shape="906.57,2781.05 898.77,2770.90 905.29,2781.91 905.78,2781.62 905.95,2781.51 906.11,2781.39 906.31,2781.25">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="p2_3" type="priority" x="1091.29" y="2631.01" incLanes="p2_road_4_rev_0 p2_road_4_rev_1 p2_road_3_0 p2_road_3_1" intLanes=":p2_3_0_0 :p2_3_0_1 :p2_3_2_0 :p2_3_2_1" shape="1094.15,2636.88 1090.96,2624.49 1089.12,2625.00 1088.49,2625.26 1087.90,2625.60 1087.23,2626.07 1086.35,2626.73">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="wakad_chowk" type="traffic_light" x="3455.64" y="2703.10" incLanes="wakad_east_rev_0 wakad_east_rev_1 wf_4_edge_0 wf_4_edge_1" intLanes=":wakad_chowk_0_0 :wakad_chowk_0_1 :wakad_chowk_2_0 :wakad_chowk_2_1" shape="3456.78,2709.41 3455.23,2696.70 3455.31,2709.50 3455.86,2709.50 3456.05,2709.49 3456.24,2709.47 3456.47,2709.45">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="wf_1" type="priority" x="2874.96" y="2662.84" incLanes="wf_2_edge_rev_0 wf_2_edge_rev_1 wf_1_edge_0 wf_1_edge_1" intLanes=":wf_1_0_0 :wf_1_0_1 :wf_1_2_0 :wf_1_2_1" shape="2874.79,2669.24 2875.13,2656.44 2875.00,2669.24 2874.92,2656.44">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="wf_2" type="priority" x="3202.16" y="2671.64" incLanes="wf_3_edge_rev_0 wf_3_edge_rev_1 wf_2_edge_0 wf_2_edge_1" intLanes=":wf_2_0_0 :wf_2_0_1 :wf_2_2_0 :wf_2_2_1" shape="3201.54,2678.03 3203.66,2665.40 3203.01,2665.30 3202.78,2665.27 3202.55,2665.25 3202.27,2665.24 3201.89,2665.23">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="wf_3" type="priority" x="3392.33" y="2703.53" incLanes="wf_4_edge_rev_0 wf_4_edge_rev_1 wf_3_edge_0 wf_3_edge_1" intLanes=":wf_3_0_0 :wf_3_0_1 :wf_3_2_0 :wf_3_2_1" shape="3392.93,2709.93 3392.84,2697.13 3390.72,2709.75 3391.53,2709.88 3391.82,2709.91 3392.11,2709.92 3392.46,2709.93">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+
+    <junction id=":bypass_junction_10_0" type="internal" x="3112.87" y="2661.02" incLanes=":bypass_junction_2_1 wf_1_edge_rev_0 wf_1_edge_rev_1" intLanes=":bypass_junction_6_0 :bypass_junction_7_0 :bypass_junction_7_1"/>
+    <junction id=":hinjewadi_phase1_11_0" type="internal" x="615.29" y="2003.09" incLanes=":hinjewadi_phase1_6_0 hw_road_1_rev_1 hw_road_1_rev_2" intLanes=":hinjewadi_phase1_1_0 :hinjewadi_phase1_1_1 :hinjewadi_phase1_9_0 :hinjewadi_phase1_9_1"/>
+    <junction id=":hw_1_18_0" type="internal" x="1301.92" y="2564.50" incLanes=":hw_1_8_0 hw_road_2_rev_0 hw_road_2_rev_1 hw_road_2_rev_2" intLanes=":hw_1_0_0 :hw_1_1_0 :hw_1_1_1 :hw_1_3_0 :hw_1_3_1 :hw_1_11_0 :hw_1_11_1 :hw_1_13_0 :hw_1_16_0 :hw_1_16_1"/>
+    <junction id=":hw_1_19_0" type="internal" x="1301.45" y="2564.07" incLanes=":hw_1_9_0 hw_road_2_rev_0 hw_road_2_rev_1 hw_road_2_rev_2" intLanes=":hw_1_1_0 :hw_1_1_1 :hw_1_3_0 :hw_1_3_1 :hw_1_11_0 :hw_1_11_1 :hw_1_13_0 :hw_1_14_0 :hw_1_15_0"/>
+
+    <connection from="dc_road_1" to="dc_road_2" fromLane="0" toLane="0" via=":dc_1_2_0" dir="r" state="M"/>
+    <connection from="dc_road_1" to="dc_road_2" fromLane="1" toLane="1" via=":dc_1_2_1" dir="r" state="M"/>
+    <connection from="dc_road_1_rev" to="p2_road_4_rev" fromLane="0" toLane="0" via=":hw_1_14_0" dir="r" state="m"/>
+    <connection from="dc_road_1_rev" to="hw_road_1_rev" fromLane="0" toLane="1" via=":hw_1_15_0" dir="r" state="m"/>
+    <connection from="dc_road_1_rev" to="hw_road_2" fromLane="0" toLane="1" via=":hw_1_16_0" dir="s" state="m"/>
+    <connection from="dc_road_1_rev" to="hw_road_2" fromLane="1" toLane="2" via=":hw_1_16_1" dir="s" state="m"/>
+    <connection from="dc_road_2" to="dc_road_3" fromLane="0" toLane="0" via=":dc_2_2_0" dir="s" state="M"/>
+    <connection from="dc_road_2" to="dc_road_3" fromLane="1" toLane="1" via=":dc_2_2_1" dir="s" state="M"/>
+    <connection from="dc_road_2_rev" to="dc_road_1_rev" fromLane="0" toLane="0" via=":dc_1_0_0" dir="l" state="M"/>
+    <connection from="dc_road_2_rev" to="dc_road_1_rev" fromLane="1" toLane="1" via=":dc_1_0_1" dir="l" state="M"/>
+    <connection from="dc_road_3" to="dc_road_4" fromLane="0" toLane="0" via=":dc_3_2_0" dir="s" state="M"/>
+    <connection from="dc_road_3" to="dc_road_4" fromLane="1" toLane="1" via=":dc_3_2_1" dir="s" state="M"/>
+    <connection from="dc_road_3_rev" to="dc_road_2_rev" fromLane="0" toLane="0" via=":dc_2_0_0" dir="s" state="M"/>
+    <connection from="dc_road_3_rev" to="dc_road_2_rev" fromLane="1" toLane="1" via=":dc_2_0_1" dir="s" state="M"/>
+    <connection from="dc_road_4" to="entry_north_out" fromLane="0" toLane="0" via=":dange_chowk_2_0" tl="dange_chowk" linkIndex="2" dir="s" state="O"/>
+    <connection from="dc_road_4" to="entry_north_out" fromLane="1" toLane="1" via=":dange_chowk_2_1" tl="dange_chowk" linkIndex="3" dir="s" state="O"/>
+    <connection from="dc_road_4_rev" to="dc_road_3_rev" fromLane="0" toLane="0" via=":dc_3_0_0" dir="s" state="M"/>
+    <connection from="dc_road_4_rev" to="dc_road_3_rev" fromLane="1" toLane="1" via=":dc_3_0_1" dir="s" state="M"/>
+    <connection from="entry_east_in" to="wakad_east_rev" fromLane="0" toLane="0" via=":kaspate_vasti_0_0" tl="kaspate_vasti" linkIndex="0" dir="s" state="O"/>
+    <connection from="entry_east_in" to="wakad_east_rev" fromLane="1" toLane="1" via=":kaspate_vasti_0_1" tl="kaspate_vasti" linkIndex="1" dir="s" state="O"/>
+    <connection from="entry_north_in" to="dc_road_4_rev" fromLane="0" toLane="0" via=":dange_chowk_0_0" tl="dange_chowk" linkIndex="0" dir="s" state="O"/>
+    <connection from="entry_north_in" to="dc_road_4_rev" fromLane="1" toLane="1" via=":dange_chowk_0_1" tl="dange_chowk" linkIndex="1" dir="s" state="O"/>
+    <connection from="entry_south_in" to="nh48_1_edge" fromLane="0" toLane="0" via=":nh48_south_0_0" dir="s" state="M"/>
+    <connection from="entry_south_in" to="nh48_1_edge" fromLane="1" toLane="1" via=":nh48_south_0_1" dir="s" state="M"/>
+    <connection from="entry_south_in" to="nh48_1_edge" fromLane="2" toLane="2" via=":nh48_south_0_2" dir="s" state="M"/>
+    <connection from="entry_west_in" to="hw_road_1" fromLane="0" toLane="0" via=":hinjewadi_phase1_3_0" tl="hinjewadi_phase1" linkIndex="3" dir="s" state="O"/>
+    <connection from="entry_west_in" to="hw_road_1" fromLane="1" toLane="1" via=":hinjewadi_phase1_3_1" tl="hinjewadi_phase1" linkIndex="4" dir="s" state="O"/>
+    <connection from="entry_west_in" to="hw_road_1" fromLane="1" toLane="2" via=":hinjewadi_phase1_3_2" tl="hinjewadi_phase1" linkIndex="5" dir="s" state="O"/>
+    <connection from="entry_west_in" to="midc_to_phase1" fromLane="1" toLane="1" via=":hinjewadi_phase1_6_0" tl="hinjewadi_phase1" linkIndex="6" dir="l" state="o"/>
+    <connection from="hw_road_1" to="hw_road_2" fromLane="0" toLane="0" via=":hw_1_5_0" dir="s" state="M"/>
+    <connection from="hw_road_1" to="hw_road_2" fromLane="1" toLane="1" via=":hw_1_5_1" dir="s" state="M"/>
+    <connection from="hw_road_1" to="hw_road_2" fromLane="2" toLane="2" via=":hw_1_5_2" dir="s" state="M"/>
+    <connection from="hw_road_1" to="dc_road_1" fromLane="2" toLane="1" via=":hw_1_8_0" dir="l" state="m"/>
+    <connection from="hw_road_1" to="p2_road_4_rev" fromLane="2" toLane="1" via=":hw_1_9_0" dir="l" state="m"/>
+    <connection from="hw_road_1_rev" to="midc_to_phase1" fromLane="0" toLane="0" via=":hinjewadi_phase1_0_0" tl="hinjewadi_phase1" linkIndex="0" dir="r" state="O"/>
+    <connection from="hw_road_1_rev" to="entry_west_out" fromLane="1" toLane="0" via=":hinjewadi_phase1_1_0" tl="hinjewadi_phase1" linkIndex="1" dir="s" state="O"/>
+    <connection from="hw_road_1_rev" to="entry_west_out" fromLane="2" toLane="1" via=":hinjewadi_phase1_1_1" tl="hinjewadi_phase1" linkIndex="2" dir="s" state="O"/>
+    <connection from="hw_road_2" to="hw_road_3" fromLane="0" toLane="0" via=":hw_2_3_0" dir="s" state="M"/>
+    <connection from="hw_road_2" to="hw_road_3" fromLane="1" toLane="1" via=":hw_2_3_1" dir="s" state="M"/>
+    <connection from="hw_road_2" to="hw_road_3" fromLane="2" toLane="2" via=":hw_2_3_2" dir="s" state="M"/>
+    <connection from="hw_road_2_rev" to="dc_road_1" fromLane="0" toLane="0" via=":hw_1_0_0" dir="R" state="M"/>
+    <connection from="hw_road_2_rev" to="p2_road_4_rev" fromLane="0" toLane="0" via=":hw_1_1_0" dir="s" state="M"/>
+    <connection from="hw_road_2_rev" to="p2_road_4_rev" fromLane="1" toLane="1" via=":hw_1_1_1" dir="s" state="M"/>
+    <connection from="hw_road_2_rev" to="hw_road_1_rev" fromLane="1" toLane="1" via=":hw_1_3_0" dir="L" state="M"/>
+    <connection from="hw_road_2_rev" to="hw_road_1_rev" fromLane="2" toLane="2" via=":hw_1_3_1" dir="L" state="M"/>
+    <connection from="hw_road_3" to="hw_road_4" fromLane="0" toLane="0" via=":hw_3_3_0" dir="s" state="M"/>
+    <connection from="hw_road_3" to="hw_road_4" fromLane="1" toLane="1" via=":hw_3_3_1" dir="s" state="M"/>
+    <connection from="hw_road_3" to="hw_road_4" fromLane="2" toLane="2" via=":hw_3_3_2" dir="s" state="M"/>
+    <connection from="hw_road_3_rev" to="hw_road_2_rev" fromLane="0" toLane="0" via=":hw_2_0_0" dir="s" state="M"/>
+    <connection from="hw_road_3_rev" to="hw_road_2_rev" fromLane="1" toLane="1" via=":hw_2_0_1" dir="s" state="M"/>
+    <connection from="hw_road_3_rev" to="hw_road_2_rev" fromLane="2" toLane="2" via=":hw_2_0_2" dir="s" state="M"/>
+    <connection from="hw_road_4" to="nh48_to_bypass_rev" fromLane="0" toLane="0" via=":bypass_junction_4_0" tl="bypass_junction" linkIndex="4" dir="r" state="o"/>
+    <connection from="hw_road_4" to="nh48_to_bypass_rev" fromLane="1" toLane="1" via=":bypass_junction_4_1" tl="bypass_junction" linkIndex="5" dir="r" state="o"/>
+    <connection from="hw_road_4" to="wf_1_edge" fromLane="2" toLane="1" via=":bypass_junction_6_0" tl="bypass_junction" linkIndex="6" dir="l" state="o"/>
+    <connection from="hw_road_4_rev" to="hw_road_3_rev" fromLane="0" toLane="0" via=":hw_3_0_0" dir="s" state="M"/>
+    <connection from="hw_road_4_rev" to="hw_road_3_rev" fromLane="1" toLane="1" via=":hw_3_0_1" dir="s" state="M"/>
+    <connection from="hw_road_4_rev" to="hw_road_3_rev" fromLane="2" toLane="2" via=":hw_3_0_2" dir="s" state="M"/>
+    <connection from="midc_road_1" to="midc_road_2" fromLane="0" toLane="0" via=":midc_2_0_0" dir="s" state="M"/>
+    <connection from="midc_road_1" to="midc_road_2" fromLane="1" toLane="1" via=":midc_2_0_1" dir="s" state="M"/>
+    <connection from="midc_road_1_rev" to="midc_to_phase1_rev" fromLane="0" toLane="0" via=":midc_1_2_0" dir="s" state="M"/>
+    <connection from="midc_road_1_rev" to="midc_to_phase1_rev" fromLane="1" toLane="1" via=":midc_1_2_1" dir="s" state="M"/>
+    <connection from="midc_road_2" to="midc_road_3" fromLane="0" toLane="0" via=":midc_3_0_0" dir="s" state="M"/>
+    <connection from="midc_road_2" to="midc_road_3" fromLane="1" toLane="1" via=":midc_3_0_1" dir="s" state="M"/>
+    <connection from="midc_road_2_rev" to="midc_road_1_rev" fromLane="0" toLane="0" via=":midc_2_2_0" dir="s" state="M"/>
+    <connection from="midc_road_2_rev" to="midc_road_1_rev" fromLane="1" toLane="1" via=":midc_2_2_1" dir="s" state="M"/>
+    <connection from="midc_road_3" to="p2_road_1" fromLane="0" toLane="0" via=":hinjewadi_phase2_2_0" tl="hinjewadi_phase2" linkIndex="2" dir="r" state="O"/>
+    <connection from="midc_road_3" to="p2_road_1" fromLane="1" toLane="1" via=":hinjewadi_phase2_2_1" tl="hinjewadi_phase2" linkIndex="3" dir="r" state="O"/>
+    <connection from="midc_road_3_rev" to="midc_road_2_rev" fromLane="0" toLane="0" via=":midc_3_2_0" dir="s" state="M"/>
+    <connection from="midc_road_3_rev" to="midc_road_2_rev" fromLane="1" toLane="1" via=":midc_3_2_1" dir="s" state="M"/>
+    <connection from="midc_to_phase1" to="midc_road_1" fromLane="0" toLane="0" via=":midc_1_0_0" dir="s" state="M"/>
+    <connection from="midc_to_phase1" to="midc_road_1" fromLane="1" toLane="1" via=":midc_1_0_1" dir="s" state="M"/>
+    <connection from="midc_to_phase1_rev" to="entry_west_out" fromLane="0" toLane="0" via=":hinjewadi_phase1_7_0" tl="hinjewadi_phase1" linkIndex="7" dir="r" state="o"/>
+    <connection from="midc_to_phase1_rev" to="entry_west_out" fromLane="1" toLane="1" via=":hinjewadi_phase1_7_1" tl="hinjewadi_phase1" linkIndex="8" dir="r" state="o"/>
+    <connection from="midc_to_phase1_rev" to="hw_road_1" fromLane="1" toLane="1" via=":hinjewadi_phase1_9_0" tl="hinjewadi_phase1" linkIndex="9" dir="l" state="o"/>
+    <connection from="midc_to_phase1_rev" to="hw_road_1" fromLane="1" toLane="2" via=":hinjewadi_phase1_9_1" tl="hinjewadi_phase1" linkIndex="10" dir="l" state="o"/>
+    <connection from="nh48_1_edge" to="nh48_2_edge" fromLane="0" toLane="0" via=":nh48_1_0_0" dir="s" state="M"/>
+    <connection from="nh48_1_edge" to="nh48_2_edge" fromLane="1" toLane="1" via=":nh48_1_0_1" dir="s" state="M"/>
+    <connection from="nh48_1_edge" to="nh48_2_edge" fromLane="2" toLane="2" via=":nh48_1_0_2" dir="s" state="M"/>
+    <connection from="nh48_1_edge_rev" to="entry_south_out" fromLane="0" toLane="0" via=":nh48_south_3_0" dir="s" state="M"/>
+    <connection from="nh48_1_edge_rev" to="entry_south_out" fromLane="1" toLane="1" via=":nh48_south_3_1" dir="s" state="M"/>
+    <connection from="nh48_1_edge_rev" to="entry_south_out" fromLane="2" toLane="2" via=":nh48_south_3_2" dir="s" state="M"/>
+    <connection from="nh48_2_edge" to="nh48_3_edge" fromLane="0" toLane="0" via=":nh48_2_0_0" dir="s" state="M"/>
+    <connection from="nh48_2_edge" to="nh48_3_edge" fromLane="1" toLane="1" via=":nh48_2_0_1" dir="s" state="M"/>
+    <connection from="nh48_2_edge" to="nh48_3_edge" fromLane="2" toLane="2" via=":nh48_2_0_2" dir="s" state="M"/>
+    <connection from="nh48_2_edge_rev" to="nh48_1_edge_rev" fromLane="0" toLane="0" via=":nh48_1_3_0" dir="s" state="M"/>
+    <connection from="nh48_2_edge_rev" to="nh48_1_edge_rev" fromLane="1" toLane="1" via=":nh48_1_3_1" dir="s" state="M"/>
+    <connection from="nh48_2_edge_rev" to="nh48_1_edge_rev" fromLane="2" toLane="2" via=":nh48_1_3_2" dir="s" state="M"/>
+    <connection from="nh48_3_edge" to="nh48_to_bypass" fromLane="0" toLane="0" via=":nh48_north_0_0" dir="s" state="M"/>
+    <connection from="nh48_3_edge" to="nh48_to_bypass" fromLane="1" toLane="1" via=":nh48_north_0_1" dir="s" state="M"/>
+    <connection from="nh48_3_edge" to="nh48_to_bypass" fromLane="2" toLane="2" via=":nh48_north_0_2" dir="s" state="M"/>
+    <connection from="nh48_3_edge_rev" to="nh48_2_edge_rev" fromLane="0" toLane="0" via=":nh48_2_3_0" dir="s" state="M"/>
+    <connection from="nh48_3_edge_rev" to="nh48_2_edge_rev" fromLane="1" toLane="1" via=":nh48_2_3_1" dir="s" state="M"/>
+    <connection from="nh48_3_edge_rev" to="nh48_2_edge_rev" fromLane="2" toLane="2" via=":nh48_2_3_2" dir="s" state="M"/>
+    <connection from="nh48_to_bypass" to="wf_1_edge" fromLane="0" toLane="0" via=":bypass_junction_0_0" tl="bypass_junction" linkIndex="0" dir="L" state="O"/>
+    <connection from="nh48_to_bypass" to="wf_1_edge" fromLane="1" toLane="1" via=":bypass_junction_0_1" tl="bypass_junction" linkIndex="1" dir="L" state="O"/>
+    <connection from="nh48_to_bypass" to="hw_road_4_rev" fromLane="2" toLane="1" via=":bypass_junction_2_0" tl="bypass_junction" linkIndex="2" dir="l" state="o"/>
+    <connection from="nh48_to_bypass" to="hw_road_4_rev" fromLane="2" toLane="2" via=":bypass_junction_2_1" tl="bypass_junction" linkIndex="3" dir="l" state="o"/>
+    <connection from="nh48_to_bypass_rev" to="nh48_3_edge_rev" fromLane="0" toLane="0" via=":nh48_north_3_0" dir="s" state="M"/>
+    <connection from="nh48_to_bypass_rev" to="nh48_3_edge_rev" fromLane="1" toLane="1" via=":nh48_north_3_1" dir="s" state="M"/>
+    <connection from="nh48_to_bypass_rev" to="nh48_3_edge_rev" fromLane="2" toLane="2" via=":nh48_north_3_2" dir="s" state="M"/>
+    <connection from="p2_road_1" to="p2_road_2" fromLane="0" toLane="0" via=":p2_1_2_0" dir="s" state="M"/>
+    <connection from="p2_road_1" to="p2_road_2" fromLane="1" toLane="1" via=":p2_1_2_1" dir="s" state="M"/>
+    <connection from="p2_road_1_rev" to="midc_road_3_rev" fromLane="0" toLane="0" via=":hinjewadi_phase2_0_0" tl="hinjewadi_phase2" linkIndex="0" dir="l" state="O"/>
+    <connection from="p2_road_1_rev" to="midc_road_3_rev" fromLane="1" toLane="1" via=":hinjewadi_phase2_0_1" tl="hinjewadi_phase2" linkIndex="1" dir="l" state="O"/>
+    <connection from="p2_road_2" to="p2_road_3" fromLane="0" toLane="0" via=":p2_2_2_0" dir="s" state="M"/>
+    <connection from="p2_road_2" to="p2_road_3" fromLane="1" toLane="1" via=":p2_2_2_1" dir="s" state="M"/>
+    <connection from="p2_road_2_rev" to="p2_road_1_rev" fromLane="0" toLane="0" via=":p2_1_0_0" dir="s" state="M"/>
+    <connection from="p2_road_2_rev" to="p2_road_1_rev" fromLane="1" toLane="1" via=":p2_1_0_1" dir="s" state="M"/>
+    <connection from="p2_road_3" to="p2_road_4" fromLane="0" toLane="0" via=":p2_3_2_0" dir="s" state="M"/>
+    <connection from="p2_road_3" to="p2_road_4" fromLane="1" toLane="1" via=":p2_3_2_1" dir="s" state="M"/>
+    <connection from="p2_road_3_rev" to="p2_road_2_rev" fromLane="0" toLane="0" via=":p2_2_0_0" dir="s" state="M"/>
+    <connection from="p2_road_3_rev" to="p2_road_2_rev" fromLane="1" toLane="1" via=":p2_2_0_1" dir="s" state="M"/>
+    <connection from="p2_road_4" to="hw_road_1_rev" fromLane="0" toLane="0" via=":hw_1_10_0" dir="r" state="M"/>
+    <connection from="p2_road_4" to="hw_road_2" fromLane="0" toLane="1" via=":hw_1_11_0" dir="s" state="m"/>
+    <connection from="p2_road_4" to="hw_road_2" fromLane="1" toLane="2" via=":hw_1_11_1" dir="s" state="m"/>
+    <connection from="p2_road_4" to="dc_road_1" fromLane="1" toLane="1" via=":hw_1_13_0" dir="l" state="m"/>
+    <connection from="p2_road_4_rev" to="p2_road_3_rev" fromLane="0" toLane="0" via=":p2_3_0_0" dir="s" state="M"/>
+    <connection from="p2_road_4_rev" to="p2_road_3_rev" fromLane="1" toLane="1" via=":p2_3_0_1" dir="s" state="M"/>
+    <connection from="wakad_east" to="entry_east_out" fromLane="0" toLane="0" via=":kaspate_vasti_2_0" tl="kaspate_vasti" linkIndex="2" dir="s" state="O"/>
+    <connection from="wakad_east" to="entry_east_out" fromLane="1" toLane="1" via=":kaspate_vasti_2_1" tl="kaspate_vasti" linkIndex="3" dir="s" state="O"/>
+    <connection from="wakad_east_rev" to="wf_4_edge_rev" fromLane="0" toLane="0" via=":wakad_chowk_0_0" tl="wakad_chowk" linkIndex="0" dir="s" state="O"/>
+    <connection from="wakad_east_rev" to="wf_4_edge_rev" fromLane="1" toLane="1" via=":wakad_chowk_0_1" tl="wakad_chowk" linkIndex="1" dir="s" state="O"/>
+    <connection from="wf_1_edge" to="wf_2_edge" fromLane="0" toLane="0" via=":wf_1_2_0" dir="r" state="M"/>
+    <connection from="wf_1_edge" to="wf_2_edge" fromLane="1" toLane="1" via=":wf_1_2_1" dir="r" state="M"/>
+    <connection from="wf_1_edge_rev" to="nh48_to_bypass_rev" fromLane="0" toLane="1" via=":bypass_junction_7_0" tl="bypass_junction" linkIndex="7" dir="R" state="O"/>
+    <connection from="wf_1_edge_rev" to="nh48_to_bypass_rev" fromLane="1" toLane="2" via=":bypass_junction_7_1" tl="bypass_junction" linkIndex="8" dir="R" state="O"/>
+    <connection from="wf_1_edge_rev" to="hw_road_4_rev" fromLane="1" toLane="0" via=":bypass_junction_9_0" tl="bypass_junction" linkIndex="9" dir="r" state="O"/>
+    <connection from="wf_2_edge" to="wf_3_edge" fromLane="0" toLane="0" via=":wf_2_2_0" dir="s" state="M"/>
+    <connection from="wf_2_edge" to="wf_3_edge" fromLane="1" toLane="1" via=":wf_2_2_1" dir="s" state="M"/>
+    <connection from="wf_2_edge_rev" to="wf_1_edge_rev" fromLane="0" toLane="0" via=":wf_1_0_0" dir="l" state="M"/>
+    <connection from="wf_2_edge_rev" to="wf_1_edge_rev" fromLane="1" toLane="1" via=":wf_1_0_1" dir="l" state="M"/>
+    <connection from="wf_3_edge" to="wf_4_edge" fromLane="0" toLane="0" via=":wf_3_2_0" dir="s" state="M"/>
+    <connection from="wf_3_edge" to="wf_4_edge" fromLane="1" toLane="1" via=":wf_3_2_1" dir="s" state="M"/>
+    <connection from="wf_3_edge_rev" to="wf_2_edge_rev" fromLane="0" toLane="0" via=":wf_2_0_0" dir="s" state="M"/>
+    <connection from="wf_3_edge_rev" to="wf_2_edge_rev" fromLane="1" toLane="1" via=":wf_2_0_1" dir="s" state="M"/>
+    <connection from="wf_4_edge" to="wakad_east" fromLane="0" toLane="0" via=":wakad_chowk_2_0" tl="wakad_chowk" linkIndex="2" dir="s" state="O"/>
+    <connection from="wf_4_edge" to="wakad_east" fromLane="1" toLane="1" via=":wakad_chowk_2_1" tl="wakad_chowk" linkIndex="3" dir="s" state="O"/>
+    <connection from="wf_4_edge_rev" to="wf_3_edge_rev" fromLane="0" toLane="0" via=":wf_3_0_0" dir="s" state="M"/>
+    <connection from="wf_4_edge_rev" to="wf_3_edge_rev" fromLane="1" toLane="1" via=":wf_3_0_1" dir="s" state="M"/>
+
+    <connection from=":bypass_junction_0" to="wf_1_edge" fromLane="0" toLane="0" dir="L" state="M"/>
+    <connection from=":bypass_junction_0" to="wf_1_edge" fromLane="1" toLane="1" dir="L" state="M"/>
+    <connection from=":bypass_junction_2" to="hw_road_4_rev" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":bypass_junction_2" to="hw_road_4_rev" fromLane="1" toLane="2" via=":bypass_junction_10_0" dir="l" state="m"/>
+    <connection from=":bypass_junction_10" to="hw_road_4_rev" fromLane="0" toLane="2" dir="l" state="M"/>
+    <connection from=":bypass_junction_4" to="nh48_to_bypass_rev" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":bypass_junction_4" to="nh48_to_bypass_rev" fromLane="1" toLane="1" dir="r" state="M"/>
+    <connection from=":bypass_junction_6" to="wf_1_edge" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":bypass_junction_7" to="nh48_to_bypass_rev" fromLane="0" toLane="1" dir="R" state="M"/>
+    <connection from=":bypass_junction_7" to="nh48_to_bypass_rev" fromLane="1" toLane="2" dir="R" state="M"/>
+    <connection from=":bypass_junction_9" to="hw_road_4_rev" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":dange_chowk_0" to="dc_road_4_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":dange_chowk_0" to="dc_road_4_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":dange_chowk_2" to="entry_north_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":dange_chowk_2" to="entry_north_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":dc_1_0" to="dc_road_1_rev" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":dc_1_0" to="dc_road_1_rev" fromLane="1" toLane="1" dir="l" state="M"/>
+    <connection from=":dc_1_2" to="dc_road_2" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":dc_1_2" to="dc_road_2" fromLane="1" toLane="1" dir="r" state="M"/>
+    <connection from=":dc_2_0" to="dc_road_2_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":dc_2_0" to="dc_road_2_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":dc_2_2" to="dc_road_3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":dc_2_2" to="dc_road_3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":dc_3_0" to="dc_road_3_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":dc_3_0" to="dc_road_3_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":dc_3_2" to="dc_road_4" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":dc_3_2" to="dc_road_4" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hinjewadi_phase1_0" to="midc_to_phase1" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":hinjewadi_phase1_1" to="entry_west_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hinjewadi_phase1_1" to="entry_west_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hinjewadi_phase1_3" to="hw_road_1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hinjewadi_phase1_3" to="hw_road_1" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hinjewadi_phase1_3" to="hw_road_1" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":hinjewadi_phase1_6" to="midc_to_phase1" fromLane="0" toLane="1" via=":hinjewadi_phase1_11_0" dir="l" state="m"/>
+    <connection from=":hinjewadi_phase1_11" to="midc_to_phase1" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":hinjewadi_phase1_7" to="entry_west_out" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":hinjewadi_phase1_7" to="entry_west_out" fromLane="1" toLane="1" dir="r" state="M"/>
+    <connection from=":hinjewadi_phase1_9" to="hw_road_1" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":hinjewadi_phase1_9" to="hw_road_1" fromLane="1" toLane="2" dir="l" state="M"/>
+    <connection from=":hinjewadi_phase2_0" to="midc_road_3_rev" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":hinjewadi_phase2_0" to="midc_road_3_rev" fromLane="1" toLane="1" dir="l" state="M"/>
+    <connection from=":hinjewadi_phase2_2" to="p2_road_1" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":hinjewadi_phase2_2" to="p2_road_1" fromLane="1" toLane="1" dir="r" state="M"/>
+    <connection from=":hw_1_0" to="dc_road_1" fromLane="0" toLane="0" dir="R" state="M"/>
+    <connection from=":hw_1_1" to="p2_road_4_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hw_1_1" to="p2_road_4_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_1_3" to="hw_road_1_rev" fromLane="0" toLane="1" dir="L" state="M"/>
+    <connection from=":hw_1_3" to="hw_road_1_rev" fromLane="1" toLane="2" dir="L" state="M"/>
+    <connection from=":hw_1_5" to="hw_road_2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hw_1_5" to="hw_road_2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_1_5" to="hw_road_2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":hw_1_8" to="dc_road_1" fromLane="0" toLane="1" via=":hw_1_18_0" dir="l" state="m"/>
+    <connection from=":hw_1_18" to="dc_road_1" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":hw_1_9" to="p2_road_4_rev" fromLane="0" toLane="1" via=":hw_1_19_0" dir="l" state="m"/>
+    <connection from=":hw_1_19" to="p2_road_4_rev" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":hw_1_10" to="hw_road_1_rev" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":hw_1_11" to="hw_road_2" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_1_11" to="hw_road_2" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":hw_1_13" to="dc_road_1" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":hw_1_14" to="p2_road_4_rev" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":hw_1_15" to="hw_road_1_rev" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":hw_1_16" to="hw_road_2" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_1_16" to="hw_road_2" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":hw_2_0" to="hw_road_2_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hw_2_0" to="hw_road_2_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_2_0" to="hw_road_2_rev" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":hw_2_3" to="hw_road_3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hw_2_3" to="hw_road_3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_2_3" to="hw_road_3" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":hw_3_0" to="hw_road_3_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hw_3_0" to="hw_road_3_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_3_0" to="hw_road_3_rev" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":hw_3_3" to="hw_road_4" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":hw_3_3" to="hw_road_4" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":hw_3_3" to="hw_road_4" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":kaspate_vasti_0" to="wakad_east_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":kaspate_vasti_0" to="wakad_east_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":kaspate_vasti_2" to="entry_east_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":kaspate_vasti_2" to="entry_east_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":midc_1_0" to="midc_road_1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":midc_1_0" to="midc_road_1" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":midc_1_2" to="midc_to_phase1_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":midc_1_2" to="midc_to_phase1_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":midc_2_0" to="midc_road_2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":midc_2_0" to="midc_road_2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":midc_2_2" to="midc_road_1_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":midc_2_2" to="midc_road_1_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":midc_3_0" to="midc_road_3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":midc_3_0" to="midc_road_3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":midc_3_2" to="midc_road_2_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":midc_3_2" to="midc_road_2_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_1_0" to="nh48_2_edge" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_1_0" to="nh48_2_edge" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_1_0" to="nh48_2_edge" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_1_3" to="nh48_1_edge_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_1_3" to="nh48_1_edge_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_1_3" to="nh48_1_edge_rev" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_2_0" to="nh48_3_edge" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_2_0" to="nh48_3_edge" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_2_0" to="nh48_3_edge" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_2_3" to="nh48_2_edge_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_2_3" to="nh48_2_edge_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_2_3" to="nh48_2_edge_rev" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_north_0" to="nh48_to_bypass" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_north_0" to="nh48_to_bypass" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_north_0" to="nh48_to_bypass" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_north_3" to="nh48_3_edge_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_north_3" to="nh48_3_edge_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_north_3" to="nh48_3_edge_rev" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_south_0" to="nh48_1_edge" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_south_0" to="nh48_1_edge" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_south_0" to="nh48_1_edge" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":nh48_south_3" to="entry_south_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":nh48_south_3" to="entry_south_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":nh48_south_3" to="entry_south_out" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":p2_1_0" to="p2_road_1_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":p2_1_0" to="p2_road_1_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":p2_1_2" to="p2_road_2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":p2_1_2" to="p2_road_2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":p2_2_0" to="p2_road_2_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":p2_2_0" to="p2_road_2_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":p2_2_2" to="p2_road_3" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":p2_2_2" to="p2_road_3" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":p2_3_0" to="p2_road_3_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":p2_3_0" to="p2_road_3_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":p2_3_2" to="p2_road_4" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":p2_3_2" to="p2_road_4" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":wakad_chowk_0" to="wf_4_edge_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":wakad_chowk_0" to="wf_4_edge_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":wakad_chowk_2" to="wakad_east" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":wakad_chowk_2" to="wakad_east" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":wf_1_0" to="wf_1_edge_rev" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":wf_1_0" to="wf_1_edge_rev" fromLane="1" toLane="1" dir="l" state="M"/>
+    <connection from=":wf_1_2" to="wf_2_edge" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":wf_1_2" to="wf_2_edge" fromLane="1" toLane="1" dir="r" state="M"/>
+    <connection from=":wf_2_0" to="wf_2_edge_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":wf_2_0" to="wf_2_edge_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":wf_2_2" to="wf_3_edge" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":wf_2_2" to="wf_3_edge" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":wf_3_0" to="wf_3_edge_rev" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":wf_3_0" to="wf_3_edge_rev" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":wf_3_2" to="wf_4_edge" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":wf_3_2" to="wf_4_edge" fromLane="1" toLane="1" dir="s" state="M"/>
+
+</net>

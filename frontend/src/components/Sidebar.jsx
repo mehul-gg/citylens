@@ -2,18 +2,14 @@ import {
   Map, 
   Layers, 
   BarChart3, 
-  Building2, 
-  ChevronLeft, 
-  ChevronRight,
   Play,
   Pause,
   Clock,
   Route,
-  Construction,
   AlertTriangle
 } from 'lucide-react';
 import useStore from '../store/useStore';
-import { KEY_JUNCTIONS, CITY_METRICS, ROAD_SEGMENTS, GOVT_SERVICES } from '../data/puneData';
+import { KEY_JUNCTIONS, CITY_METRICS, ROAD_SEGMENTS } from '../data/puneData';
 
 const Sidebar = () => {
   const { 
@@ -35,7 +31,6 @@ const Sidebar = () => {
     { id: 'overview', icon: Map, label: 'Overview' },
     { id: 'layers', icon: Layers, label: 'Layers' },
     { id: 'analytics', icon: BarChart3, label: 'Analytics' },
-    { id: 'govt', icon: Building2, label: 'Govt Services' },
   ];
 
   const layers = [
@@ -281,63 +276,6 @@ const Sidebar = () => {
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {/* Government Services Panel */}
-        {activePanel === 'govt' && (
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-white">Government Services</h2>
-            
-            {Object.entries(GOVT_SERVICES).map(([key, dept]) => (
-              <div key={key} className="bg-slate-700/50 rounded-lg p-4">
-                <h3 className="text-white font-medium mb-3 flex items-center gap-2">
-                  <Construction size={16} />
-                  {dept.name}
-                </h3>
-                
-                {dept.projects && (
-                  <div className="space-y-2">
-                    {dept.projects.map(project => (
-                      <div key={project.id} className="bg-slate-800/50 rounded p-2">
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="text-sm text-white">{project.name}</span>
-                          <span className={`text-xs px-2 py-0.5 rounded ${
-                            project.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                            project.status === 'ongoing' ? 'bg-blue-500/20 text-blue-400' :
-                            'bg-slate-500/20 text-slate-400'
-                          }`}>
-                            {project.status}
-                          </span>
-                        </div>
-                        {project.completion < 100 && (
-                          <div className="w-full bg-slate-600 rounded-full h-1.5">
-                            <div 
-                              className="bg-blue-500 h-1.5 rounded-full"
-                              style={{ width: `${project.completion}%` }}
-                            ></div>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {dept.data && dept.data.accidentHotspots && (
-                  <div className="space-y-2">
-                    <p className="text-sm text-slate-400">Accident Hotspots</p>
-                    {dept.data.accidentHotspots.map((spot, i) => (
-                      <div key={i} className="flex justify-between text-sm">
-                        <span className="text-white">Location {i + 1}</span>
-                        <span className={`${spot.severity === 'high' ? 'text-red-400' : 'text-yellow-400'}`}>
-                          {spot.incidents} incidents
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
           </div>
         )}
       </div>

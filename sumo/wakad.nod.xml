@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SUMO Network Nodes for Wakad-Hinjewadi Corridor -->
+<!-- Based on real OSM coordinates -->
+<nodes>
+    <!-- Main Junctions -->
+    <node id="wakad_chowk" x="73.7607" y="18.5924" type="traffic_light"/>
+    <node id="hinjewadi_phase1" x="73.7339" y="18.5859" type="traffic_light"/>
+    <node id="hinjewadi_phase2" x="73.7323" y="18.5940" type="traffic_light"/>
+    <node id="dange_chowk" x="73.7400" y="18.5957" type="traffic_light"/>
+    <node id="bypass_junction" x="73.7575" y="18.5920" type="traffic_light"/>
+    <node id="kaspate_vasti" x="73.7734" y="18.5910" type="traffic_light"/>
+    
+    <!-- Intermediate nodes for Hinjewadi-Wakad Road -->
+    <node id="hw_1" x="73.7404" y="18.5911" type="priority"/>
+    <node id="hw_2" x="73.7448" y="18.5912" type="priority"/>
+    <node id="hw_3" x="73.7492" y="18.5910" type="priority"/>
+    
+    <!-- Wakad Flyover nodes -->
+    <node id="wf_1" x="73.7552" y="18.5920" type="priority"/>
+    <node id="wf_2" x="73.7583" y="18.5921" type="priority"/>
+    <node id="wf_3" x="73.7601" y="18.5924" type="priority"/>
+    
+    <!-- Dange Chowk Road nodes -->
+    <node id="dc_1" x="73.7390" y="18.5916" type="priority"/>
+    <node id="dc_2" x="73.7391" y="18.5933" type="priority"/>
+    <node id="dc_3" x="73.7395" y="18.5949" type="priority"/>
+    
+    <!-- Phase 2 Road nodes -->
+    <node id="p2_1" x="73.7347" y="18.5939" type="priority"/>
+    <node id="p2_2" x="73.7365" y="18.5929" type="priority"/>
+    <node id="p2_3" x="73.7383" y="18.5916" type="priority"/>
+    
+    <!-- MIDC Road nodes -->
+    <node id="midc_1" x="73.7338" y="18.5863" type="priority"/>
+    <node id="midc_2" x="73.7331" y="18.5882" type="priority"/>
+    <node id="midc_3" x="73.7327" y="18.5918" type="priority"/>
+    
+    <!-- NH48 Bypass nodes -->
+    <node id="nh48_south" x="73.7647" y="18.5719" type="priority"/>
+    <node id="nh48_1" x="73.7638" y="18.5742" type="priority"/>
+    <node id="nh48_2" x="73.7610" y="18.5816" type="priority"/>
+    <node id="nh48_north" x="73.7595" y="18.5856" type="priority"/>
+    
+    <!-- Entry/Exit points for traffic generation -->
+    <node id="entry_east" x="73.7800" y="18.5910" type="priority"/>
+    <node id="entry_west" x="73.7280" y="18.5860" type="priority"/>
+    <node id="entry_south" x="73.7647" y="18.5680" type="priority"/>
+    <node id="entry_north" x="73.7400" y="18.6000" type="priority"/>
+</nodes>
