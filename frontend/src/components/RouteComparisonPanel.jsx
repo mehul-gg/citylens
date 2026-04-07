@@ -2,7 +2,7 @@
  * RouteComparisonPanel - Shows alternative routes with analytics
  */
 
-import { X, Check, TrendingDown, TrendingUp, Home, DollarSign, Clock, AlertTriangle, Eye, EyeOff } from 'lucide-react';
+import { X, Check, TrendingDown, TrendingUp, Home, DollarSign, Clock, AlertTriangle, Eye, EyeOff, CheckCircle } from 'lucide-react';
 import useStore from '../store/useStore';
 import { formatINR } from '../utils/demolitionCalculator';
 
@@ -15,7 +15,8 @@ const RouteComparisonPanel = () => {
     toggleRouteSuggestions,
     clearRouteAlternatives,
     showSuggestedRoutes,
-    toggleShowSuggestedRoutes
+    toggleShowSuggestedRoutes,
+    applySelectedRoute
   } = useStore();
 
   if (!showRouteSuggestions || !routeAlternatives || routeAlternatives.length === 0) {
@@ -24,9 +25,9 @@ const RouteComparisonPanel = () => {
 
   const selectedRoute = routeAlternatives.find(r => r.id === selectedRouteId) || routeAlternatives[0];
 
+  // When closing panel, apply the selected route (make it permanent)
   const handleClose = () => {
-    toggleRouteSuggestions();
-    clearRouteAlternatives();
+    applySelectedRoute(); // This adds the selected route as a scenario and clears everything
   };
 
   return (
@@ -42,6 +43,7 @@ const RouteComparisonPanel = () => {
         <button
           onClick={handleClose}
           className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          title="Close and apply selected route"
         >
           <X size={20} />
         </button>
@@ -60,7 +62,7 @@ const RouteComparisonPanel = () => {
           {showSuggestedRoutes ? (
             <>
               <EyeOff size={18} />
-              <span>Hide Suggested Routes</span>
+              <span>Hide Other Routes</span>
             </>
           ) : (
             <>
@@ -71,8 +73,8 @@ const RouteComparisonPanel = () => {
         </button>
         <p className="text-xs text-slate-500 mt-2 text-center">
           {showSuggestedRoutes 
-            ? 'Showing all 3 suggested routes (grey) + affected buildings' 
-            : 'Showing your original drawn path + affected buildings'}
+            ? 'Showing all 3 routes on map. Click a route below to highlight it.' 
+            : 'Showing selected route only. Click a route below to switch.'}
         </p>
       </div>
 
@@ -275,6 +277,20 @@ const RouteComparisonPanel = () => {
           </div>
         </div>
       )}
+
+      {/* Build Route Button - Always visible at bottom */}
+      <div className="p-4 bg-slate-800/70 border-t border-slate-700">
+        <button
+          onClick={applySelectedRoute}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-green-600/30"
+        >
+          <CheckCircle size={20} />
+          <span>Build This Route</span>
+        </button>
+        <p className="text-xs text-slate-500 mt-2 text-center">
+          Finalize selection and add to map with traffic
+        </p>
+      </div>
     </div>
   );
 };

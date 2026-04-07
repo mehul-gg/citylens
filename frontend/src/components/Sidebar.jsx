@@ -133,7 +133,7 @@ const Sidebar = () => {
                       : 'bg-slate-800 text-slate-400'
                   }`}
                 >
-                  {trafficSimulationActive ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
+                  {trafficSimulationActive ? <Pause size={16} /> : <Play size={16} />}
                 </button>
               </div>
               

@@ -57,7 +57,7 @@ const MapClickHandler = () => {
 
 // SUMO vehicles from real-time WebSocket
 const SUMOVehicles = () => {
-  const { simulationVehicles, useSumoVehicles } = useStore();
+  const { simulationVehicles, useSumoVehicles, isDrawing } = useStore();
   
   if (!useSumoVehicles || simulationVehicles.length === 0) {
     return null;
@@ -76,12 +76,14 @@ const SUMOVehicles = () => {
           color="#ffffff"
           weight={1}
         >
-          <Popup>
-            <div className="text-xs">
-              <strong>{v.id}</strong>
-              <div>Speed: {v.speed} km/h</div>
-            </div>
-          </Popup>
+          {!isDrawing && (
+            <Popup>
+              <div className="text-xs">
+                <strong>{v.id}</strong>
+                <div>Speed: {v.speed} km/h</div>
+              </div>
+            </Popup>
+          )}
         </CircleMarker>
       ))}
     </>
@@ -284,7 +286,7 @@ const AnimatedVehicles = ({ roads, userScenarios }) => {
 };
 
 // Road network with smooth connections
-const RoadNetwork = ({ roads, onRoadClick }) => {
+const RoadNetwork = ({ roads, onRoadClick, isDrawing }) => {
   // Convert [lng, lat] to [lat, lng] for Leaflet
   const toLatLng = (coords) => coords.map(c => [c[1], c[0]]);
 
@@ -317,22 +319,24 @@ const RoadNetwork = ({ roads, onRoadClick }) => {
             click: () => onRoadClick(road)
           }}
         >
-          <Popup className="road-popup">
-            <div className="text-sm p-1">
-              <strong className="text-base">{road.name}</strong>
-              {road.isBridge && <span className="ml-2 text-purple-400 text-xs">(Flyover)</span>}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2">
-                <span className="text-slate-400">Speed:</span>
-                <span className="font-medium">{road.currentSpeed}/{road.speedLimit} km/h</span>
-                <span className="text-slate-400">Lanes:</span>
-                <span className="font-medium">{road.lanes}</span>
-                <span className="text-slate-400">Congestion:</span>
-                <span className="font-medium" style={{ color: getCongestionColor(road.trafficDensity) }}>
-                  {Math.round(road.trafficDensity * 100)}%
-                </span>
+          {!isDrawing && (
+            <Popup className="road-popup">
+              <div className="text-sm p-1">
+                <strong className="text-base">{road.name}</strong>
+                {road.isBridge && <span className="ml-2 text-purple-400 text-xs">(Flyover)</span>}
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2">
+                  <span className="text-slate-400">Speed:</span>
+                  <span className="font-medium">{road.currentSpeed}/{road.speedLimit} km/h</span>
+                  <span className="text-slate-400">Lanes:</span>
+                  <span className="font-medium">{road.lanes}</span>
+                  <span className="text-slate-400">Congestion:</span>
+                  <span className="font-medium" style={{ color: getCongestionColor(road.trafficDensity) }}>
+                    {Math.round(road.trafficDensity * 100)}%
+                  </span>
+                </div>
               </div>
-            </div>
-          </Popup>
+            </Popup>
+          )}
         </Polyline>
       ))}
       
@@ -354,7 +358,7 @@ const RoadNetwork = ({ roads, onRoadClick }) => {
 };
 
 // Junction markers without animation glitches
-const JunctionMarkers = ({ junctions, onJunctionClick }) => {
+const JunctionMarkers = ({ junctions, onJunctionClick, isDrawing }) => {
   const getJunctionColor = (level) => {
     switch (level) {
       case 'critical': return '#ef4444';
@@ -393,27 +397,29 @@ const JunctionMarkers = ({ junctions, onJunctionClick }) => {
             click: () => onJunctionClick(junction)
           }}
         >
-          <Popup>
-            <div className="text-sm p-1">
-              <strong className="text-base">{junction.name}</strong>
-              <div className="mt-2 space-y-1">
-                <div className="flex justify-between gap-4">
-                  <span className="text-slate-400">Wait Time:</span>
-                  <span className="font-medium">{junction.avgWaitTime} min</span>
+          {!isDrawing && (
+            <Popup>
+              <div className="text-sm p-1">
+                <strong className="text-base">{junction.name}</strong>
+                <div className="mt-2 space-y-1">
+                  <div className="flex justify-between gap-4">
+                    <span className="text-slate-400">Wait Time:</span>
+                    <span className="font-medium">{junction.avgWaitTime} min</span>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <span className="text-slate-400">Status:</span>
+                    <span 
+                      className="font-medium px-2 py-0.5 rounded text-white text-xs"
+                      style={{ backgroundColor: getJunctionColor(junction.congestionLevel) }}
+                    >
+                      {junction.congestionLevel.toUpperCase()}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex justify-between gap-4">
-                  <span className="text-slate-400">Status:</span>
-                  <span 
-                    className="font-medium px-2 py-0.5 rounded text-white text-xs"
-                    style={{ backgroundColor: getJunctionColor(junction.congestionLevel) }}
-                  >
-                    {junction.congestionLevel.toUpperCase()}
-                  </span>
-                </div>
+                <p className="text-xs text-slate-500 mt-2">{junction.description}</p>
               </div>
-              <p className="text-xs text-slate-500 mt-2">{junction.description}</p>
-            </div>
-          </Popup>
+            </Popup>
+          )}
         </CircleMarker>
       ))}
     </>
@@ -421,7 +427,7 @@ const JunctionMarkers = ({ junctions, onJunctionClick }) => {
 };
 
 // Road connection markers - show where roads connect
-const RoadConnectionMarkers = ({ roads }) => {
+const RoadConnectionMarkers = ({ roads, isDrawing }) => {
   const connections = React.useMemo(() => {
     const foundConnections = [];
     const CONNECTION_THRESHOLD = 200; // meters
@@ -486,24 +492,26 @@ const RoadConnectionMarkers = ({ roads }) => {
             weight: 2
           }}
         >
-          <Popup>
-            <div className="text-sm">
-              <div className="font-semibold text-blue-600 mb-1">Road Connection</div>
-              <div className="text-xs space-y-1">
-                <div><strong>From:</strong> {connection.road1}</div>
-                <div><strong>To:</strong> {connection.road2}</div>
-                <div><strong>Gap:</strong> {connection.distance}m</div>
+          {!isDrawing && (
+            <Popup>
+              <div className="text-sm">
+                <div className="font-semibold text-blue-600 mb-1">Road Connection</div>
+                <div className="text-xs space-y-1">
+                  <div><strong>From:</strong> {connection.road1}</div>
+                  <div><strong>To:</strong> {connection.road2}</div>
+                  <div><strong>Gap:</strong> {connection.distance}m</div>
+                </div>
               </div>
-            </div>
-          </Popup>
+            </Popup>
+          )}
         </CircleMarker>
       ))}
     </>
   );
 };
 
-// User-drawn scenarios with better visuals
-const UserScenarios = ({ scenarios }) => {
+// User-drawn scenarios with better visuals and highlight for new roads
+const UserScenarios = ({ scenarios, isDrawing, newlyBuiltScenarioIds = [] }) => {
   const toLatLng = (coords) => coords.map(c => [c[1], c[0]]);
   
   const getInfraColor = (type) => {
@@ -518,45 +526,76 @@ const UserScenarios = ({ scenarios }) => {
 
   return (
     <>
-      {scenarios.map(scenario => (
-        <React.Fragment key={scenario.id}>
-          {/* Shadow */}
-          <Polyline
-            positions={toLatLng(scenario.coordinates)}
-            color="#000000"
-            weight={10}
-            opacity={0.3}
-            lineCap="round"
-            lineJoin="round"
-          />
-          {/* Main line */}
-          <Polyline
-            positions={toLatLng(scenario.coordinates)}
-            color={getInfraColor(scenario.type)}
-            weight={7}
-            opacity={0.95}
-            lineCap="round"
-            lineJoin="round"
-          >
-            <Popup>
-              <div className="text-sm">
-                <strong>{scenario.name}</strong>
-                <span className="ml-2 text-xs opacity-70">{scenario.type}</span>
-              </div>
-            </Popup>
-          </Polyline>
-          {/* Animated dashed overlay for "under construction" effect */}
-          <Polyline
-            positions={toLatLng(scenario.coordinates)}
-            color="#ffffff"
-            weight={2}
-            opacity={0.5}
-            dashArray="8, 12"
-            lineCap="round"
-            lineJoin="round"
-          />
-        </React.Fragment>
-      ))}
+      {scenarios.map(scenario => {
+        const isNew = newlyBuiltScenarioIds.includes(scenario.id);
+        const infraColor = getInfraColor(scenario.type);
+        
+        return (
+          <React.Fragment key={scenario.id}>
+            {/* Outer glow for newly built roads */}
+            {isNew && (
+              <Polyline
+                positions={toLatLng(scenario.coordinates)}
+                color={infraColor}
+                weight={20}
+                opacity={0.3}
+                lineCap="round"
+                lineJoin="round"
+                className="animate-pulse"
+              />
+            )}
+            {/* Second glow layer for new roads */}
+            {isNew && (
+              <Polyline
+                positions={toLatLng(scenario.coordinates)}
+                color={infraColor}
+                weight={14}
+                opacity={0.5}
+                lineCap="round"
+                lineJoin="round"
+              />
+            )}
+            {/* Shadow */}
+            <Polyline
+              positions={toLatLng(scenario.coordinates)}
+              color="#000000"
+              weight={10}
+              opacity={0.3}
+              lineCap="round"
+              lineJoin="round"
+            />
+            {/* Main line */}
+            <Polyline
+              positions={toLatLng(scenario.coordinates)}
+              color={infraColor}
+              weight={7}
+              opacity={0.95}
+              lineCap="round"
+              lineJoin="round"
+            >
+              {!isDrawing && (
+                <Popup>
+                  <div className="text-sm">
+                    <strong>{scenario.name}</strong>
+                    <span className="ml-2 text-xs opacity-70">{scenario.type}</span>
+                    {isNew && <span className="ml-2 text-xs text-green-400 font-bold">NEW!</span>}
+                  </div>
+                </Popup>
+              )}
+            </Polyline>
+            {/* Animated dashed overlay for "under construction" effect */}
+            <Polyline
+              positions={toLatLng(scenario.coordinates)}
+              color="#ffffff"
+              weight={2}
+              opacity={isNew ? 0.8 : 0.5}
+              dashArray={isNew ? "4, 8" : "8, 12"}
+              lineCap="round"
+              lineJoin="round"
+            />
+          </React.Fragment>
+        );
+      })}
     </>
   );
 };
@@ -581,7 +620,9 @@ const CityMap = () => {
     routeAlternatives,
     selectedRouteId,
     showRouteSuggestions,
-    showSuggestedRoutes
+    showSuggestedRoutes,
+    newlyBuiltScenarioIds,
+    builtRouteAffectedBuildings
   } = useStore();
 
   // Load buildings: mock immediately, OSM in background
@@ -649,33 +690,63 @@ const CityMap = () => {
 
   // Calculate affected buildings when drawing or viewing route suggestions
   const affectedBuildings = useMemo(() => {
+    // Start with buildings affected by already-built infrastructure
+    const builtAffected = builtRouteAffectedBuildings || [];
+    
     if (!buildings || buildings.length === 0) {
-      return [];
+      return builtAffected;
     }
     
-    // If toggle is ON (showSuggestedRoutes), show buildings affected by ALL suggested routes
-    if (showSuggestedRoutes && routeAlternatives && routeAlternatives.length > 0) {
-      // Combine affected buildings from all routes (deduplicate by building id)
-      const allAffected = new Map();
-      routeAlternatives.forEach(route => {
-        if (route.affectedBuildings) {
-          route.affectedBuildings.forEach(ab => {
-            if (!allAffected.has(ab.building.id)) {
-              allAffected.set(ab.building.id, ab);
-            }
-          });
+    let previewAffected = [];
+    
+    // If route suggestions panel is open
+    if (showRouteSuggestions && routeAlternatives && routeAlternatives.length > 0) {
+      // If "Show All Routes" is ON, show buildings affected by ALL routes
+      if (showSuggestedRoutes) {
+        const allAffected = new Map();
+        routeAlternatives.forEach(route => {
+          if (route.affectedBuildings) {
+            route.affectedBuildings.forEach(ab => {
+              if (!allAffected.has(ab.building.id)) {
+                allAffected.set(ab.building.id, ab);
+              }
+            });
+          }
+        });
+        previewAffected = Array.from(allAffected.values());
+      } else {
+        // Otherwise, show buildings affected by the SELECTED route only
+        const effectiveSelectedId = selectedRouteId || routeAlternatives[0]?.id;
+        const selectedRoute = routeAlternatives.find(r => r.id === effectiveSelectedId);
+        if (selectedRoute && selectedRoute.affectedBuildings) {
+          previewAffected = selectedRoute.affectedBuildings;
+        } else if (selectedRoute && selectedRoute.path) {
+          // Fallback: calculate from the selected route's path
+          previewAffected = findAffectedBuildings(selectedRoute.path, buildings, 0.0002);
         }
-      });
-      return Array.from(allAffected.values());
+      }
+    } else if (drawnPoints.length >= 2) {
+      // When actively drawing: Show buildings affected by the drawn path
+      previewAffected = findAffectedBuildings(drawnPoints, buildings, 0.0001);
     }
     
-    // Default: Show buildings affected by the ORIGINAL DRAWN PATH
-    if (drawnPoints.length >= 2) {
-      return findAffectedBuildings(drawnPoints, buildings, 0.0001);
-    }
+    // Merge built affected with preview affected (avoid duplicates)
+    const mergedMap = new Map();
     
-    return [];
-  }, [drawnPoints, buildings, showSuggestedRoutes, routeAlternatives]);
+    // Add built affected buildings first (with isBuilt flag)
+    builtAffected.forEach(ab => {
+      mergedMap.set(ab.building.id, { ...ab, isBuilt: true });
+    });
+    
+    // Add preview affected (won't overwrite built ones)
+    previewAffected.forEach(ab => {
+      if (!mergedMap.has(ab.building.id)) {
+        mergedMap.set(ab.building.id, { ...ab, isBuilt: false });
+      }
+    });
+    
+    return Array.from(mergedMap.values());
+  }, [drawnPoints, buildings, showSuggestedRoutes, showRouteSuggestions, routeAlternatives, selectedRouteId, builtRouteAffectedBuildings]);
 
   return (
     <div className="w-full h-full relative">
@@ -706,17 +777,17 @@ const CityMap = () => {
 
         {/* Road Network with smooth rendering */}
         {(selectedLayer === 'traffic' || selectedLayer === 'all') && (
-          <RoadNetwork roads={sortedRoads} onRoadClick={setSelectedRoad} />
+          <RoadNetwork roads={sortedRoads} onRoadClick={setSelectedRoad} isDrawing={isDrawing} />
         )}
 
         {/* Junction markers - fixed, no animation glitch */}
         {(selectedLayer === 'traffic' || selectedLayer === 'all') && (
-          <JunctionMarkers junctions={KEY_JUNCTIONS} onJunctionClick={setSelectedJunction} />
+          <JunctionMarkers junctions={KEY_JUNCTIONS} onJunctionClick={setSelectedJunction} isDrawing={isDrawing} />
         )}
 
         {/* Road connection markers - show where roads connect */}
         {(selectedLayer === 'traffic' || selectedLayer === 'all') && (
-          <RoadConnectionMarkers roads={sortedRoads} />
+          <RoadConnectionMarkers roads={sortedRoads} isDrawing={isDrawing} />
         )}
 
         {/* Building Layer - OSM buildings */}
@@ -725,6 +796,7 @@ const CityMap = () => {
             buildings={buildings} 
             affectedBuildings={affectedBuildings}
             onBuildingClick={setSelectedBuilding}
+            isDrawing={isDrawing}
           />
         )}
 
@@ -755,42 +827,44 @@ const CityMap = () => {
                 lineCap="round"
                 lineJoin="round"
               >
-                <Popup>
-                  <div className="text-sm p-1">
-                    <strong className="text-base">{infra.name}</strong>
-                    <span 
-                      className="ml-2 text-xs px-2 py-0.5 rounded"
-                      style={{ 
-                        backgroundColor: getInfraColor(infra.type) + '30',
-                        color: getInfraColor(infra.type)
-                      }}
-                    >
-                      {infra.type.toUpperCase()}
-                    </span>
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2">
-                      <span className="text-slate-400">Est. Cost:</span>
-                      <span className="font-medium">₹{infra.estimatedCost} Cr</span>
-                      <span className="text-slate-400">Time Saved:</span>
-                      <span className="font-medium text-green-400">-{infra.estimatedTimeReduction}%</span>
-                      <span className="text-slate-400">Status:</span>
-                      <span className="font-medium capitalize">{infra.status}</span>
+                {!isDrawing && (
+                  <Popup>
+                    <div className="text-sm p-1">
+                      <strong className="text-base">{infra.name}</strong>
+                      <span 
+                        className="ml-2 text-xs px-2 py-0.5 rounded"
+                        style={{ 
+                          backgroundColor: getInfraColor(infra.type) + '30',
+                          color: getInfraColor(infra.type)
+                        }}
+                      >
+                        {infra.type.toUpperCase()}
+                      </span>
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-1 mt-2">
+                        <span className="text-slate-400">Est. Cost:</span>
+                        <span className="font-medium">₹{infra.estimatedCost} Cr</span>
+                        <span className="text-slate-400">Time Saved:</span>
+                        <span className="font-medium text-green-400">-{infra.estimatedTimeReduction}%</span>
+                        <span className="text-slate-400">Status:</span>
+                        <span className="font-medium capitalize">{infra.status}</span>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-2">{infra.description}</p>
                     </div>
-                    <p className="text-xs text-slate-500 mt-2">{infra.description}</p>
-                  </div>
-                </Popup>
+                  </Popup>
+                )}
               </Polyline>
             </React.Fragment>
           ))
         }
 
         {/* User-drawn scenarios with vehicles */}
-        <UserScenarios scenarios={scenarios} />
+        <UserScenarios scenarios={scenarios} isDrawing={isDrawing} newlyBuiltScenarioIds={newlyBuiltScenarioIds} />
 
         {/* Route suggestions visualization */}
         <RouteVisualization />
 
-        {/* Drawing points */}
-        {isDrawing && drawnPoints.map((point, idx) => (
+        {/* Drawing points - hide when route suggestions have been generated */}
+        {isDrawing && routeAlternatives.length === 0 && drawnPoints.map((point, idx) => (
           <CircleMarker
             key={`draw-${idx}`}
             center={[point[1], point[0]]}
@@ -804,8 +878,8 @@ const CityMap = () => {
           </CircleMarker>
         ))}
 
-        {/* Drawing line connecting points */}
-        {isDrawing && drawnPoints.length >= 2 && (
+        {/* Drawing line connecting points - hide when route suggestions have been generated */}
+        {isDrawing && routeAlternatives.length === 0 && drawnPoints.length >= 2 && (
           <>
             <Polyline
               positions={toLatLng(drawnPoints)}

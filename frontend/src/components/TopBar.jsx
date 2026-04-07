@@ -44,56 +44,10 @@ const TopBar = () => {
       </div>
 
       {/* Center Section - Location */}
-      <div className="flex items-center gap-2 bg-slate-700/50 px-4 py-2 rounded-lg">
+      <div className="flex items-center gap-2 bg-slate-700/50 px-4 py-2 rounded-lg ml-auto">
         <span className="text-white font-medium">Pune</span>
         <span className="text-slate-400">|</span>
         <span className="text-slate-300">Wakad-Hinjewadi Corridor</span>
-      </div>
-
-      {/* Right Section - Controls */}
-      <div className="flex items-center gap-2">
-        {/* View Mode Toggle */}
-        <div className="flex bg-slate-700 rounded-lg p-1">
-          <button
-            onClick={() => setViewMode('3d')}
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-              viewMode === '3d' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            3D
-          </button>
-          <button
-            onClick={() => setViewMode('2d')}
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-              viewMode === '2d' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            2D
-          </button>
-        </div>
-
-        {/* Compare Mode */}
-        <button
-          onClick={toggleCompareMode}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-            isCompareMode 
-              ? 'bg-purple-600 text-white' 
-              : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-          }`}
-        >
-          <SplitSquareHorizontal size={18} />
-          <span className="text-sm">Compare</span>
-        </button>
-
-        {/* Help */}
-        <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">
-          <HelpCircle size={20} />
-        </button>
-
-        {/* Settings */}
-        <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">
-          <Settings size={20} />
-        </button>
       </div>
     </header>
   );

@@ -64,6 +64,12 @@ const useStore = create((set, get) => ({
   routeGenerationError: null, // Error message if route generation fails
   showSuggestedRoutes: false, // Toggle to show all 3 suggested routes on map (vs original drawn path)
   
+  // Highlight newly built roads
+  newlyBuiltScenarioIds: [], // IDs of scenarios that were just built (for highlighting)
+  
+  // Buildings affected by built infrastructure
+  builtRouteAffectedBuildings: [], // Buildings affected by permanently built routes
+  
   // Actions
   setViewMode: (mode) => set({ viewMode: mode }),
   setSelectedLayer: (layer) => set({ selectedLayer: layer }),
@@ -155,6 +161,78 @@ const useStore = create((set, get) => ({
   setRouteGenerationLoading: (loading) => set({ routeGenerationLoading: loading }),
   setRouteGenerationError: (error) => set({ routeGenerationError: error }),
   toggleShowSuggestedRoutes: () => set((state) => ({ showSuggestedRoutes: !state.showSuggestedRoutes })),
+  
+  // Apply selected route - converts the selected route to a scenario with traffic
+  applySelectedRoute: () => {
+    const state = get();
+    const { routeAlternatives, selectedRouteId, drawingType } = state;
+    
+    // Find the selected route (or default to first)
+    const effectiveSelectedId = selectedRouteId || (routeAlternatives[0]?.id);
+    const selectedRoute = routeAlternatives.find(r => r.id === effectiveSelectedId);
+    
+    if (!selectedRoute || !selectedRoute.path) {
+      console.warn('No valid route selected to apply');
+      return;
+    }
+    
+    // Create a new scenario from the selected route
+    const newScenarioId = Date.now().toString();
+    const newScenario = {
+      id: newScenarioId,
+      type: drawingType || 'flyover',
+      coordinates: selectedRoute.path,
+      name: selectedRoute.name || `New ${drawingType || 'flyover'}`,
+      createdAt: new Date().toISOString(),
+      fromRoute: selectedRoute.id, // Track which route this came from
+      affectedBuildings: selectedRoute.affectedBuildings || [],
+      isNew: true // Flag for highlighting
+    };
+    
+    const updatedScenarios = [...state.scenarios, newScenario];
+    
+    // Calculate traffic impact of new infrastructure
+    const roadsWithImpact = calculateInfrastructureImpact(updatedScenarios, ROAD_SEGMENTS);
+    
+    set({
+      // Clear drawing state
+      isDrawing: false,
+      drawingType: null,
+      drawnPoints: [],
+      // Add the route as a scenario
+      scenarios: updatedScenarios,
+      roadsWithImpact: roadsWithImpact,
+      // Close route suggestions panel
+      showRouteSuggestions: false,
+      showSuggestedRoutes: false,
+      routeAlternatives: [],
+      selectedRouteId: null,
+      // Mark this scenario as newly built for highlighting
+      newlyBuiltScenarioIds: [...state.newlyBuiltScenarioIds, newScenarioId],
+      // Store affected buildings for permanent highlighting
+      builtRouteAffectedBuildings: [
+        ...state.builtRouteAffectedBuildings,
+        ...(selectedRoute.affectedBuildings || []).map(ab => ({
+          ...ab,
+          scenarioId: newScenarioId,
+          isNewlyBuilt: true
+        }))
+      ]
+    });
+    
+    // Clear the "new" highlight after 10 seconds (but keep buildings highlighted)
+    setTimeout(() => {
+      set((state) => ({
+        newlyBuiltScenarioIds: state.newlyBuiltScenarioIds.filter(id => id !== newScenarioId),
+        // Mark buildings as no longer "newly built" but still affected
+        builtRouteAffectedBuildings: state.builtRouteAffectedBuildings.map(ab => 
+          ab.scenarioId === newScenarioId ? { ...ab, isNewlyBuilt: false } : ab
+        )
+      }));
+    }, 10000);
+    
+    console.log('✅ Applied route as scenario:', newScenario.name);
+  },
 }));
 
 export default useStore;

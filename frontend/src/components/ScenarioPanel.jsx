@@ -122,12 +122,12 @@ const ScenarioPanel = () => {
           </div>
         </div>
         <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center border border-white/5">
-          {isExpanded ? <ChevronDown size={18} className="text-slate-400" /> : <ChevronUp size={18} className="text-slate-400" />}
+          {isExpanded ? <ChevronUp size={18} className="text-slate-400" /> : <ChevronDown size={18} className="text-slate-400" />}
         </div>
       </div>
 
       {isExpanded && (
-        <div className="p-6 pt-0 space-y-6 max-h-[80vh] overflow-y-auto custom-scrollbar">
+        <div className="p-6 pt-0 space-y-6 max-h-[40vh] overflow-y-auto custom-scrollbar">
           {/* Add Infrastructure Section */}
           <div className="space-y-4 pt-2">
             <div className="flex items-center justify-between">
