@@ -5,22 +5,18 @@ AI-powered route optimization and infrastructure planning system for the Wakad-H
 ## Prerequisites
 
 - Node.js 18+
-- Python 3.7+ (for downloading OSM building data)
-- Internet connection (for initial OSM data download)
+- Internet connection (for one-time OSM data download, if needed)
 
-## Setup
+## Quick Start
 
 ```bash
 npm install
-```
-
-## Development
-
-```bash
 npm run dev
 ```
 
 The application will start at `http://localhost:5173`
+
+All 15,325 real OSM buildings are pre-loaded and available immediately - no API calls needed!
 
 ## Building for Production
 
@@ -29,52 +25,53 @@ npm run build
 npm run preview
 ```
 
-## OSM Building Data Setup
+## How It Works
 
-The application uses real OpenStreetMap (OSM) building data for the Wakad-Hinjewadi corridor. Before first run, you must download this data:
+### Building Data
 
-### Initial Download
+The application uses **pre-downloaded real OpenStreetMap (OSM) building data** for the Wakad-Hinjewadi corridor:
+
+- ✅ **15,325 real buildings** from OSM
+- ✅ **Pre-downloaded** and stored in `public/data/osm-buildings.json`
+- ✅ **Loads instantly** - no API calls during startup
+- ✅ **Works offline** - no internet required after first setup
+- ✅ **11 MB file** - downloaded once at setup
+
+### Updating Building Data
+
+To refresh the building data with latest OSM information:
 
 ```bash
 npm run download-buildings
 ```
 
 This command:
-1. Queries the Overpass API for all buildings in the Wakad-Hinjewadi area (18.575°N-18.62°N, 73.72°E-73.79°E)
-2. Parses building geometries, levels, heights, and estimated values
-3. Saves processed data to `public/data/osm-buildings.json` (~11 MB)
-4. Converts from raw OSM format to the application's internal format
+1. Queries the Overpass API for all buildings in Wakad-Hinjewadi area
+2. Processes and parses OSM data
+3. Saves updated `public/data/osm-buildings.json`
+4. No changes needed to app - just refresh browser
 
-**Note:** The first download may take 1-2 minutes. The Overpass API has multiple endpoints and the script will try them in sequence:
-- `overpass-api.de` (primary)
-- `overpass.kumi.systems` (backup 1)
-- `overpass.openstreetmap.fr` (backup 2)
+**Note:** Requires Python 3.7+ and internet connection. Takes 1-2 minutes.
 
-### Data Refresh
+### Building Object Format
 
-The downloaded data is cached in localStorage for 7 days. To refresh:
+Each building in the dataset contains:
 
-1. Delete the cache in browser DevTools → Application → Local Storage → Clear `citylens_osm_buildings`
-2. Run `npm run download-buildings` again to update `osm-buildings.json`
-
-### Output Format
-
-Each building object contains:
 ```javascript
 {
-  id: "osm-123456",           // Unique identifier
-  osmId: 123456,              // OpenStreetMap way/relation ID
-  type: "residential",        // residential | commercial | industrial | office
-  coordinates: [[lng,lat]...], // Closed polygon coordinates
-  levels: 3,                  // Number of floors
-  height: 10.5,               // Height in meters
-  area: 450.5,                // Floor area in square meters
-  estimatedValue: 22525000,   // Estimated property value in ₹
-  capacity: 45,               // Residents or business units
-  name: "Building Name",      // From OSM data or null
-  street: "Street Name",      // From OSM data or null
-  houseNumber: "123",         // From OSM data or null
-  tags: { /* raw OSM tags */ } // Original OSM metadata
+  id: "osm-123456",              // Unique identifier
+  osmId: 123456,                 // OpenStreetMap way/relation ID
+  type: "residential",           // residential | commercial | industrial | office
+  coordinates: [[lng,lat]...],   // Closed polygon coordinates
+  levels: 3,                     // Number of floors
+  height: 10.5,                  // Height in meters
+  area: 450.5,                   // Floor area in square meters
+  estimatedValue: 22525000,      // Estimated property value in ₹
+  capacity: 45,                  // Residents or business units affected
+  name: "Building Name",         // From OSM data or null
+  street: "Street Name",         // From OSM data or null
+  houseNumber: "123",            // From OSM data or null
+  tags: { /* raw OSM tags */ }   // Original OSM metadata
 }
 ```
 
@@ -113,7 +110,7 @@ Each building object contains:
 frontend/
 ├── public/
 │   ├── data/
-│   │   └── osm-buildings.json    # Downloaded OSM building data
+│   │   └── osm-buildings.json    # Pre-downloaded OSM buildings (11 MB)
 │   └── index.html
 ├── src/
 │   ├── components/               # React components
@@ -122,7 +119,7 @@ frontend/
 │   │   ├── RouteComparisonPanel.jsx
 │   │   └── ...
 │   ├── services/
-│   │   ├── osmService.js         # OSM data fetching & caching
+│   │   ├── osmService.js         # Building data loader (local file only)
 │   │   └── ...
 │   ├── utils/
 │   │   ├── routeOptimizer.js     # Route generation algorithm
@@ -131,13 +128,12 @@ frontend/
 │   │   └── ...
 │   ├── data/
 │   │   ├── puneData.js           # Corridor bounds, road network
-│   │   ├── mockBuildings.js      # Fallback building data
 │   │   └── ...
 │   ├── store/
 │   │   └── useStore.js           # Zustand state management
 │   └── App.jsx
 ├── scripts/
-│   └── download-osm-buildings.py # OSM data downloader
+│   └── download-osm-buildings.py # Update OSM building data
 ├── package.json
 ├── vite.config.js
 └── README.md
@@ -145,43 +141,46 @@ frontend/
 
 ## Troubleshooting
 
-### OSM Data Download Fails
-
-**Error:** "All Overpass endpoints failed"
-
-1. Check internet connection
-2. Overpass API might be temporarily unavailable
-3. Try again in a few minutes
-4. If using a proxy/firewall, may need to configure it
-
-**Solution:** The app will use cached building data or mock buildings as fallback.
-
 ### Buildings Not Loading
 
-1. Check browser console for errors
-2. Verify `public/data/osm-buildings.json` exists
-3. Check if JSON file is valid: `python -c "import json; json.load(open('public/data/osm-buildings.json'))"`
-4. Clear localStorage: DevTools → Application → Local Storage → Delete
+1. Check that `public/data/osm-buildings.json` exists
+2. Verify file is valid JSON: 
+   ```bash
+   python -c "import json; json.load(open('public/data/osm-buildings.json'))"
+   ```
+3. Check browser console (DevTools → Console) for errors
+4. Clear browser cache: DevTools → Network → Disable cache
 
 ### Route Optimization Not Working
 
-1. Make sure to draw a path first (click start point, then end point)
-2. Check console for errors in route generation
-3. Verify buildings are loaded
+1. Draw a path first (click start point, then end point on the map)
+2. Check console for errors
+3. Verify buildings are visible on the map
 
-## Performance Tips
+### Building Data Download Fails
 
-- OSM data file is ~11 MB but only downloaded once
-- Cached in localStorage for 7 days
-- Use toggle to hide suggested routes if map is slow
-- Works on Chrome, Firefox, Edge (modern browsers)
+If you need to update building data:
+
+1. Check internet connection
+2. Overpass API might be temporarily unavailable
+3. Try running the script again: `npm run download-buildings`
+
+The app will still work with existing `osm-buildings.json` - you don't need to update unless you want fresh data.
+
+## Performance
+
+- **Fast startup**: Buildings load from local file (<100ms)
+- **Large dataset**: 15,325 buildings handled efficiently
+- **No API dependency**: Works even if OSM API is down
+- **Optimized rendering**: Only affected buildings highlighted when route drawn
+
+Works on all modern browsers: Chrome, Firefox, Edge, Safari.
 
 ## Data Sources
 
 - **Building Data**: OpenStreetMap (ODbL License)
 - **Road Network**: OpenStreetMap
-- **Aerial Imagery**: OpenStreetMap tile servers
-- **Bounding Box**: Wakad-Hinjewadi corridor, Pune, India
+- **Bounding Box**: Wakad-Hinjewadi corridor, Pune, India (18.575°N-18.62°N, 73.72°E-73.79°E)
 
 ## License
 
