@@ -112,7 +112,17 @@ const useStore = create((set, get) => ({
       set({ isDrawing: false, drawingType: null, drawnPoints: [] });
     }
   },
-  cancelDrawing: () => set({ isDrawing: false, drawingType: null, drawnPoints: [] }),
+  cancelDrawing: () => set({ 
+    isDrawing: false, 
+    drawingType: null, 
+    drawnPoints: [],
+    // Also clear any route suggestions when canceling
+    routeAlternatives: [],
+    selectedRouteId: null,
+    showRouteSuggestions: false,
+    showSuggestedRoutes: false,
+    routeGenerationError: null
+  }),
   
   // Local traffic animation controls
   setTrafficSimulation: (active) => set({ trafficSimulationActive: active }),

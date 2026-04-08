@@ -3,8 +3,6 @@ import {
   TrendingDown, 
   TrendingUp, 
   Clock, 
-  Car, 
-  Wind,
   ChevronDown,
   ChevronUp,
   CheckCircle2,
@@ -14,7 +12,7 @@ import {
   Activity,
   BarChart3
 } from 'lucide-react';
-import { ROAD_SEGMENTS, HOURLY_TRAFFIC_PATTERNS, AQI_PATTERNS } from '../data/puneData';
+import { ROAD_SEGMENTS, HOURLY_TRAFFIC_PATTERNS } from '../data/puneData';
 import { calculateInfrastructureImpact } from '../utils/roadGraph';
 import useStore from '../store/useStore';
 
@@ -58,12 +56,6 @@ const AnalyticsPanel = () => {
       const baseTravelTime = 8;
       const travelTime = Math.round(baseTravelTime * (60 / Math.max(avgSpeed, 20))); // Inverse of speed
       
-      // AQI calculation
-      const baseAQI = AQI_PATTERNS.monthly[month];
-      const aqiMultiplier = AQI_PATTERNS.hourly[hour];
-      const trafficAQIContribution = (congestionIndex / 100) * 30;
-      const aqi = Math.round((baseAQI * aqiMultiplier) + trafficAQIContribution);
-      
       // Environmental impact based on SUMO data
       const vehiclesPerHour = totalVehicles * 10; // Extrapolate
       const idleTimeFactor = (waitingVehicles / Math.max(totalVehicles, 1)) * 0.8;
@@ -85,8 +77,6 @@ const AnalyticsPanel = () => {
         trafficMultiplier,
         avgTravelTime: travelTime,
         congestionIndex,
-        airQualityIndex: aqi,
-        aqiCategory: aqi < 50 ? 'Good' : aqi < 100 ? 'Moderate' : aqi < 150 ? 'Unhealthy for Sensitive' : aqi < 200 ? 'Unhealthy' : 'Very Unhealthy',
         vehiclesPerHour,
         avgSpeed: Math.round(avgSpeed),
         fuelWasted,
@@ -127,12 +117,6 @@ const AnalyticsPanel = () => {
     
     const congestionIndex = Math.round(adjustedDensity * 100);
     
-    // AQI calculation
-    const baseAQI = AQI_PATTERNS.monthly[month];
-    const aqiMultiplier = AQI_PATTERNS.hourly[hour];
-    const trafficAQIContribution = adjustedDensity * 30; // Traffic contributes to AQI
-    const aqi = Math.round((baseAQI * aqiMultiplier) + trafficAQIContribution);
-    
     // Vehicle count based on density
     const baseVehiclesPerHour = 12000;
     const vehiclesPerHour = Math.round(baseVehiclesPerHour * trafficMultiplier);
@@ -157,8 +141,6 @@ const AnalyticsPanel = () => {
       trafficMultiplier,
       avgTravelTime: travelTime,
       congestionIndex,
-      airQualityIndex: aqi,
-      aqiCategory: aqi < 50 ? 'Good' : aqi < 100 ? 'Moderate' : aqi < 150 ? 'Unhealthy for Sensitive' : aqi < 200 ? 'Unhealthy' : 'Very Unhealthy',
       vehiclesPerHour,
       avgSpeed: Math.round(avgSpeed),
       fuelWasted,
@@ -191,35 +173,58 @@ const AnalyticsPanel = () => {
     };
   }, [metrics, showBefore, scenarios]);
 
-  // AI analysis based on current conditions
+  // AI analysis based on current conditions - updates with infrastructure
   const aiAnalysis = useMemo(() => {
-    const necessityScore = Math.min(99, Math.round(50 + (metrics.congestionIndex * 0.5)));
+    // Base necessity score from congestion
+    const baseCongestion = ROAD_SEGMENTS.reduce((sum, road) => sum + road.trafficDensity, 0) / ROAD_SEGMENTS.length * 100;
+    const baseNecessityScore = Math.min(99, Math.round(50 + (baseCongestion * 0.5)));
     
+    // If infrastructure is active, show improved score
+    if (!showBefore && scenarios.length > 0) {
+      // Calculate improvement
+      const improvementFactor = improvement ? (improvement.congestionReduction / 100) : 0;
+      
+      // Network Health Score (higher = better, opposite of necessity)
+      const healthScore = Math.min(99, Math.round(40 + (100 - metrics.congestionIndex) * 0.5 + (improvementFactor * 30)));
+      
+      return {
+        bridgeNecessityScore: healthScore,
+        isHealthScore: true, // Flag to indicate this is now a health score
+        recommendation: healthScore > 80 ? 'Excellent' : healthScore > 60 ? 'Good' : healthScore > 40 ? 'Moderate' : 'Needs Work',
+        expectedImpact: {
+          travelTimeReduction: improvement?.travelTimeReduction || 0,
+          congestionReduction: improvement?.congestionReduction || 0,
+          fuelSaved: improvement?.fuelSaved || 0,
+          co2Reduced: improvement?.co2Reduced || 0
+        },
+        reasoning: [
+          `Infrastructure added: ${scenarios.length} project(s)`,
+          `Congestion reduced by ${improvement?.congestionReduction || 0}%`,
+          `Travel time improved by ${improvement?.travelTimeReduction || 0}%`,
+          `CO₂ emissions reduced: ${improvement?.co2Reduced || 0} kg/hr`
+        ]
+      };
+    }
+    
+    // No infrastructure - show necessity score
     return {
-      bridgeNecessityScore: necessityScore,
-      recommendation: necessityScore > 85 ? 'Critical Priority' : necessityScore > 70 ? 'Highly Recommended' : necessityScore > 50 ? 'Recommended' : 'Low Priority',
+      bridgeNecessityScore: baseNecessityScore,
+      isHealthScore: false,
+      recommendation: baseNecessityScore > 85 ? 'Critical Priority' : baseNecessityScore > 70 ? 'Highly Recommended' : baseNecessityScore > 50 ? 'Recommended' : 'Low Priority',
       expectedImpact: {
         travelTimeReduction: Math.round(30 + (metrics.congestionIndex * 0.3)),
         congestionReduction: Math.round(25 + (metrics.congestionIndex * 0.2)),
-        costBenefit: (2.5 + (necessityScore / 50)).toFixed(2),
-        paybackPeriod: (6 - (necessityScore / 25)).toFixed(1)
+        costBenefit: (2.5 + (baseNecessityScore / 50)).toFixed(2),
+        paybackPeriod: (6 - (baseNecessityScore / 25)).toFixed(1)
       },
       reasoning: [
         `Current congestion: ${metrics.congestionIndex}% of capacity`,
         `Travel time: ${metrics.avgTravelTime} min (${metrics.isPeakHour ? 'peak' : 'off-peak'} hour)`,
-        `${metrics.vehiclesPerHour.toLocaleString()} vehicles/hour on corridor`,
-        `Productivity loss: ₹${metrics.productivityLoss} Lakhs/hour`
+        `Productivity loss: ₹${metrics.productivityLoss} Lakhs/hour`,
+        `Add infrastructure to improve network`
       ]
     };
-  }, [metrics]);
-
-  const getAQIColor = (aqi) => {
-    if (aqi < 50) return 'text-green-400';
-    if (aqi < 100) return 'text-yellow-400';
-    if (aqi < 150) return 'text-orange-400';
-    if (aqi < 200) return 'text-red-400';
-    return 'text-purple-400';
-  };
+  }, [metrics, scenarios, showBefore, improvement]);
 
   const getCongestionColor = (index) => {
     if (index < 30) return 'text-green-400';
@@ -289,8 +294,6 @@ const AnalyticsPanel = () => {
             {[
               { label: 'Travel Time', value: metrics.avgTravelTime, unit: 'min', icon: Clock, color: 'text-white', sub: metrics.avgTravelTime > 20 ? <TrendingUp size={12} className="text-red-500" /> : <TrendingDown size={12} className="text-green-500" /> },
               { label: 'Congestion', value: `${metrics.congestionIndex}%`, unit: '', icon: Gauge, color: getCongestionColor(metrics.congestionIndex) },
-              { label: 'Air Quality', value: metrics.airQualityIndex, unit: 'aqi', icon: Wind, color: getAQIColor(metrics.airQualityIndex) },
-              { label: 'Network Load', value: (metrics.vehiclesPerHour / 1000).toFixed(1), unit: 'k', icon: Car, color: 'text-white' },
             ].map((kpi, i) => (
               <div key={i} className="glass-card p-5 group hover-glow border border-white/5 transition-all duration-500">
                 <div className="flex items-center justify-between mb-3">
@@ -341,7 +344,7 @@ const AnalyticsPanel = () => {
           </div>
 
           {/* AI Strategy - Premium Glass Style */}
-          <div className="bg-gradient-to-br from-indigo-600/20 via-purple-600/10 to-transparent rounded-[28px] p-6 border border-white/10 relative overflow-hidden group shadow-2xl">
+          <div className={`bg-gradient-to-br ${aiAnalysis.isHealthScore ? 'from-green-600/20 via-emerald-600/10' : 'from-indigo-600/20 via-purple-600/10'} to-transparent rounded-[28px] p-6 border border-white/10 relative overflow-hidden group shadow-2xl`}>
             <div className="absolute -top-6 -right-6 p-8 opacity-5 group-hover:opacity-10 transition-all duration-1000 rotate-12 group-hover:rotate-45">
               <Sparkles size={100} className="text-white" />
             </div>
@@ -351,12 +354,16 @@ const AnalyticsPanel = () => {
               onClick={() => setShowAIRecommendation(!showAIRecommendation)}
             >
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-2xl bg-indigo-500/20 flex items-center justify-center border border-indigo-500/20 shadow-lg">
-                  <Sparkles size={18} className="text-indigo-400" />
+                <div className={`w-9 h-9 rounded-2xl ${aiAnalysis.isHealthScore ? 'bg-green-500/20 border-green-500/20' : 'bg-indigo-500/20 border-indigo-500/20'} flex items-center justify-center border shadow-lg`}>
+                  <Sparkles size={18} className={aiAnalysis.isHealthScore ? 'text-green-400' : 'text-indigo-400'} />
                 </div>
                 <div>
-                  <span className="text-white text-xs font-black uppercase tracking-[0.2em]">CityAI™ Advisor</span>
-                  <p className="text-indigo-400/60 text-[9px] font-bold uppercase tracking-widest mt-0.5">Strategy Optimization</p>
+                  <span className="text-white text-xs font-black uppercase tracking-[0.2em]">
+                    {aiAnalysis.isHealthScore ? 'Network Health' : 'CityAI™ Advisor'}
+                  </span>
+                  <p className={`${aiAnalysis.isHealthScore ? 'text-green-400/60' : 'text-indigo-400/60'} text-[9px] font-bold uppercase tracking-widest mt-0.5`}>
+                    {aiAnalysis.isHealthScore ? 'Infrastructure Impact' : 'Strategy Optimization'}
+                  </p>
                 </div>
               </div>
               <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center">
@@ -366,24 +373,31 @@ const AnalyticsPanel = () => {
 
             <div className="flex items-center gap-5 mt-6 relative z-10">
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-xl border-t border-white/20 ${
-                aiAnalysis.bridgeNecessityScore > 85 ? 'bg-gradient-to-br from-red-500 to-red-600' :
-                aiAnalysis.bridgeNecessityScore > 70 ? 'bg-gradient-to-br from-orange-500 to-orange-600' :
-                'bg-gradient-to-br from-indigo-500 to-indigo-600'
+                aiAnalysis.isHealthScore 
+                  ? (aiAnalysis.bridgeNecessityScore > 70 ? 'bg-gradient-to-br from-green-500 to-emerald-600' : aiAnalysis.bridgeNecessityScore > 50 ? 'bg-gradient-to-br from-yellow-500 to-orange-500' : 'bg-gradient-to-br from-orange-500 to-red-500')
+                  : (aiAnalysis.bridgeNecessityScore > 85 ? 'bg-gradient-to-br from-red-500 to-red-600' : aiAnalysis.bridgeNecessityScore > 70 ? 'bg-gradient-to-br from-orange-500 to-orange-600' : 'bg-gradient-to-br from-indigo-500 to-indigo-600')
               }`}>
                 <span className="text-2xl font-black text-white leading-none tracking-tighter">{aiAnalysis.bridgeNecessityScore}</span>
               </div>
               <div className="flex-1">
                 <p className={`text-sm font-black uppercase leading-none mb-1.5 tracking-tight ${
-                  aiAnalysis.bridgeNecessityScore > 85 ? 'text-red-400' : 
-                  aiAnalysis.bridgeNecessityScore > 70 ? 'text-orange-400' : 'text-indigo-400'
+                  aiAnalysis.isHealthScore
+                    ? (aiAnalysis.bridgeNecessityScore > 70 ? 'text-green-400' : aiAnalysis.bridgeNecessityScore > 50 ? 'text-yellow-400' : 'text-orange-400')
+                    : (aiAnalysis.bridgeNecessityScore > 85 ? 'text-red-400' : aiAnalysis.bridgeNecessityScore > 70 ? 'text-orange-400' : 'text-indigo-400')
                 }`}>
                   {aiAnalysis.recommendation}
                 </p>
                 <div className="flex items-center gap-2">
                   <div className="flex-1 h-1 bg-slate-900 rounded-full overflow-hidden">
-                    <div className={`h-full rounded-full ${aiAnalysis.bridgeNecessityScore > 70 ? 'bg-red-500' : 'bg-indigo-500'}`} style={{ width: `${aiAnalysis.bridgeNecessityScore}%` }}></div>
+                    <div className={`h-full rounded-full ${
+                      aiAnalysis.isHealthScore 
+                        ? 'bg-green-500' 
+                        : (aiAnalysis.bridgeNecessityScore > 70 ? 'bg-red-500' : 'bg-indigo-500')
+                    }`} style={{ width: `${aiAnalysis.bridgeNecessityScore}%` }}></div>
                   </div>
-                  <span className="text-[9px] text-slate-500 font-black uppercase tracking-widest">Priority</span>
+                  <span className="text-[9px] text-slate-500 font-black uppercase tracking-widest">
+                    {aiAnalysis.isHealthScore ? 'Health' : 'Priority'}
+                  </span>
                 </div>
               </div>
             </div>
@@ -391,23 +405,46 @@ const AnalyticsPanel = () => {
             {showAIRecommendation && (
               <div className="mt-8 space-y-5 relative z-10 animate-in fade-in slide-in-from-top-4 duration-500">
                 <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: 'Travel Impact', value: `-${aiAnalysis.expectedImpact.travelTimeReduction}%`, color: 'text-green-400' },
-                    { label: 'Flow Gain', value: `+${aiAnalysis.expectedImpact.congestionReduction}%`, color: 'text-green-400' },
-                    { label: 'ROI Scale', value: `${aiAnalysis.expectedImpact.costBenefit}x`, color: 'text-blue-400' },
-                    { label: 'Payback', value: `${aiAnalysis.expectedImpact.paybackPeriod}yr`, color: 'text-blue-400' },
-                  ].map((item, i) => (
-                    <div key={i} className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
-                      <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">{item.label}</p>
-                      <p className={`${item.color} text-sm font-black tracking-tight`}>{item.value}</p>
-                    </div>
-                  ))}
+                  {aiAnalysis.isHealthScore ? (
+                    // Show actual improvements when infrastructure is built
+                    <>
+                      <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                        <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">Travel Time</p>
+                        <p className="text-green-400 text-sm font-black tracking-tight">-{aiAnalysis.expectedImpact.travelTimeReduction}%</p>
+                      </div>
+                      <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                        <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">Congestion</p>
+                        <p className="text-green-400 text-sm font-black tracking-tight">-{aiAnalysis.expectedImpact.congestionReduction}%</p>
+                      </div>
+                      <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                        <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">Fuel Saved</p>
+                        <p className="text-blue-400 text-sm font-black tracking-tight">{aiAnalysis.expectedImpact.fuelSaved} L/hr</p>
+                      </div>
+                      <div className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                        <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">CO₂ Reduced</p>
+                        <p className="text-blue-400 text-sm font-black tracking-tight">{aiAnalysis.expectedImpact.co2Reduced} kg</p>
+                      </div>
+                    </>
+                  ) : (
+                    // Show expected impact when no infrastructure
+                    [
+                      { label: 'Travel Impact', value: `-${aiAnalysis.expectedImpact.travelTimeReduction}%`, color: 'text-green-400' },
+                      { label: 'Flow Gain', value: `+${aiAnalysis.expectedImpact.congestionReduction}%`, color: 'text-green-400' },
+                      { label: 'ROI Scale', value: `${aiAnalysis.expectedImpact.costBenefit}x`, color: 'text-blue-400' },
+                      { label: 'Payback', value: `${aiAnalysis.expectedImpact.paybackPeriod}yr`, color: 'text-blue-400' },
+                    ].map((item, i) => (
+                      <div key={i} className="bg-slate-950/60 p-4 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                        <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1.5 leading-none">{item.label}</p>
+                        <p className={`${item.color} text-sm font-black tracking-tight`}>{item.value}</p>
+                      </div>
+                    ))
+                  )}
                 </div>
 
                 <div className="space-y-3 pt-2">
                   {aiAnalysis.reasoning.map((reason, i) => (
                     <div key={i} className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                      <CheckCircle2 size={12} className="text-indigo-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 size={12} className={`${aiAnalysis.isHealthScore ? 'text-green-400' : 'text-indigo-400'} mt-0.5 flex-shrink-0`} />
                       <span className="text-slate-300 text-[10px] leading-relaxed font-bold uppercase tracking-tight opacity-80">{reason}</span>
                     </div>
                   ))}

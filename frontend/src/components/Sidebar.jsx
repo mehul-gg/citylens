@@ -8,10 +8,13 @@ import {
   Route,
   AlertTriangle,
   Gauge,
-  Activity
+  Activity,
+  TrendingDown
 } from 'lucide-react';
+import { useMemo } from 'react';
 import useStore from '../store/useStore';
 import { KEY_JUNCTIONS, CITY_METRICS, ROAD_SEGMENTS } from '../data/puneData';
+import { calculateInfrastructureImpact } from '../utils/roadGraph';
 
 const Sidebar = () => {
   const { 
@@ -25,7 +28,35 @@ const Sidebar = () => {
     setCurrentHour,
     selectedJunction,
     sidebarOpen,
+    scenarios,
   } = useStore();
+
+  // Calculate dynamic metrics based on scenarios
+  const dynamicMetrics = useMemo(() => {
+    if (scenarios.length === 0) {
+      return {
+        avgTravelTime: CITY_METRICS.avgTravelTime,
+        congestionIndex: CITY_METRICS.congestionIndex,
+        improved: false
+      };
+    }
+
+    // Calculate impact of scenarios on roads
+    const impactedRoads = calculateInfrastructureImpact(scenarios, ROAD_SEGMENTS);
+    const avgDensityBefore = ROAD_SEGMENTS.reduce((sum, r) => sum + r.trafficDensity, 0) / ROAD_SEGMENTS.length;
+    const avgDensityAfter = impactedRoads.reduce((sum, r) => sum + r.trafficDensity, 0) / impactedRoads.length;
+    
+    // Calculate improvements
+    const densityReduction = (avgDensityBefore - avgDensityAfter) / avgDensityBefore;
+    const travelTimeReduction = densityReduction * 0.6; // 60% correlation
+    const congestionReduction = densityReduction;
+
+    return {
+      avgTravelTime: Math.round(CITY_METRICS.avgTravelTime * (1 - travelTimeReduction)),
+      congestionIndex: Math.round(CITY_METRICS.congestionIndex * (1 - congestionReduction)),
+      improved: densityReduction > 0.05
+    };
+  }, [scenarios]);
 
   const panels = [
     { id: 'overview', icon: Map, label: 'Overview' },
@@ -95,16 +126,17 @@ const Sidebar = () => {
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'Travel Time', value: CITY_METRICS.avgTravelTime, unit: 'min', color: 'text-white' },
-                { label: 'Congestion', value: CITY_METRICS.congestionIndex, unit: '%', color: 'text-orange-500' },
-                { label: 'Vehicles', value: (CITY_METRICS.dailyVehicles / 1000).toFixed(0), unit: 'k', color: 'text-white' },
-                { label: 'Air Quality', value: CITY_METRICS.airQualityIndex, unit: 'aqi', color: 'text-red-500' },
+                { label: 'Travel Time', value: dynamicMetrics.avgTravelTime, unit: 'min', color: dynamicMetrics.improved ? 'text-green-400' : 'text-white' },
+                { label: 'Congestion', value: dynamicMetrics.congestionIndex, unit: '%', color: dynamicMetrics.improved ? 'text-green-400' : 'text-orange-500' },
               ].map((stat, i) => (
-                <div key={i} className="glass-card p-4 hover-glow group cursor-default">
+                <div key={i} className={`glass-card p-4 hover-glow group cursor-default ${dynamicMetrics.improved ? 'border border-green-500/20' : ''}`}>
                   <p className="text-slate-500 text-[9px] font-black uppercase mb-1.5 group-hover:text-slate-400 transition-colors tracking-wider">{stat.label}</p>
                   <div className="flex items-baseline gap-1">
                     <p className={`text-2xl font-black tracking-tighter ${stat.color}`}>{stat.value}</p>
                     <p className="text-[10px] text-slate-500 font-bold uppercase">{stat.unit}</p>
+                    {dynamicMetrics.improved && (
+                      <TrendingDown size={12} className="text-green-400 ml-1" />
+                    )}
                   </div>
                 </div>
               ))}

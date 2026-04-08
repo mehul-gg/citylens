@@ -2,7 +2,7 @@
  * RouteComparisonPanel - Shows alternative routes with analytics
  */
 
-import { X, Check, TrendingDown, TrendingUp, Home, DollarSign, Clock, AlertTriangle, Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { X, Check, TrendingUp, Home, DollarSign, CheckCircle, Eye, EyeOff } from 'lucide-react';
 import useStore from '../store/useStore';
 import { formatINR } from '../utils/demolitionCalculator';
 
@@ -12,11 +12,11 @@ const RouteComparisonPanel = () => {
     selectedRouteId,
     setSelectedRoute,
     showRouteSuggestions,
-    toggleRouteSuggestions,
     clearRouteAlternatives,
     showSuggestedRoutes,
     toggleShowSuggestedRoutes,
-    applySelectedRoute
+    applySelectedRoute,
+    cancelDrawing
   } = useStore();
 
   if (!showRouteSuggestions || !routeAlternatives || routeAlternatives.length === 0) {
@@ -28,6 +28,11 @@ const RouteComparisonPanel = () => {
   // When closing panel, apply the selected route (make it permanent)
   const handleClose = () => {
     applySelectedRoute(); // This adds the selected route as a scenario and clears everything
+  };
+
+  // Discard without building
+  const handleDiscard = () => {
+    cancelDrawing(); // This clears drawing state and route suggestions
   };
 
   return (
@@ -79,7 +84,7 @@ const RouteComparisonPanel = () => {
       </div>
 
       {/* Routes List */}
-      <div className="overflow-y-auto max-h-[calc(100vh-280px)] custom-scrollbar">
+      <div className="overflow-y-auto max-h-[calc(100vh-350px)] custom-scrollbar">
         {routeAlternatives.map((route, index) => {
           // Safety checks
           if (!route || !route.summary) {
@@ -88,8 +93,7 @@ const RouteComparisonPanel = () => {
           }
 
           const isSelected = route.id === selectedRouteId || (index === 0 && !selectedRouteId);
-          const { summary, analysis } = route;
-          const score = route.score || 0;
+          const { summary } = route;
 
           return (
             <div
@@ -114,20 +118,10 @@ const RouteComparisonPanel = () => {
                   </div>
                   <p className="text-slate-400 text-xs mt-0.5">{route.description || 'No description'}</p>
                 </div>
-                
-                {/* Score Badge */}
-                <div className={`px-3 py-1.5 rounded-lg text-center ${
-                  score >= 70 ? 'bg-green-500/20 text-green-400' :
-                  score >= 50 ? 'bg-yellow-500/20 text-yellow-400' :
-                  'bg-red-500/20 text-red-400'
-                }`}>
-                  <div className="text-lg font-black">{score}</div>
-                  <div className="text-[8px] font-bold uppercase">Score</div>
-                </div>
               </div>
 
-              {/* Quick Stats Grid */}
-              <div className="grid grid-cols-2 gap-2 mb-3">
+              {/* Quick Stats Grid - Simplified */}
+              <div className="grid grid-cols-3 gap-2 mb-3">
                 {/* Length */}
                 <div className="bg-slate-800/50 p-2 rounded-lg">
                   <div className="flex items-center gap-1.5 mb-1">
@@ -156,52 +150,19 @@ const RouteComparisonPanel = () => {
                 <div className="bg-slate-800/50 p-2 rounded-lg">
                   <div className="flex items-center gap-1.5 mb-1">
                     <DollarSign size={12} className="text-slate-400" />
-                    <span className="text-[10px] text-slate-400 uppercase font-bold">Total Cost</span>
+                    <span className="text-[10px] text-slate-400 uppercase font-bold">Cost</span>
                   </div>
                   <div className="text-white font-bold text-sm">
                     {formatINR(summary.totalCost)}
                   </div>
                 </div>
-
-                {/* Payback Period */}
-                <div className="bg-slate-800/50 p-2 rounded-lg">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <Clock size={12} className="text-slate-400" />
-                    <span className="text-[10px] text-slate-400 uppercase font-bold">Payback</span>
-                  </div>
-                  <div className={`font-bold ${
-                    summary.paybackYears < 5 ? 'text-green-400' :
-                    summary.paybackYears < 10 ? 'text-yellow-400' :
-                    'text-red-400'
-                  }`}>
-                    {summary.paybackYears} yrs
-                  </div>
-                </div>
               </div>
-
-              {/* Traffic Improvement */}
-              <div className="bg-blue-600/10 border border-blue-600/30 p-2 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-blue-300 font-medium">Congestion Reduction</span>
-                  <span className="text-lg font-black text-blue-400">
-                    {summary.congestionReduction}%
-                  </span>
-                </div>
-              </div>
-
-              {/* Feasibility Indicator */}
-              {!summary.feasible && (
-                <div className="mt-2 flex items-center gap-2 text-xs text-amber-500">
-                  <AlertTriangle size={14} />
-                  <span>Long payback period - may not be economically feasible</span>
-                </div>
-              )}
 
               {/* Select Button */}
               {isSelected && (
-                <div className="mt-3 flex items-center gap-2 text-xs text-blue-400 font-medium">
+                <div className="flex items-center gap-2 text-xs text-blue-400 font-medium">
                   <Check size={14} />
-                  <span>Currently viewing this route</span>
+                  <span>Selected</span>
                 </div>
               )}
             </div>
@@ -212,12 +173,20 @@ const RouteComparisonPanel = () => {
       {/* Detailed View for Selected Route */}
       {selectedRoute && selectedRoute.analysis && (
         <div className="p-4 bg-slate-800/50 border-t border-slate-700">
-          <h4 className="text-white font-bold text-sm mb-3">Detailed Analysis</h4>
+          <h4 className="text-white font-bold text-sm mb-3">Cost Breakdown</h4>
           
           <div className="space-y-2 text-xs">
+            {/* Construction Cost */}
+            <div className="flex justify-between">
+              <span className="text-slate-400">Construction:</span>
+              <span className="text-white font-medium">
+                {formatINR(selectedRoute.analysis.demolition.constructionCost)}
+              </span>
+            </div>
+
             {/* Demolition Costs */}
             <div className="flex justify-between">
-              <span className="text-slate-400">Demolition Cost:</span>
+              <span className="text-slate-400">Demolition:</span>
               <span className="text-white font-medium">
                 {formatINR(selectedRoute.analysis.demolition.demolitionCost)}
               </span>
@@ -225,52 +194,18 @@ const RouteComparisonPanel = () => {
 
             {/* Relocation Costs */}
             <div className="flex justify-between">
-              <span className="text-slate-400">Relocation Cost:</span>
+              <span className="text-slate-400">Relocation:</span>
               <span className="text-white font-medium">
                 {formatINR(selectedRoute.analysis.demolition.relocationCost)}
               </span>
             </div>
 
-            {/* Construction Cost */}
-            <div className="flex justify-between">
-              <span className="text-slate-400">Construction Cost:</span>
-              <span className="text-white font-medium">
-                {formatINR(selectedRoute.analysis.demolition.constructionCost)}
-              </span>
-            </div>
-
-            {/* Administrative */}
-            <div className="flex justify-between">
-              <span className="text-slate-400">Administrative (15%):</span>
-              <span className="text-white font-medium">
-                {formatINR(selectedRoute.analysis.demolition.administrativeCost)}
-              </span>
-            </div>
-
             <div className="border-t border-slate-600 pt-2 mt-2">
-              {/* Total Units Affected */}
+              {/* Total */}
               <div className="flex justify-between">
-                <span className="text-slate-400">Units Affected:</span>
-                <span className="text-white font-medium">
-                  {selectedRoute.analysis.demolition.totalUnitsAffected}
-                </span>
-              </div>
-
-              {/* Annual Benefit */}
-              <div className="flex justify-between">
-                <span className="text-slate-400">Annual Benefit:</span>
-                <span className="text-green-400 font-medium">
-                  {formatINR(selectedRoute.analysis.traffic.estimatedAnnualBenefit)}
-                </span>
-              </div>
-
-              {/* ROI */}
-              <div className="flex justify-between">
-                <span className="text-slate-400">10-Year ROI:</span>
-                <span className={`font-medium ${
-                  selectedRoute.analysis.roi.roi10Year > 0 ? 'text-green-400' : 'text-red-400'
-                }`}>
-                  {selectedRoute.analysis.roi.roi10Year.toFixed(1)}%
+                <span className="text-slate-300 font-bold">Total:</span>
+                <span className="text-white font-bold">
+                  {formatINR(selectedRoute.analysis.demolition.totalCost)}
                 </span>
               </div>
             </div>
@@ -278,8 +213,8 @@ const RouteComparisonPanel = () => {
         </div>
       )}
 
-      {/* Build Route Button - Always visible at bottom */}
-      <div className="p-4 bg-slate-800/70 border-t border-slate-700">
+      {/* Action Buttons */}
+      <div className="p-4 bg-slate-800/70 border-t border-slate-700 space-y-2">
         <button
           onClick={applySelectedRoute}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-all shadow-lg hover:shadow-green-600/30"
@@ -287,9 +222,13 @@ const RouteComparisonPanel = () => {
           <CheckCircle size={20} />
           <span>Build This Route</span>
         </button>
-        <p className="text-xs text-slate-500 mt-2 text-center">
-          Finalize selection and add to map with traffic
-        </p>
+        <button
+          onClick={handleDiscard}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-medium rounded-lg transition-all text-sm"
+        >
+          <X size={16} />
+          <span>Discard</span>
+        </button>
       </div>
     </div>
   );

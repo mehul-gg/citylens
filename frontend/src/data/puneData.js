@@ -436,11 +436,6 @@ export const getRealtimeMetrics = (date = new Date()) => {
   // Congestion index (0-100)
   const congestionIndex = Math.round(trafficMultiplier * 95);
   
-  // AQI calculation
-  const baseAQI = AQI_PATTERNS.monthly[month];
-  const aqiMultiplier = AQI_PATTERNS.hourly[hour];
-  const aqi = Math.round(baseAQI * aqiMultiplier);
-  
   // Average speed inversely related to congestion
   const avgSpeed = Math.round(50 - (trafficMultiplier * 35)); // 15-50 km/h range
   
@@ -453,8 +448,6 @@ export const getRealtimeMetrics = (date = new Date()) => {
     metrics: {
       avgTravelTime: travelTime,
       congestionIndex: Math.min(100, congestionIndex),
-      airQualityIndex: aqi,
-      aqiCategory: aqi < 50 ? 'Good' : aqi < 100 ? 'Moderate' : aqi < 150 ? 'Unhealthy for Sensitive' : aqi < 200 ? 'Unhealthy' : 'Very Unhealthy',
       dailyVehicles: peakHourVehicles,
       avgSpeed,
       fuelWasted: Math.round(trafficMultiplier * 1200), // Liters per hour wasted in traffic
@@ -582,7 +575,6 @@ export const CITY_METRICS = {
   avgTravelTime: 22,       // minutes for Wakad to Hinjewadi Phase 2
   congestionIndex: 78,     // out of 100 (higher = worse)
   accidentRate: 2.3,       // per 1000 vehicles
-  airQualityIndex: 156,    // AQI
   dailyVehicles: 285000,
   publicTransportShare: 18 // percentage
 };

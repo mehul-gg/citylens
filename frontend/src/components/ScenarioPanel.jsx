@@ -43,10 +43,9 @@ const ScenarioPanel = () => {
   } = useStore();
 
   const infrastructureTypes = [
-    { id: 'road', label: 'New Road', icon: Waypoints, color: 'bg-lime-500', glow: 'shadow-lime-500/20' },
-    { id: 'bridge', label: 'Bridge', icon: ArrowUpRight, color: 'bg-cyan-500', glow: 'shadow-cyan-500/20' },
-    { id: 'flyover', label: 'Flyover', icon: Building, color: 'bg-purple-500', glow: 'shadow-purple-500/20' },
-    { id: 'tunnel', label: 'Tunnel', icon: Mountain, color: 'bg-orange-500', glow: 'shadow-orange-500/20' },
+    { id: 'road', label: 'New Road', icon: Waypoints, color: 'bg-lime-500', glow: 'shadow-lime-500/30' },
+    { id: 'bridge', label: 'Bridge', icon: ArrowUpRight, color: 'bg-cyan-500', glow: 'shadow-cyan-500/30' },
+    { id: 'flyover', label: 'Flyover', icon: Building, color: 'bg-purple-500', glow: 'shadow-purple-500/30' },
   ];
 
   const runSimulation = async () => {
@@ -151,13 +150,13 @@ const ScenarioPanel = () => {
                   className={`group flex flex-col items-start gap-3 p-4 rounded-[24px] transition-all duration-500 border-2 ${
                     isDrawing 
                       ? 'bg-slate-900/40 border-transparent opacity-40 grayscale cursor-not-allowed' 
-                      : 'bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10 hover-glow'
+                      : 'bg-white/10 border-white/10 hover:bg-white/20 hover:border-white/20 hover:shadow-lg'
                   }`}
                 >
-                  <div className={`w-10 h-10 rounded-xl ${type.color} bg-opacity-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-                    <type.icon size={20} className={type.color.replace('bg-', 'text-')} />
+                  <div className={`w-10 h-10 rounded-xl ${type.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg ${type.glow}`}>
+                    <type.icon size={20} className="text-white" />
                   </div>
-                  <span className="text-sm font-black tracking-tight text-white/90">{type.label}</span>
+                  <span className="text-sm font-black tracking-tight text-white">{type.label}</span>
                 </button>
               ))}
             </div>
