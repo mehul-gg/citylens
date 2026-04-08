@@ -249,27 +249,4 @@ app/
 
 ---
 
-## 📞 Need Help?
 
-Check `/QUICKSTART.md` for:
-- Step-by-step setup
-- API endpoint docs
-- Color code legend
-- Project structure
-- Demo scenario details
-
----
-
-## 🎉 YOU'RE READY!
-
-Your team now has a **complete, functioning Digital Twin Platform** ready to impress the judges. All the hard lifting is done - now just polish, rehearse, and deliver! 
-
-**Estimated Demo Time**: 5 minutes  
-**Setup Time**: 2 minutes  
-**Confidence Level**: ⭐⭐⭐⭐⭐
-
-Good luck at **Crescendo '26**! 🚀
-
----
-
-*Built with React, FastAPI, Mapbox, Deck.gl, and a lot of vibe-coding magic ✨*
