@@ -5,7 +5,6 @@ import {
   Play,
   Pause,
   Clock,
-  Route,
   AlertTriangle,
   Gauge,
   Activity,
@@ -72,23 +71,8 @@ const Sidebar = () => {
 
   return (
     <div className="w-80 sidebar-glass flex flex-col h-full z-20">
-      {/* App Header */}
-      <div className="p-8 pb-6">
-        <div className="flex items-center gap-3.5 mb-1.5">
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 flex items-center justify-center shadow-2xl shadow-blue-500/20 group">
-            <Route className="text-white group-hover:scale-110 transition-transform duration-500" size={20} />
-          </div>
-          <div>
-            <h1 className="text-2xl font-black text-white tracking-tight leading-none">
-              City<span className="text-blue-500">Lens</span>
-            </h1>
-            <p className="text-slate-500 text-[10px] font-black tracking-[0.2em] mt-1.5 uppercase">Digital Twin</p>
-          </div>
-        </div>
-      </div>
-
       {/* Panel Navigation */}
-      <nav className="px-4 py-2 space-y-1">
+      <nav className="px-4 py-4 space-y-1">
         {panels.map(panel => (
           <button
             key={panel.id}
@@ -142,13 +126,9 @@ const Sidebar = () => {
               ))}
             </div>
 
-            {/* Time Control Card */}
-            <div className="bg-gradient-to-br from-blue-600/10 to-indigo-600/5 border border-white/5 rounded-[24px] p-6 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500">
-              <div className="absolute -top-4 -right-4 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-700 rotate-12">
-                <Clock size={80} className="text-blue-500" />
-              </div>
-              
-              <div className="flex items-center justify-between mb-6 relative z-10">
+            {/* Simulation Control */}
+            <div className="bg-gradient-to-br from-blue-600/10 to-indigo-600/5 border border-white/5 rounded-[24px] p-5 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500">
+              <div className="flex items-center justify-between relative z-10">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-xl bg-blue-500/20 flex items-center justify-center">
                     <Clock size={16} className="text-blue-400" />
@@ -162,30 +142,11 @@ const Sidebar = () => {
                   className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                     trafficSimulationActive 
                       ? 'bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.4)]' 
-                      : 'bg-slate-800 text-slate-400'
+                      : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                   }`}
                 >
                   {trafficSimulationActive ? <Pause size={16} /> : <Play size={16} />}
                 </button>
-              </div>
-              
-              <div className="space-y-4 relative z-10">
-                <div className="flex justify-between items-end">
-                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Temporal flow</span>
-                  <div className="bg-slate-950/80 px-4 py-2 rounded-2xl border border-white/10 shadow-xl">
-                    <span className="text-white text-lg font-black font-mono tracking-tighter">
-                      {currentHour.toString().padStart(2, '0')}:00
-                    </span>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="23"
-                  value={currentHour}
-                  onChange={(e) => setCurrentHour(parseInt(e.target.value))}
-                  className="w-full h-1.5 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500"
-                />
               </div>
             </div>
 

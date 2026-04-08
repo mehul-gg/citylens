@@ -3,7 +3,6 @@ import CityMap from './components/CityMap';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import ScenarioPanel from './components/ScenarioPanel';
-import AnalyticsPanel from './components/AnalyticsPanel';
 import CompareView from './components/CompareView';
 import DrawingToolbar from './components/DrawingToolbar';
 import RouteComparisonPanel from './components/RouteComparisonPanel';
@@ -55,7 +54,6 @@ function App() {
               
               {/* Floating Panels */}
               <ScenarioPanel />
-              <AnalyticsPanel />
               <RouteComparisonPanel />
             </>
           )}

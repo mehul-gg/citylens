@@ -2,7 +2,7 @@ import {
   Menu, 
   PanelLeftClose, 
   PanelLeft, 
-  Compass,
+  Route,
   SplitSquareHorizontal,
   Sun,
   Moon,
@@ -32,13 +32,15 @@ const TopBar = () => {
           {sidebarOpen ? <PanelLeftClose size={20} /> : <PanelLeft size={20} />}
         </button>
         
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <Compass size={20} className="text-white" />
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 flex items-center justify-center shadow-2xl shadow-blue-500/20 group">
+            <Route className="text-white group-hover:scale-110 transition-transform duration-500" size={20} />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-white leading-tight">CityLens</h1>
-            <p className="text-xs text-slate-400 leading-tight">Digital Twin Platform</p>
+            <h1 className="text-xl font-black text-white tracking-tight leading-none">
+              City<span className="text-blue-500">Lens</span>
+            </h1>
+            <p className="text-slate-500 text-[10px] font-black tracking-[0.2em] mt-1 uppercase">Digital Twin</p>
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ const RouteComparisonPanel = () => {
   };
 
   return (
-    <div className="absolute top-20 right-4 w-96 max-h-[calc(100vh-160px)] bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-xl shadow-2xl overflow-hidden z-[1000]">
+    <div className="absolute top-6 left-6 w-96 max-h-[calc(100vh-100px)] bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-xl shadow-2xl overflow-hidden z-[1000]">
       {/* Header */}
       <div className="p-4 border-b border-slate-700 flex items-center justify-between">
         <div>

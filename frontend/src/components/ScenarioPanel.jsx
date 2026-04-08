@@ -105,7 +105,7 @@ const ScenarioPanel = () => {
   };
 
   return (
-    <div className="absolute top-6 right-6 w-85 glass rounded-[32px] overflow-hidden z-20 shadow-2xl">
+    <div className="absolute top-0 right-0 w-85 h-full glass rounded-l-[32px] overflow-hidden z-20 shadow-2xl">
       {/* Header */}
       <div 
         className="flex items-center justify-between p-6 cursor-pointer bg-white/5 hover:bg-white/10 transition-all duration-300"
@@ -126,7 +126,7 @@ const ScenarioPanel = () => {
       </div>
 
       {isExpanded && (
-        <div className="p-6 pt-0 space-y-6 max-h-[40vh] overflow-y-auto custom-scrollbar">
+        <div className="p-6 pt-0 space-y-6 max-h-[calc(100vh-100px)] overflow-y-auto custom-scrollbar">
           {/* Add Infrastructure Section */}
           <div className="space-y-4 pt-2">
             <div className="flex items-center justify-between">
